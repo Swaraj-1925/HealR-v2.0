@@ -65,10 +65,15 @@ router.get('/logout', (req, res, next) => {
     res.redirect('/protected-route');
 });
 
+
+
 router.get('/', (req, res, next) => {
  res.render("landing")
 });
-
+router.get('/signup', (req, res, next) => {
+  res.render("signup")
+ });
+ 
 router.get('/healR/dashboard', (req, res) => {
   if (req.isAuthenticated()) {
       if (req.user) { // Ensure user object exists

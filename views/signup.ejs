@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/signup.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="reg">
+        <div class="main">
+            <section class="signup">
+                <div class="container-reg">
+                    <div class="signup-content">
+                        <div class="signup-form">
+                            <div class="blur-background"></div>
+                            <h2 class="form-title">Sign up</h2>
+                            <form action="/register" method="POST" class="register-form">
+                                <div class="form-group">
+                                    <label for="name">
+                                        <i class="zmdi zmdi-account material-icons-name"></i>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        id="name"
+                                        placeholder="Your Name"
+                                      
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">
+                                        <i class="zmdi zmdi-email"></i>
+                                    </label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        id="email"
+                                        placeholder="Your Email"
+                                
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="pass">
+                                        <i class="zmdi zmdi-lock"></i>
+                                    </label>
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        id="pass"
+                                        placeholder="Password"
+                                  
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="re-pass">
+                                        <i class="zmdi zmdi-lock-outline"></i>
+                                    </label>
+                                    <input
+                                        type="password"
+                                        name="confirmPassword"
+                                        id="re_pass"
+                                        placeholder="Confirm your password"
+                                   
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="profession">
+                                        <i class="zmdi zmdi-accounts"></i>
+                                    </label>
+                                    <select name="profession" id="profession" required>
+                                        <option value="" disabled selected>Select your profession</option>
+                                        <option value="student">Student</option>
+                                        <option value="teacher">Teacher</option>
+                                        <option value="doctor">Doctor</option>
+            
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="age">
+                                        <i class="zmdi zmdi-calendar"></i>
+                                    </label>
+                                    <input
+                                        type="number"
+                                        name="age"
+                                        id="age"
+                                        placeholder="Your Age"
+                                       
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <input
+                                        type="checkbox"
+                                        name="agreeTerm"
+                                        id="agree-term"
+                                        class="agree-term"
+                                        
+                                        required
+                                    />
+                                    <label for="agree-term" class="label-agree-term">
+                                        I agree all statements in
+                                        <a href="#q" class="term-service">
+                                            Terms of service
+                                        </a>
+                                    </label>
+                                </div>
+                                <div class="form-group form-button">
+                                    <button type="submit" class="form-submit">SignUp</button>
+                                </div>
+                            </form>
+                            <a href="/login" class="signup-image-link">
+                                I am already a member
+                            </a>
+                        </div>
+                        <div class="signup-image">
+                            <figure>
+                                <img src="/images/therapy.jpg" alt="signin-img">
+
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</body>
+
+</html>
