@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    </head>
+<body>
+
+<%
+    const userDetails = {}; // Initialize userDetails
+
+    // Fetch user data from server
+    try {
+        const res = await fetch('/healR/dashboard');
+        userDetails = await res.json();
+    } catch (err) {
+        console.error(err);
+        // Handle error gracefully, e.g., display an error message
+    }
+
+    const sessionNOtBooked = {
+        title: "1 on 1 Sessions",
+        quote: "Let’s open up to the things that matter the most",
+        buttontext: "book now"
+    };
+
+    const booksession = userDetails.appointmentStatus === false ? sessionNOtBooked : {};
+%>
+
+<div>
+    <h2>Welcome, <%= userDetails.name %></h2>
+
+    <a href="/healR/docList">
+        <div>
+            <div><%= booksession.title %></div>
+            <div><%= booksession.quote %></div>
+            <div><%= booksession.buttontext %></div>
+        </div>
+    </a>
+</div>
+
+</body>
+</html>
