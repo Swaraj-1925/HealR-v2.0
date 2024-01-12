@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const passport = require('passport');
-const genPassword = require('./../../config/passwordUtils').genPassword;
-const connection = require('./../../config/schema');
+const genPassword = require('./../config/passwordUtils').genPassword;
+const connection = require('./../config/Schema');
+
 const User = connection.models.User;
 
 
@@ -64,24 +65,24 @@ router.get('/logout', (req, res, next) => {
     res.redirect('/protected-route');
 });
 
-// ... other routes and middleware
+router.get('/', (req, res, next) => {
+ res.render("landing")
+});
 
 router.get('/healR/dashboard', (req, res) => {
-    console.log(req.isAuthenticated())
-    console.log(req.user.name)
-    if (req.isAuthenticated()) {
-      
-      const userData = {
-        name:req.user.name,
-        appointmentStatus:req.user.appointmentStatus
-       
-      };
-      res.json(userData);
-    } else {
+  if (req.isAuthenticated()) {
+      if (req.user) { // Ensure user object exists
+          const userData = {
+              name: req.user.name,
+              appointmentStatus: req.user.appointmentStatus
+          };
+          res.render('dashboard', { userData });
+      } else {
+          console.error('User object not found in request');
+          res.status(500).send('Internal server error');
+      }
+  } else {
       res.status(401).json({ message: 'Unauthorized' });
-    }
-  });
-  
-
-
+  }
+});
 module.exports = router;

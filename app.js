@@ -1,10 +1,13 @@
 const express = require('express');
+const ejs = require('ejs');
+const path = require('path');
 const mongoose = require('mongoose');
 const session = require('express-session');
 var passport = require('passport');
 var crypto = require('crypto');
-var routes = require('./Client/Routes');
+var routes = require('./Routes');
 const MongoStore = require('connect-mongo');
+const { constants } = require('buffer');
 require('dotenv').config();
 
 const username =process.env.usernameMonog;
@@ -14,16 +17,11 @@ var app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+// app.set('views',path.join(__dirname,'views'));
+app.set('view engine', 'ejs');
 
-/**
- * -------------- SESSION SETUP ----------------
- */
 
 var  secret=process.env.SECRET
-const conn = "";
-
-
-
 
 app.use(session({
     secret: secret,
@@ -37,7 +35,6 @@ app.use(session({
 
 
 
-
 require('./config/passport');
 app.use(passport.initialize());
 app.use(passport.session());
@@ -47,6 +44,7 @@ app.use((req, res, next) => {
     console.log(req.username);
     next();
 });
+app.use(express.static(path.join(__dirname,'/public')));
 
 /**
  * -------------- ROUTES ----------------
@@ -60,7 +58,7 @@ app.use(routes);
  * -------------- SERVER ----------------
  */
 // Server listens on http://localhost:3000
-
+// console.log(path.join(__dirname,'/public'))
 const Port =process.env.PORT ||3000;
 app.listen(Port,() =>{
     console.log("server is litting 3000")

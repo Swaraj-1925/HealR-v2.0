@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+require('dotenv').config();
 
 const username =process.env.usernameMonog;
 const password=process.env.passwordMonog;
