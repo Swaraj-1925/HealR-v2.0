@@ -34,7 +34,8 @@ display-flex,.display-flex,.display-flex-center,.signup-content,.signin-content,
     background: #f8f8f8;
     padding: 60px;
     position: relative;
-    left: 30%;
+    left: 15%;
+    width: fit-content;
   }
   
   .clear {
