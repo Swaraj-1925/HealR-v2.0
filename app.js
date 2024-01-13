@@ -1,14 +1,13 @@
 const express = require('express');
-const ejs = require('ejs');
 const path = require('path');
-const mongoose = require('mongoose');
 const session = require('express-session');
 var passport = require('passport');
-var crypto = require('crypto');
+const fileUpload = require('express-fileupload');
 var routes = require('./Routes');
 const MongoStore = require('connect-mongo');
-const { constants } = require('buffer');
 require('dotenv').config();
+
+
 
 const username =process.env.usernameMonog;
 const password=process.env.passwordMonog;
@@ -18,12 +17,13 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 var  secret=process.env.SECRET
-
+app.use(fileUpload());
 app.use(session({
     secret: secret,
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: `mongodb+srv://${username}:${password}@cluster0.awcvfoh.mongodb.net/Healr?retryWrites=true&w=majority`}),
+    store: MongoStore.create({ mongoUrl: `mongodb+srv://${username}:${password}@cluster0.awcvfoh.mongodb.net/Healr?retryWrites=true&w=majority`
+    ,ttl: 60 * 60 * 24,    }),
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 
     }
@@ -36,8 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res, next) => {
-    console.log(req.session);
-    console.log(req.username);
+   
     next();
 });
 app.use(express.static(path.join(__dirname,'/public')));
@@ -50,11 +49,7 @@ app.use(express.static(path.join(__dirname,'/public')));
 app.use(routes);
 
 
-/**
- * -------------- SERVER ----------------
- */
-// Server listens on http://localhost:3000
-// console.log(path.join(__dirname,'/public'))
+
 const Port =process.env.PORT ||3000;
 app.listen(Port,() =>{
     console.log("server is litting 3000")
