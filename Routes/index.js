@@ -6,7 +6,7 @@ const connection = require('./../config/Schema');
 const User = connection.models.User;
 
 
-router.post('/healR/login', (req, res, next) => {
+router.post('signin', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err) {
    
@@ -29,7 +29,9 @@ router.post('/healR/login', (req, res, next) => {
 
 
 
-router.post('/healR/join', async (req, res, next) => {
+router.post('/signup', async (req, res, next) => {
+  console.log(req.body)
+  res.p
   try {
       const saltHash = genPassword(req.body.password);
       const salt = saltHash.salt;
@@ -52,8 +54,6 @@ router.post('/healR/join', async (req, res, next) => {
 
       await newUser.save();
       console.log(newUser);
-
-      return res.send('authorized');
   } catch (error) {
       console.error(error);
       return res.status(500).send('Error creating user');
