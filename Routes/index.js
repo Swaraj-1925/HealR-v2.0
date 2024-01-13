@@ -74,6 +74,10 @@ router.get('/signup', (req, res, next) => {
   res.render("signup")
  });
  
+router.get('/signin', (req, res, next) => {
+  res.render("signin")
+ });
+ 
 router.get('/healR/dashboard', (req, res) => {
   if (req.isAuthenticated()) {
       if (req.user) { // Ensure user object exists

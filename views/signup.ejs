@@ -11,13 +11,14 @@
 <body>
     <div class="reg">
         <div class="main">
+            <main>
             <section class="signup">
                 <div class="container-reg">
                     <div class="signup-content">
                         <div class="signup-form">
                             <div class="blur-background"></div>
                             <h2 class="form-title">Sign up</h2>
-                            <form action="/register" method="POST" class="register-form">
+                            <form action="/signup" method="POST" class="register-form">
                                 <div class="form-group">
                                     <label for="name">
                                         <i class="zmdi zmdi-account material-icons-name"></i>
@@ -70,7 +71,7 @@
                                         required
                                     />
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" ">
                                     <label for="profession">
                                         <i class="zmdi zmdi-accounts"></i>
                                     </label>
@@ -82,15 +83,16 @@
             
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group age" style="width: 50%;">
                                     <label for="age">
                                         <i class="zmdi zmdi-calendar"></i>
                                     </label>
                                     <input
+                                       
                                         type="number"
                                         name="age"
                                         id="age"
-                                        placeholder="Your Age"
+                                        placeholder="Age"
                                        
                                         required
                                     />
@@ -115,7 +117,7 @@
                                     <button type="submit" class="form-submit">SignUp</button>
                                 </div>
                             </form>
-                            <a href="/login" class="signup-image-link">
+                            <a href="/signin" class="signup-image-link">
                                 I am already a member
                             </a>
                         </div>
@@ -128,6 +130,7 @@
                     </div>
                 </div>
             </section>
+        </main>
         </div>
     </div>
 

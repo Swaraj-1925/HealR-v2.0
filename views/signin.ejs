@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/signup.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        @media (max-width: 600px){
+            .container-reg {
+            min-height: 61vh;
+            }
+            .signup-image-link{
+               position: relative; 
+               right: 6em;
+                
+            }
+  
+        }
+    </style>
+    <div class="reg">
+        <div class="main">
+            <main>
+            <section class="signup">
+                <div class="container-reg">
+                    <div class="signup-content">
+                        <div class="signup-form">
+                            <div class="blur-background"></div>
+                            <h2 class="form-title">Sign up</h2>
+                            <form action="/signin" method="POST" class="register-form">
+                                <div class="form-group">
+                                    <label for="email">
+                                        <i class="zmdi zmdi-email"></i>
+                                    </label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        id="email"
+                                        placeholder="Your Email"
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="pass">
+                                        <i class="zmdi zmdi-lock"></i>
+                                    </label>
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        id="pass"
+                                        placeholder="Password"
+                                  
+                                        required
+                                    />
+                                </div>
+                                
+                                <div class="form-group form-button">
+                                    <button type="submit" class="form-submit">SignUp</button>
+                                </div>
+                            </form>
+                            <a href="/signup" class="signup-image-link">
+                                New in HealR
+                            </a>
+                        </div>
+                        <div class="signup-image">
+                            <figure>
+                                <img src="/images/Login.jpg" alt="signin-img">
+
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        </div>
+    </div>
+
+</body>
+
+</html>

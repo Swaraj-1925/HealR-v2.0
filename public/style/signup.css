@@ -419,18 +419,23 @@ display-flex,.display-flex,.display-flex-center,.signup-content,.signin-content,
     margin-right: 20px;
     margin-top: 10px
   }
+  #profession{
+    padding: 10px;
+
+  }
   @media (max-width:600px){
-  
+
   .main{
     left: 30px;
-    height: auto;
-    top: 40px;
-    
+    height: auto;    
   }
+  .signup-content {
+    padding: 33px 0;
+}
   .container-reg{
+    min-height: 90vh;
     position: fixed;
-    min-height: 85vh;
-    width: 400px;
+    width: 87%;
   }
   .container{
   
@@ -441,7 +446,7 @@ display-flex,.display-flex,.display-flex-center,.signup-content,.signin-content,
   
   }
   .signup-form {
-    margin-left: 75px;
+    margin-left: 55px;
     margin-right: 35px;
     padding-left: 0px;
     width: 100%;
