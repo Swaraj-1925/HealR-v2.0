@@ -2,18 +2,16 @@ const router = require('express').Router();
 const passport = require('passport');
 const genPassword = require('./../config/passwordUtils').genPassword;
 const connection = require('./../config/Schema');
-const uploadImageAuth = require('../config/uplodeimg').uploadImageAuth;
-const uploadImage = require('../config/uplodeimg').uploadImage;
+
 const User = connection.models.User;
 const { BlobServiceClient } =require('@azure/storage-blob');
 const intoStream = require('into-stream');
 const fileUpload = require('express-fileupload');
-
 const Doc = connection.models.Doc;
 const authenticateDoc =connection.models.authenticateDoc;
 
 router.post('/signin', (req, res, next) => {
-  passport.authenticate('regularUser', (err, user, info) => {
+  passport.authenticate('local', (err, user, info) => {
     if (err) {
    
       return next(err);
@@ -28,12 +26,16 @@ router.post('/signin', (req, res, next) => {
         return next(err);
       }
     
-      return res.redirect('/dashboard');
+      return res.send('authorized');
     });
   })(req, res, next);
 });
+
+
+
 router.post('/signup', async (req, res, next) => {
- 
+  console.log(req.body)
+  res.p
   try {
       const saltHash = genPassword(req.body.password);
       const salt = saltHash.salt;
@@ -53,31 +55,26 @@ router.post('/signup', async (req, res, next) => {
           hash: hash,
           salt: salt
       });
+
       await newUser.save();
+      console.log(newUser);
   } catch (error) {
       console.error(error);
       return res.status(500).send('Error creating user');
   }
-  passport.authenticate("regularUser")(req,res, function(){
+  passport.authenticate("local")(req,res, function(){
     res.redirect("/dashboard")
   });
 });
 
 
 router.post('/doc', async (req,res) =>{
+  // console.log(req)
   var imgname =req.files.doqment.name;
   var bloobName= `image-${Date.now()}.${imgname}`
   var dataStream= intoStream (req.files.doqment.data);
-  var imageUrl;
-  try{
-  imageUrl = await uploadImageAuth(bloobName,dataStream)
-  }catch(err){
-    res.send("<h4>some error has ocured trying or Please contact  <a href='mailto:healr.society@gmail.com'>healr.society@gmail.com</a> with image of error</h4><p></p>Error:"+err)
-
-  }
+  const imageUrl = await uploadImageAuth(bloobName,dataStream)
   console.log(req.body)
-  const findUser = await authenticateDoc.findOne({ username: req.body.username });
-  if(!findUser){
   if(imageUrl){
     const newauthenticateDoc = new authenticateDoc({
       name:req.body.name,
@@ -85,27 +82,15 @@ router.post('/doc', async (req,res) =>{
       doqlink:imageUrl,
     });
     await newauthenticateDoc.save();
-    res.send("<h3>request has been sent</h3>")
+    res.send("<h1>user saved</h1>")
+  }else{
+    console.log("trying again!")
   }
-}else{
-  res.send("<h3>we are wroking on your verification</h3>")}
 });
 
 router.post('/docSignup', async (req, res) => {
-  const acceptedTime = req.body.acceptedTime || [];
-  var workingdays;
-  if(req.body.workingdays =="everyday"){
-    workingdays={
-      weekdays:false,
-      everyday: true,
-  };
-  }else{
-    workingdays={
-      weekdays:true,
-      everyday: false
-  };
-
-  }
+  
+  console.log(req.files);
   try {
     const findUser = await authenticateDoc.findOne({ username: req.body.username });
     const checkForAuthentication = await authenticateDoc.findOne({ username: req.body.username, authorized: true });
@@ -114,11 +99,8 @@ router.post('/docSignup', async (req, res) => {
       res.send("<h4>You haven't made a verification request yet. Please make a request or check your email. The email should be the same as you entered in the verification process.</h4>");
     } else {
       if (!checkForAuthentication) {
-        res.send("<h4>we are wroking on your verification </h4>");
+        res.send("<h4>Verification not done yet. Please try again later.</h4>");
       } else {
-
-        const findUser = await Doc.findOne({ username: req.body.username });
-        if(!findUser){
         try {
             var imgnameS = req.files.imagesS.name
             var imgnameB = req.files.imagesB.name
@@ -149,63 +131,30 @@ router.post('/docSignup', async (req, res) => {
               message: req.body.feesmessage,
               inRealLife: req.body.feesinRealLife,
             },
-            wokingdays:workingdays,
-            acceptedTime: acceptedTime,
+            acceptedTime: req.body.accepetedTime || [],
             available: req.body.available || true,
             images:{
               imgS:imageurlS,
-              imgB:imageurlB
+              imgB:imgnameB
             },
             hash: hash,
             salt: salt
           });
-          await newdoc.save();
-          
-          passport.authenticate('doctorAuthStrategy')(req, res, function (err, user) {
-            if (err || !user) {
-              console.error("Authentication failed:", err);
-              return res.status(401).send("Unauthorized");
-            }
-            console.log("Authentication successful!");
-            res.redirect("/docDashboard");
-          });
-          
+          newdoc.save();
+          res.send("<h1>User saved</h1>");
         }
-      
         } catch (error) {
           console.error(error);
-          res.status(500).send('<h3>Error saving user try again</h3>');
+          res.status(500).send('<h4>Error saving user</h4>');
         }
-      }else{
-        res.send('<h4>Error: user alerdy exist try to login </h4>')
       }
-    }
     }
   } catch (error) {
     console.error(error);
     res.status(500).send('<h4>Error processing request</h4>');
   }
 });
-router.post('/docsignIn', (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
-    if (err) {
-   
-      return next(err);
-    }
-    if (!user) {
-      
-      return res.send('Invalid credentials');
-    }
-   
-    req.logIn(user, (err) => {
-      if (err) {
-        return next(err);
-      }
-    
-      return res.redirect('/docDashboard');
-    });
-  })(req, res, next);
-});
+
 
 router.get('/dashboard', (req, res) => {
   const userData={
@@ -223,14 +172,16 @@ router.get('/logout', (req, res, next) => {
     req.logout();
     res.redirect('/protected-route');
 });
+
+
+
 router.get('/', (req, res, next) => {
  res.render("landing")
 });
-
 router.get('/signup', (req, res, next) => {
-  res.render("signup");
-
+  res.render("signup")
  });
+ 
 router.get('/signin', (req, res, next) => {
   res.render("signin")
  });
@@ -242,18 +193,5 @@ router.get('/docSignup', (req, res, next) => {
   res.render("docsignUp")
  });
 
- router.get('/docDashboard',(req,res) =>{
-  console.log(req)
-  if (req.isAuthenticated()) {
-    return res.render("docDashboard");
-  } else {
-    return res.redirect('/signin');
-  }
-  
- })
- router.get('/docsignIn',(req,res) =>{
- 
-    res.render("docsignIn");
 
- })
 module.exports = router;

@@ -34,7 +34,7 @@ const docSchema = new mongoose.Schema({
         weekdays:{type:Boolean,default:true},
         everyday:{type:Boolean,default:false}
     },
-    acceptedTime:[Number],
+    accepetedTime:[Number],
 
 
     images:{
@@ -74,21 +74,11 @@ const subscriptionSchema =new mongoose.Schema({
     trasactionHash:String
 
 });
-const authenticateDocSchema = new mongoose.Schema({
-    username:String,
-    name:String,
-    authorized:{type:Boolean,default:false},
-    doqlink:String,
-    timestamp:{type:Date, default:Date.now()},
-
-
-});
 const Doc =connection.model('Doc',docSchema);
 const Appointment = connection.model('Appointment',appointmentSchema);
 const Review = connection.model('Review',reviewSchema);
 const Subscription = connection.model('Subscription',subscriptionSchema);
 const User = connection.model('User', UserSchema);
-const authenticateDoc = connection.model('authenticateDoc', authenticateDocSchema);
 
 const createCollections = async () => {
     try {
@@ -97,7 +87,8 @@ const createCollections = async () => {
         await Review.createCollection();
         await Subscription.createCollection();
         await User.createCollection();
-        await authenticateDoc.createCollection()
+        await authenticateDoc.createCollection();
+        console.log('Collections created successfully');
     } catch (err) {
         console.error('Error creating collections:', err);
     }
