@@ -12,6 +12,7 @@ const UserSchema = new mongoose.Schema({
     age:Number,
     Profession:String,
     appointmentStatus:{type:Boolean, default:false },
+    role: { type: String, default: 'user' },
     hash: String,
     salt: String,
 });
@@ -33,7 +34,7 @@ const docSchema = new mongoose.Schema({
         weekdays:{type:Boolean,default:true},
         everyday:{type:Boolean,default:false}
     },
-    accepetedTime:[Number],
+    acceptedTime:[Number],
 
 
     images:{
@@ -41,6 +42,7 @@ const docSchema = new mongoose.Schema({
         imgB:String,
     },
     available:{type:Boolean, default: true },
+    role: { type: String, default: 'doctor' },
     hash:String,
     salt:String
 });
@@ -95,8 +97,7 @@ const createCollections = async () => {
         await Review.createCollection();
         await Subscription.createCollection();
         await User.createCollection();
-        await authenticateDoc.createCollection();
-        console.log('Collections created successfully');
+        await authenticateDoc.createCollection()
     } catch (err) {
         console.error('Error creating collections:', err);
     }

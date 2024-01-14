@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
 const session = require('express-session');
 var passport = require('passport');
@@ -13,7 +14,7 @@ const username =process.env.usernameMonog;
 const password=process.env.passwordMonog;
 
 var app = express();
-app.use(express.json());
+app.use(bodyParser.json());
 app.use(express.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 var  secret=process.env.SECRET
