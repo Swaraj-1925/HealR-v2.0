@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { stringify } = require('uuid');
 require('dotenv').config();
 
 const username =process.env.usernameMonog;
@@ -66,15 +65,17 @@ const subscriptionSchema =new mongoose.Schema({
     trasactionHash:String
 
 });
-const authenticateDocSchema = new mongoose.Schema({
-    username:String,
-    name:String,
-    authorized:{type:Boolean,default:false},
-    doqlink:String,
-    timestamp:{type:Date, default:Date.now()},
 
+const usercredSchema  =new mongoose.Schema({
+
+    username:String,
+    role:String,
+    hash:String,
+    salt:String
 
 });
+
+const usercred = connection.model('usercred',usercredSchema)
 const Doc =connection.model('Doc',docSchema);
 const Appointment = connection.model('Appointment',appointmentSchema);
 const Review = connection.model('Review',reviewSchema);
@@ -88,7 +89,7 @@ const createCollections = async () => {
         await Review.createCollection();
         await Subscription.createCollection();
         await User.createCollection();
-        await authenticateDoc.createCollection();
+        await usercred.createCollection();
         console.log('Collections created successfully');
     } catch (err) {
         console.error('Error creating collections:', err);

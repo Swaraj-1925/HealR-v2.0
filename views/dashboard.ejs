@@ -1,133 +1,146 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
+	<head>
+		<title>HealR</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="style/dashboard.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400&family=Lavishly+Yours&family=Pangolin&display=swap" rel="stylesheet">
 
-<head>
-    <title>HealR</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="style/dashboard.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400&family=Lavishly+Yours&family=Pangolin&display=swap"
-        rel="stylesheet">
+
 
 </head>
+	<body>
+        <div class="root">
+            <div class="page">
 
-<body>
-    <div class="root">
-        <div class="page">
-
-            <div class="tabs">
-                <div class="setting">
-                    <img src="/images/icon-message.png" alt="">
-                    <img src="/images/icons-setting.png" alt="">
-                </div>
-                <input type="radio" id="tab1" name="tab-control" checked>
-                <input type="radio" id="tab2" name="tab-control">
-                <ul>
-                    <li title="Features"><label for="tab1" role="button">
-                            <img class="home-icon" src="/images/home.png" alt="">
-                            <br><span>Home</span></label></li>
-                    <li title="Delivery Contents"><label style="z-index: 100;" for="tab2" role="button">
-                            <img class="cal-icon" src="/images/calendar.png" alt="">
-                            <br><span>Appointment</span></label></li>
-
-                </ul>
-
-                <div class="slider">
-                    <div class="indicator"></div>
-                </div>
-                <div class="content">
-                    <section>
-                        <div class='titlePage'>
-                            <div class="welcome-back-sarina-container">
-                                <span class="good-afternoon"><b>Hey</b></span>
-                                <span class="span">, </span>
-                                <b>
-                                    <%= userData.name %>!
-                                </b>
-                            </div>
-
-                            <div class="rectangle-group">
-                                <div class="rectangle1">
-                                    <img src="/images/dashboard-back1.jpg" alt="">
-                                </div>
-
-                                <div class="it-is-better">
-                                    Embark a new journey with HealR.
-                                </div>
-                            </div>
-                            <div class="rectangle-parent">
-                                <div class="rectangle"></div>
-                                <img class="mask-group-icon" src="/images/dashboard-back2.png" alt="" />
-
-                                <Link to="/bookappointment">
-                                <div class="peer-group-meetup">
-                                    <div class="on-1-sessions">1 on 1 Sessions</div>
-                                    <div class="lets-open-up">
-                                        Let’s open up to the things that matter the most
-                                    </div>
-                                    <div class="watch-now">
-                                        <div class="watch-now-child"></div>
-                                        <button class="book-now" type="button"><b>Book Now</b></button>
-
-                                    </div>
-                                </div>
-                                </Link>
-
-                    </section>
-
-                    <section>
-
-                        <div class="label-search">
-                            <div class="label-search-child"></div>
-                            <img class="search-icon" alt="" src="/images/search.png" />
-                            <input class="search-doctor" type="text" placeholder='Search doctor' />
-
-                        </div>
-                        <Link to="/doc_Description">
-                        <div class="card-9">
-                            <img class="image-icon" alt="" src="/images/model.png" />
-
-                            <div class="frame-parent">
-                                <div class="sarah-parent">
-                                    <b class="name">Sarah</b>
-
-                                </div>
-                                <div class="frame-child"></div>
-                                <div class="frame-group">
-                                    <div class="frame-container">
-                                        <div class="vuesaxlinearlocation-wrapper">
-                                            <img class="vuesaxlinearlocation-icon" alt="" />
-                                        </div>
-                                        <div class="golden-cardiology-center">
-                                            Psy.D. (Doctor of Psychology)
-                                        </div>
-                                    </div>
-                                    <div class="years-experience">10 years experience</div>
-                                    <div class="frame-div">
-                                        <div class="frame-parent1">
-                                            <div class="subtract-parent">
-                                                <img class="subtract-icon" alt="" src="/images/star.png" />
+				<div class="tabs">
+					<div class="setting">
+						<img src="/images/icon-message.png" alt="" >
+						<img src="/images/icons-setting.png" alt="">
+					</div>
+				<input type="radio" id="tab1" name="tab-control" checked>
+				<input type="radio" id="tab2" name="tab-control">
+				<ul>
+					<li title="Features"><label for="tab1" role="button">
+						<img class="home-icon" src="/images/home.png" alt="">
+						<br><span>Home</span></label></li>
+					<li title="Delivery Contents"><label style="z-index: 100;" for="tab2" role="button">
+						<img class="cal-icon" src="/images/calendar.png" alt="">
+						<br><span>Appointment</span></label></li>
+					
+				</ul>
+				
+				<div class="slider"><div class="indicator"></div></div>
+				<div class="content">
+					<section>
+					<div class='titlePage'>
+										<div class="welcome-back-sarina-container">
+											<span class="good-afternoon"><b>Hey</b></span>
+											<span class="span">, </span>
+											<b> <%= userData.name %> </b>
+										</div>
+										
+											<div class="rectangle-group">
+											<div class="rectangle1">
+												<img src="/images/dashobard1.jpg" alt="">
+											</div>
+										
+											<div class="it-is-better">
+												Embark a new journey with HealR.
                                             </div>
-                                            <div class="sarah numberstar">5</div>
-                                        </div>
-                                        <div class="frame-item"></div>
-                                        <div class="reviews">(1,872 Reviews)</div>
-                                        <div class="div2">₹ 1000</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </Link>
-                        </li>
-                    </section>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+											</div>
+											<div class="rectangle-parent">
+												<div class="rectangle"></div>
+												<img
+												class="mask-group-icon" src="/images/dashobard2.png"
+												alt=""
+												/>
+										
+												<Link to="/bookappointment">  <div class="peer-group-meetup">
+												<div class="on-1-sessions">1 on 1 Sessions</div>
+												<div class="lets-open-up">
+													Let’s open up to the things that matter the most
+												</div>
+												<div class="watch-now">
+													<div class="watch-now-child">
+														<button class="book-now" id="book-now" type="button"><b>Book Now</b></button>
+													</div>
 
+												</div>
+												</div></Link>
+												
+											</section>
+						<section>
+						<div class="label-search">
+										<div class="label-search-child"></div>
+										<img class="search-icon" alt="" src="/images/search.png" />
+										<input class="search-doctor" type="text" placeholder='Search doctor'/>
+										
+										</div>
+									<Link to="/doc_Description"><div class="card-9">
+										<img class="image-icon" alt="" src="/images/model.png" />
+					
+										<div class="frame-parent">
+											<div class="sarah-parent">
+											<b class="name">Sarah</b>
+											
+											</div>
+											<div class="frame-child"></div>
+											<div class="frame-group">
+											<div class="frame-container">
+												<div class="vuesaxlinearlocation-wrapper">
+												<img class="vuesaxlinearlocation-icon" alt="" />
+												</div>
+												<div class="golden-cardiology-center">
+												Psy.D. (Doctor of Psychology)
+												</div>
+											</div>
+											<div class="years-experience">10 years experience</div>
+											<div class="frame-div">
+												<div class="frame-parent1">
+												<div class="subtract-parent">
+													<img
+													class="subtract-icon"
+													alt=""
+													src="/images/star.png"
+													/>
+												</div>
+												<div class="sarah numberstar">5</div>
+												</div>
+												<div class="frame-item"></div>
+												<div class="reviews">(1,872 Reviews)</div>
+												<div class="div2">₹ 1000</div>
+											</div>
+											</div>
+										</div>
+									</div> </Link>
+										</li></section>
+				</div>
+				</div>
+			</div>
+        </div>
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				// Get the button element
+				var bookNowButton = document.getElementById('book-now');
+		
+				// Add a click event listener to the button
+				bookNowButton.addEventListener('click', function () {
+					// Find the radio button corresponding to tab 2
+					var tab2RadioButton = document.getElementById('tab2');
+		
+					// Check the radio button for tab 2
+					tab2RadioButton.checked = true;
+		
+					// Optionally, you can trigger the change event to make sure the tab content updates
+					var event = new Event('change');
+					tab2RadioButton.dispatchEvent(event);
+				});
+			});
+		</script>
+    </body>
 </html>
