@@ -2,7 +2,7 @@ const router = require('express').Router();
 const passport = require('passport');
 const genPassword = require('./../config/passwordUtils').genPassword;
 const connection = require('./../config/Schema');
-
+const usercred = connection.models.usercred; 
 const User = connection.models.User;
 
 
@@ -31,7 +31,6 @@ router.post('signin', (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
   console.log(req.body)
-  res.p
   try {
       const saltHash = genPassword(req.body.password);
       const salt = saltHash.salt;
@@ -48,12 +47,23 @@ router.post('/signup', async (req, res, next) => {
           name: req.body.name,
           age: req.body.age,
           Profession: req.body.profession,
-          hash: hash,
-          salt: salt
-      });
+          
+      });   
+      const newUsercred = new usercred({
+        username: req.body.username,
+        role: "patient",
+        hash: hash,
+        salt: salt
+      })
 
       await newUser.save();
+      await newUsercred.save();
       console.log(newUser);
+      console.log(newUsercred);
+
+      passport.authenticate("local")(req,res,function(){
+        res.redirect('/dashboard')
+      })
   } catch (error) {
       console.error(error);
       return res.status(500).send('Error creating user');
@@ -78,9 +88,9 @@ router.get('/signin', (req, res, next) => {
   res.render("signin")
  });
  
-router.get('/healR/dashboard', (req, res) => {
+router.get('/dashboard', (req, res) => {
   if (req.isAuthenticated()) {
-      if (req.user) { // Ensure user object exists
+      if (req.user) { 
           const userData = {
               name: req.user.name,
               appointmentStatus: req.user.appointmentStatus
