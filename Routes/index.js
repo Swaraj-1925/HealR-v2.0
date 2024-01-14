@@ -4,6 +4,8 @@ const genPassword = require('./../config/passwordUtils').genPassword;
 const connection = require('./../config/Schema');
 const usercred = connection.models.usercred;
 const Doc = connection.models.Doc;
+const User = connection.models.User;
+const Review = connection.models.Review;
 const authRequest = connection.models.authRequest;
 const intoStream = require('into-stream');
 
@@ -35,7 +37,7 @@ router.post('signin', (req, res, next) => {
 
 
 router.post('/signup', async (req, res, next) => {
-  console.log(req.body)
+  
   try {
       const saltHash = genPassword(req.body.password);
       const salt = saltHash.salt;
@@ -56,6 +58,7 @@ router.post('/signup', async (req, res, next) => {
       });   
       const newUsercred = new usercred({
         username: req.body.username,
+        name: req.body.name,
         role: "patient",
         hash: hash,
         salt: salt
@@ -63,8 +66,7 @@ router.post('/signup', async (req, res, next) => {
 
       await newUser.save();
       await newUsercred.save();
-      console.log(newUser);
-      console.log(newUsercred);
+      
 
       passport.authenticate("local")(req,res,function(){
         res.redirect('dashboard')
@@ -99,11 +101,9 @@ router.post('/doc', async (req,res) =>{
 });
 
 router.post('/docSignup', async (req, res) => {
-  console.log('Request Body:', req.body);
-  
+
   const acceptedTime = req.body.acceptedTime || [];
   var workingdays;
-  console.log( req.body.workingdays);
   if(req.body.workingdays =="everyday"){
     workingdays:({
       weekdays:false,
@@ -146,7 +146,7 @@ router.post('/docSignup', async (req, res) => {
           const newdoc = new Doc({
             username: req.body.username,
             name: req.body.name,
-            Profession: req.body.profession,
+            Profession: req.body.Profession,
             yearOfExperience: req.body.experience,
             about: req.body.about,
             fees: {
@@ -204,14 +204,30 @@ router.get('/signin', (req, res, next) => {
   res.render("signin")
  });
  
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard', async (req, res) => {
   if (req.isAuthenticated()) {
       if (req.user) { 
-          const userData = {
-              name: req.user.name,
-              appointmentStatus: req.user.appointmentStatus
-          };
-          res.render('dashboard', { userData });
+        const userData = {
+          name: req.user.name,
+          appointmentStatus: req.user.appointmentStatus
+      };
+        Doc.find({}, 'name yearOfExperience Profession fees.call images.imgS _id')
+          .then(docs => {
+            Review.aggregate([
+              { $group: { _id: '$doc_username', count: { $sum: 1 }, avgStars: { $avg: '$stars' } } }
+            ])
+            .then(reviews => {
+              res.render('dashboard', { userData,docs, reviews });
+            })
+            .catch(error => {
+              console.error(error);
+            });
+          })
+          .catch(error => {
+            console.error(error);
+          });
+         
+    
       } else {
           console.error('User object not found in request');
           res.status(500).send('Internal server error');
@@ -234,6 +250,8 @@ router.get('/docSignin',(req,res) =>{
 
 router.get('/docdashboard', (req, res) => {
   if (req.isAuthenticated()) {
+
+
           res.render('docdashboard');
     } else {
       return res.status(401).redirect('/docSignin');

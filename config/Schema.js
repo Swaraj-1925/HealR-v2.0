@@ -37,6 +37,7 @@ const docSchema = new mongoose.Schema({
         weekdays:Boolean,
         everyday:Boolean
     },
+    Patients:Number,
     accepetedTime:[Number],
     available:{type:Boolean, default: true },
 });
@@ -55,8 +56,8 @@ const appointmentSchema =new mongoose.Schema({
 const reviewSchema =new mongoose.Schema({
     doc_username:String,
     patient_username:String,
-    review:String,
-    stars:Number
+    review:{type:String,default:''},
+    stars:{type:String,default:0}
 });
 
 const subscriptionSchema =new mongoose.Schema({
@@ -81,6 +82,7 @@ const authRequestSchema = new mongoose.Schema({
 const usercredSchema  =new mongoose.Schema({
 
     username:String,
+    name:String,
     role:String,
     hash:String,
     salt:String,

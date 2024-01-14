@@ -79,14 +79,16 @@
 										<div class="label-search-child"></div>
 										<img class="search-icon" alt="" src="/images/search.png" />
 										<input class="search-doctor" type="text" placeholder='Search doctor'/>
-										
 										</div>
-									<Link to="/doc_Description"><div class="card-9">
-										<img class="image-icon" alt="" src="/images/model.png" />
+					<div class="card-container">					
+										<% docs.forEach(doc => { %>
+									<Link to="/doc_Description">
+										<div class="card-9">
+										<img class="image-icon" alt="" src="<%= doc.images.imgS %>" />
 					
 										<div class="frame-parent">
 											<div class="sarah-parent">
-											<b class="name">Sarah</b>
+											<b class="name"><%= doc.name %></b>
 											
 											</div>
 											<div class="frame-child"></div>
@@ -96,10 +98,10 @@
 												<img class="vuesaxlinearlocation-icon" alt="" />
 												</div>
 												<div class="golden-cardiology-center">
-												Psy.D. (Doctor of Psychology)
+													Profession: <%= doc.Profession %>
 												</div>
 											</div>
-											<div class="years-experience">10 years experience</div>
+											<div class="years-experience"><%= doc.yearOfExperience %> years experience</div>
 											<div class="frame-div">
 												<div class="frame-parent1">
 												<div class="subtract-parent">
@@ -109,16 +111,24 @@
 													src="/images/star.png"
 													/>
 												</div>
-												<div class="sarah numberstar">5</div>
+												<% if (reviews.find(rev => rev._id === doc.username)) { %>
+													<div class="sarah numberstar"><%= reviews.find(rev => rev._id === doc.username).avgStars || 0 %></div>
+												  <% } else { %>
+													<div class="sarah numberstar">0</div>
+												  <% } %>
 												</div>
 												<div class="frame-item"></div>
-												<div class="reviews">(1,872 Reviews)</div>
-												<div class="div2">₹ 1000</div>
+												<div class="reviews"><div class="reviews">( <%= (reviews.find(rev => rev._id === doc.username) || {}).count || 0 %> Reviews)</div>
+											</div>
+												<div class="div2">₹ <%= doc.fees.call %> </div>
 											</div>
 											</div>
 										</div>
-									</div> </Link>
-										</li></section>
+									</div> 
+								</Link>
+								<% }) %>
+						</div>
+									</section>
 				</div>
 				</div>
 			</div>

@@ -33,7 +33,14 @@ body h1 {
     height: 548px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     border-radius: 5px;
-    min-width: 240px 
+    min-width: 240px;
+    overflow-y: auto;
+}
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem; 
+  width: 17.5rem
 }
 .tabs input[name="tab-control"] {
   display: none;
@@ -603,18 +610,18 @@ right: -49px;
     left: 341px;
   }
   .card-9 {
-    position: absolute;
-    top: 190px;
-    left: 16px;
+    position: relative;
+    top: 50px;
+    left: 0px;
     border-radius: var(--br-xs);
     background-color: var(--color-white);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
     border: 0.5px solid var(--gray-100);
     box-sizing: border-box;
-    width: 90%;
+    width: 100%;
     flex-direction: row;
     align-items: center;
-    padding: 15px;
+    /* padding: 15px; */
     font-size: 16px;
     color: var(--gray-800);
     font-family: var(--font-euclid-circular-b);
@@ -663,6 +670,9 @@ right: -49px;
   }
 
   @media screen and (max-width: 380px){
+    .card-container { 
+      width: 110%;
+    }
     .welcome-back-sarina-container {
         position: absolute;
         top: 28px;
@@ -749,10 +759,10 @@ width: fit-content;
 .card-9{
 font-size: 13px;
 }
-.div2{
-left: 3px;
-bottom: 5px;
-width: 39px;
+.div2 {
+  left: -9px;
+  bottom: -19px;
+  
 }
 .reviews{
   top: 3px;
@@ -771,6 +781,10 @@ width: 39px;
   
 
   @media screen and (min-width: 377px){
+    .card-container {
+       
+      width: 105%;
+    }
     .welcome-back-sarina-container {
         position: absolute;
         top: 18px;
@@ -843,12 +857,13 @@ width: 39px;
 .card-9{
     font-size: 14px;
 }
-.div2{
-    left: 22px;
+.div2 {
+  left: 5px;
+  top: -4px;
 }
 .reviews{
-    left: 14px;
-    top: 3px;
+  left: 5px;
+  top: 0px;
     width: 97px;
 }
 .name{
@@ -861,6 +876,9 @@ width: 39px;
   
   
   @media screen and (min-width: 427px){
+    .card-container {
+      width: 105%;
+    }
     .rectangle-group{
         left: -69px;
         top: -46px;
@@ -885,6 +903,7 @@ width: 39px;
         left: 96.66px;
     top: -86.12px;
     }
+    
 }
     
     
@@ -917,8 +936,8 @@ width: 39px;
     position: relative;
     margin: 10px;
     border-radius: var(--br-xs);
-    width: 109px;
-    height: 109px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
   }
   .numberstar {
