@@ -12,7 +12,6 @@
   "dependencies": {
     "@azure/identity": "^4.0.0",
     "@azure/storage-blob": "^12.17.0",
-    "body-parser": "^1.20.2",
     "connect-mongo": "^5.1.0",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",

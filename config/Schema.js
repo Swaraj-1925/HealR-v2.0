@@ -12,7 +12,6 @@ const UserSchema = new mongoose.Schema({
     age:Number,
     Profession:String,
     appointmentStatus:{type:Boolean, default:false },
-    role: { type: String, default: 'user' },
     hash: String,
     salt: String,
 });
@@ -42,7 +41,6 @@ const docSchema = new mongoose.Schema({
         imgB:String,
     },
     available:{type:Boolean, default: true },
-    role: { type: String, default: 'doctor' },
     hash:String,
     salt:String
 });

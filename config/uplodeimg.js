@@ -12,18 +12,20 @@ async function createContainers() {
       createContainerIfNotExists('authenticationdoq'),
       createContainerIfNotExists('docimages')
     ]);
-    
+    console.log('Containers created or already exist');
   } catch (error) {
-    console.error( error);
+    console.error('Error creating containers:', error);
   }
 }
 
 async function createContainerIfNotExists(containerName) {
   try {
     await blobServiceClient.getContainerClient(containerName); // Check if exists
+    console.log(`Container ${containerName} already exists`);
   } catch (error) {
     if (error.statusCode === 404) { // Container not found
       await blobServiceClient.createContainer(containerName);
+      console.log(`Container ${containerName} created`);
     } else {
       throw error; // Rethrow other errors
     }

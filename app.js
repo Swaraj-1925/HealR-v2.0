@@ -14,7 +14,7 @@ const username =process.env.usernameMonog;
 const password=process.env.passwordMonog;
 
 var app = express();
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 var  secret=process.env.SECRET
