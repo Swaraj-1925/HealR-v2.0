@@ -82,7 +82,7 @@
 										</div>
 					<div class="card-container">					
 										<% docs.forEach(doc => { %>
-									<Link to="/doc_Description">
+									<a href="/doc_Description?id=<%= doc._id %>" style="text-decoration: none;">
 										<div class="card-9">
 										<img class="image-icon" alt="" src="<%= doc.images.imgS %>" />
 					
@@ -125,7 +125,7 @@
 											</div>
 										</div>
 									</div> 
-								</Link>
+								</a>
 								<% }) %>
 						</div>
 									</section>

@@ -1,0 +1,450 @@
+._3 {
+    color: #fbfbfb;
+    text-align: center;
+    font-family: "Epilogue-Medium", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    position: absolute;
+    right: 4.8%;
+    left: 93.07%;
+    width: 2.13%;
+    bottom: 92.36%;
+    top: 6.16%;
+    height: 1.48%;
+  }
+  
+  .top-navigation {
+    padding: 12px 0px 12px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 327px;
+    position: absolute;
+    left: 22px;
+    top: 1%;
+    font-size: 20px;
+  }
+  .menu {
+    background: #ffffff;
+    border-radius: 8px;
+    border-style: solid;
+    border-color: #ffffff;
+    border-width: 1px;
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+    backdrop-filter: blur(2.22px);
+  }
+  .book-appointment {
+    color: #101010;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: var(--body-large-bold-font-size, 25px);
+    line-height: var(--body-large-bold-line-height, 150%);
+    font-weight: var(--body-large-bold-font-weight, 700);
+    position: absolute;
+    left: calc(50% - 73.5px);
+    top: calc(50% - 12px);
+  }
+  .image {
+    background: #f5f5ff;
+    border-radius: 8px 8px 0px 0px;
+    width: 400px;
+    height: 265px;
+    position: absolute;
+    left: 0%;
+    margin: 5px 10px 5px;
+    top: 7%;
+    overflow: hidden;
+  }
+  .image-4 {
+    position: absolute;
+    right: -4.28%;
+    left: -4.28%;
+    width: 108.56%;
+    bottom: -13.13%;
+    top: -2.02%;
+    height: 115.15%;
+  }
+  .information {
+    background:transparent;
+    padding: 12px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 85%;
+    position: absolute;
+    margin: 5px 10px 5px;
+    top: 42%;
+    box-shadow: 0px 6px 16px 0px rgba(0, 0, 0, 0.04);
+  }
+  .frame-48095513 {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex: 1;
+    position: relative;
+  }
+  .dr-elia-ana {
+    color: var(--secondary, #101010);
+    text-align: left;
+    font-family: var(--subline-font-family, "Inter-SemiBold", sans-serif);
+    font-size: var(--subline-font-size, 16px);
+    line-height: var(--subline-line-height, 24px);
+    font-weight: var(--subline-font-weight, 600);
+    position: relative;
+    width: 137px;
+  }
+  .cardiologists-mars-hospital {
+    color: #878787;
+    text-align: left;
+    font-family: var(--body-small-medium-font-family, "Inter-Medium", sans-serif);
+    font-size: var(--body-small-medium-font-size, 12px);
+    line-height: var(--body-small-medium-line-height, 150%);
+    font-weight: var(--body-small-medium-font-weight, 500);
+    position: relative;
+    width: 168px;
+  }
+  .reviews {
+    padding: 0px 0px 0px 4px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 131px;
+    height: 18px;
+    position: relative;
+  }
+  .ant-design-star-filled {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    overflow: visible;
+  }
+  ._5-0-332-reviews {
+    color: #101010;
+    text-align: left;
+    font-family: var(--body-small-medium-font-family, "Inter-Medium", sans-serif);
+    font-size: var(--body-small-medium-font-size, 12px);
+    line-height: var(--body-small-medium-line-height, 150%);
+    font-weight: var(--body-small-medium-font-weight, 500);
+    position: relative;
+  }
+  .containt {
+    display: flex;
+    flex-direction: row;
+    gap: 49px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 338px;
+    position: absolute;
+    left: 26px;
+    top: 53%;
+  }
+  .patients {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .icon {
+    background: #f5f5ff;
+    border-radius: 100px;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .iconly {
+    position: absolute;
+    right: 20%;
+    left: 20%;
+    width: 60%;
+    bottom: 20%;
+    top: 20%;
+    height: 60%;
+  }
+  .iconly img{
+    width: 30px;
+    position: relative;
+    left: -2px;
+  }
+  .ant-design-star-filled2 img{
+    width: 31px;
+    position: relative;
+    left: -3px;
+    top: -3px;
+  }
+  ._2-user {
+    height: auto;
+    position: absolute;
+    left: 2px;
+    top: 3px;
+    overflow: visible;
+  }
+  .count {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  ._658 {
+    color: #101010;
+    text-align: left;
+    font-family: var(--body-large-medium-font-family, "Inter-Medium", sans-serif);
+    font-size: var(--body-large-medium-font-size, 16px);
+    line-height: var(--body-large-medium-line-height, 24px);
+    font-weight: var(--body-large-medium-font-weight, 500);
+    position: relative;
+  }
+  .patients2 {
+    color: #878787;
+    text-align: left;
+    font-family: var(--body-small-medium-font-family, "Inter-Medium", sans-serif);
+    font-size: var(--body-small-medium-font-size, 12px);
+    line-height: var(--body-small-medium-line-height, 150%);
+    font-weight: var(--body-small-medium-font-weight, 500);
+    position: relative;
+  }
+  .years-expert {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .activity {
+    height: auto;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    overflow: visible;
+  }
+  .count2 {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  ._11 {
+    color: #101010;
+    text-align: left;
+    font-family: var(--body-large-medium-font-family, "Inter-Medium", sans-serif);
+    font-size: var(--body-large-medium-font-size, 16px);
+    line-height: var(--body-large-medium-line-height, 24px);
+    font-weight: var(--body-large-medium-font-weight, 500);
+    position: relative;
+  }
+  .years-expert2 {
+    color: #878787;
+    text-align: left;
+    font-family: var(--body-small-medium-font-family, "Inter-Medium", sans-serif);
+    font-size: var(--body-small-medium-font-size, 12px);
+    line-height: var(--body-small-medium-line-height, 150%);
+    font-weight: var(--body-small-medium-font-weight, 500);
+    position: relative;
+  }
+  .rating {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .ant-design-star-filled2 {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    overflow: visible;
+  }
+  ._5-0 {
+    color: #101010;
+    text-align: left;
+    font-family: var(--body-large-medium-font-family, "Inter-Medium", sans-serif);
+    font-size: var(--body-large-medium-font-size, 16px);
+    line-height: var(--body-large-medium-line-height, 24px);
+    font-weight: var(--body-large-medium-font-weight, 500);
+    position: relative;
+  }
+  .rating2 {
+    color: #878787;
+    text-align: left;
+    font-family: var(--body-small-medium-font-family, "Inter-Medium", sans-serif);
+    font-size: var(--body-small-medium-font-size, 12px);
+    line-height: var(--body-small-medium-line-height, 150%);
+    font-weight: var(--body-small-medium-font-weight, 500);
+    position: relative;
+  }
+  .reviews2 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .chat {
+    height: auto;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    overflow: visible;
+  }
+  ._300 {
+    color: #101010;
+    text-align: left;
+    font-family: var(--body-large-medium-font-family, "Inter-Medium", sans-serif);
+    font-size: var(--body-large-medium-font-size, 16px);
+    line-height: var(--body-large-medium-line-height, 24px);
+    font-weight: var(--body-large-medium-font-weight, 500);
+    position: relative;
+  }
+  .reviews3 {
+    color: #878787;
+    text-align: left;
+    font-family: var(--body-small-medium-font-family, "Inter-Medium", sans-serif);
+    font-size: var(--body-small-medium-font-size, 12px);
+    line-height: var(--body-small-medium-line-height, 150%);
+    font-weight: var(--body-small-medium-font-weight, 500);
+    position: relative;
+  }
+  .title-description {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: absolute;
+    left: 6%;
+    top: 67%;
+    width: 88%;
+    height: 16%;
+  }
+  .about-me {
+    color: var(--secondary, #101010);
+    text-align: center;
+    font-family: var(--subline-font-family, "Inter-SemiBold", sans-serif);
+    font-size: var(--subline-font-size, 16px);
+    line-height: var(--subline-line-height, 24px);
+    font-weight: var(--subline-font-weight, 600);
+    position: relative;
+  }
+  .button {
+    background: #de671d;
+    border-radius: 28px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    width: 327px;
+    position: absolute;
+    left: 26px;
+    top: 662px;
+  }
+  .iconly2 {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    position: relative;
+  }
+  .call {
+    height: auto;
+    position: absolute;
+    right: 87.5%;
+    left: 12.5%;
+    width: 0%;
+    bottom: 87.5%;
+    top: 12.5%;
+    height: 0%;
+    overflow: visible;
+  }
+  .book-appointment2 {
+    color: #ffffff;
+    border-radius: 40px;
+    border: none;
+    background-color: #1f3147;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: var(--body-medium-semi-bold-font-size, 19px);
+    line-height: var(--body-medium-semi-bold-line-height, 20px);
+    font-weight: var(--body-medium-semi-bold-font-weight, 600);
+    position: absolute;
+    bottom: 1%;
+    margin: 5px 50px 0px;
+    padding: 20px 70px 20px;
+    flex: 1;
+    z-index: 0;
+  }
+ Link{
+    text-decoration: none;
+ }
+ .about{
+  width: min-content;
+  color: #1f3147 ;
+ }
+ .doc_container{
+  position: absolute;
+  top: 0;
+  left: 0%;
+  width: 100%;
+  /* border-radius: 40px; */
+  
+  height: 812px;
+  overflow: hidden;
+
+ }
+ .remarks{
+  width: 92%;
+    height: 45px;
+    display: flex;
+    background-color: aqua;
+    position: absolute;
+    top: 84%;
+    margin-left: 6%;
+    border-radius: 8px;
+    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.2);
+    background-color: #ffffec;
+ }
+.remarks h2{
+  margin: 0;
+  width: 88%;
+  padding: 9px 2%;
+}
+.remarks img{
+  width: 20px;
+  height: 20px;
+  position: relative;
+  align-self: center;
+}

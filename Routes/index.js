@@ -5,6 +5,7 @@ const connection = require('./../config/Schema');
 const usercred = connection.models.usercred;
 const Doc = connection.models.Doc;
 const User = connection.models.User;
+const Appointment = connection.models.Appointment;
 const Review = connection.models.Review;
 const authRequest = connection.models.authRequest;
 const intoStream = require('into-stream');
@@ -203,7 +204,7 @@ router.get('/signup', (req, res, next) => {
 router.get('/signin', (req, res, next) => {
   res.render("signin")
  });
- 
+ // ==============doc===============
 router.get('/dashboard', async (req, res) => {
   if (req.isAuthenticated()) {
       if (req.user) { 
@@ -212,6 +213,7 @@ router.get('/dashboard', async (req, res) => {
           appointmentStatus: req.user.appointmentStatus
       };
         Doc.find({}, 'name yearOfExperience Profession fees.call images.imgS _id')
+        
           .then(docs => {
             Review.aggregate([
               { $group: { _id: '$doc_username', count: { $sum: 1 }, avgStars: { $avg: '$stars' } } }
@@ -250,13 +252,56 @@ router.get('/docSignin',(req,res) =>{
 
 router.get('/docdashboard', (req, res) => {
   if (req.isAuthenticated()) {
-
-
           res.render('docdashboard');
     } else {
       return res.status(401).redirect('/docSignin');
   }
 });
+router.get('/docSignin',(req,res) =>{
+  res.render('docSignin')
+});
+router.get('/doc_Description', async (req, res) => {
+  try {
+    const docId = req.query.id;
+
+    const [doc, appointmentCount, reviewCount, avgRating] = await Promise.all([
+      Doc.findById(docId),
+      Appointment.countDocuments({ doc_username: docId }),
+      Review.countDocuments({ doc_username: docId }),
+      Review.aggregate([
+        { $match: { doc_username: docId } },
+        { $group: { _id: null, avgStars: { $avg: '$stars' } } }
+      ]).then(result => result[0]?.avgStars)
+    ]);
+
+    if (!doc) {
+      return res.status(404).send('Doctor not found');
+    }
+
+    res.render('docdescription', {
+      doc: {
+        name: doc.name,
+        Profession: doc.Profession,
+        about: doc.about,
+        patients: appointmentCount,
+        reviews: reviewCount|| 0,
+        rating: avgRating || 0,
+        image: doc.images.imgB,
+        experience:doc.yearOfExperience ||1,
+        
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching doctor details');
+  }
+});
+
+router.get('/Schedule',(req,res) =>{
+
+  res.render('Schedule')
+});
+
 
 
 

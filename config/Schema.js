@@ -37,7 +37,6 @@ const docSchema = new mongoose.Schema({
         weekdays:Boolean,
         everyday:Boolean
     },
-    Patients:Number,
     accepetedTime:[Number],
     available:{type:Boolean, default: true },
 });

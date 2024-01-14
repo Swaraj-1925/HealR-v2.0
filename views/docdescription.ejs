@@ -1,0 +1,117 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<title>HealR</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="style/docdescription.css" rel="stylesheet">
+        
+	</head>
+	<body>
+        <div class="doc_Description">
+            <div class="doc_container">
+        
+  
+        <div class="doctor-description-1">
+          <div class="top-navigation">
+            <div class="menu"></div>
+            <div class="book-appointment">Book Appointment</div>
+          </div>
+          <div class="image">
+            <img class="image-4" src="<%= doc.image %>" alt=""/>
+          </div>
+          <div class="information">
+            <div class="frame-48095513">
+              <div class="dr-elia-ana"><%= doc.name %></div>
+              <div class="cardiologists-mars-hospital">
+                <%= doc.Profession %>
+              </div>
+            </div>
+            <div class="reviews">
+              <svg
+                class="ant-design-star-filled"
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15.9628 6.20682L11.4997 5.55819L9.5046 1.51346C9.45011 1.40272 9.36046 1.31307 9.24972 1.25858C8.97198 1.12147 8.63448 1.23572 8.49562 1.51346L6.5005 5.55819L2.03741 6.20682C1.91437 6.2244 1.80187 6.2824 1.71573 6.37029C1.6116 6.47732 1.55422 6.62131 1.5562 6.77062C1.55818 6.91993 1.61935 7.06235 1.72628 7.16658L4.95538 10.3148L4.19249 14.7603C4.1746 14.8637 4.18605 14.9701 4.22552 15.0673C4.265 15.1646 4.33094 15.2488 4.41585 15.3105C4.50077 15.3722 4.60127 15.4088 4.70595 15.4163C4.81063 15.4237 4.91531 15.4017 5.00812 15.3527L9.00011 13.2539L12.9921 15.3527C13.1011 15.4107 13.2276 15.4301 13.3489 15.409C13.6548 15.3562 13.8605 15.0662 13.8077 14.7603L13.0448 10.3148L16.2739 7.16658C16.3618 7.08045 16.4198 6.96795 16.4374 6.8449C16.4849 6.53729 16.2704 6.25252 15.9628 6.20682Z"
+                  fill="#FFD33C"
+                />
+              </svg>
+  
+              <div class="_5-0-332-reviews"><%= doc.rating %>(<%= doc.reviews %> reviews)</div>
+            </div>
+          </div>
+          <div class="containt">
+          
+            <div class="patients">
+              <div class="icon">
+                <div class="iconly">
+                  <img src="/images/patient.png" alt="">
+                </div>
+              </div>
+              <div class="count">
+                <div class="_658"><%= doc.patients %></div>
+                <div class="patients2">Patients</div>
+              </div>
+            </div>
+            <div class="years-expert">
+              <div class="icon">
+                <div class="iconly">
+                  <img src="/images/experience.png" alt="">
+                </div>
+              </div>
+              <div class="count2">
+                <div class="_11"><%= doc.experience %>+</div>
+                <div class="years-expert2">Years expert</div>
+              </div>
+            </div>
+            <Link to="#" style="text-decoration: none;"> <div class="rating">
+              <div class="icon">
+                <div class="ant-design-star-filled2">
+                    <img src="/images/rating.png" alt="">
+                </div>
+              </div>
+              <div class="count2">
+                <div class="_5-0"><%= doc.rating %></div>
+                <div class="rating2">Rating</div>
+              </div>
+            </div> </Link>
+            <Link to="#" style="text-decoration: none;">  <div class="reviews2">
+              <div class="icon">
+                <div class="iconly">
+                  <img src="/images/review.png" alt="">
+                </div>
+              </div>
+              <div class="count2">
+                <div class="_300"><%= doc.reviews %>+</div>
+                <div class="reviews3">Reviews</div>
+              </div>
+            </div></Link>
+          </div>
+          <div class="title-description">
+            <div class="about-me">About Me</div>
+           <div class="about"><%= doc.about %></div> 
+          </div>
+          <a  style="text-decoration: none;" href="C:\Users\Naquiya\OneDrive\Desktop\code\Web projects\HealR\Reviews\review.html">
+          <div class="remarks">
+            <h2>Reviews</h2>
+            <img src="/images/next.png" alt="">
+          </div>
+          </a>
+            
+         
+            
+            <a to="/Schedule?docId=<%= doc._id %>"><button class="book-appointment2">Book Appointment</button></a>
+           
+         
+        </div>
+        </div>
+  
+  
+    </div>
+    </body>

@@ -612,7 +612,7 @@ right: -49px;
   .card-9 {
     position: relative;
     top: 50px;
-    left: 0px;
+    left: -5px;
     border-radius: var(--br-xs);
     background-color: var(--color-white);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Custom Date and Time Picker Using HTML, CSS, and JavaScript - BYTEWEBSTER</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/style/Schedule.css">
+  <!-- https://bytewebster.com/ -->
+  <!-- https://bytewebster.com/ -->
+  <!-- https://bytewebster.com/ -->
+</head>
+<body>
+<div class="app-container" ng-app="dateTimeApp" ng-controller="dateTimeCtrl as ctrl" ng-cloak>
+	<h1>Book Appointment</h1>	
+	<div date-picker
+		 datepicker-title="Select Date"
+		 picktime="true"
+		 pickdate="true"
+		 pickpast="false"
+		 mondayfirst="false"
+		 custom-message="You have selected"
+		 selecteddate="ctrl.selected_date"
+		 updatefn="ctrl.updateDate(newdate)">
+	
+		<div class="datepicker"
+			 ng-class="{
+				'am': timeframe == 'am',
+				'pm': timeframe == 'pm',
+				'compact': compact
+			}">
+			<div class="datepicker-header">
+				<div class="datepicker-subheader">{{ selectedDay }} {{ monthNames[localdate.getMonth()] }} {{ localdate.getDate() }}, {{ localdate.getFullYear() }}</div>
+			</div>
+			<div class="datepicker-calendar">
+				<div class="calendar-header">
+					<div class="goback" ng-click="moveBack()" ng-if="pickdate">
+						<svg width="30" height="30">
+							<path fill="none" stroke="#0DAD83" stroke-width="3" d="M19,6 l-9,9 l9,9"/>
+						</svg>
+					</div>
+					<div class="current-month-container">{{ currentViewDate.getFullYear() }} {{ currentMonthName() }}</div>
+					<div class="goforward" ng-click="moveForward()" ng-if="pickdate">
+						<svg width="30" height="30">
+							<path fill="none" stroke="#0DAD83" stroke-width="3" d="M11,6 l9,9 l-9,9" />
+						</svg>
+					</div>
+				</div>
+				<div class="calendar-day-header">
+					<span ng-repeat="day in days" class="day-label">{{ day.short }}</span>
+				</div>
+				<div class="calendar-grid" ng-class="{false: 'no-hover'}[pickdate]">
+					<div
+						ng-class="{'no-hover': !day.showday}"
+						ng-repeat="day in month"
+						class="datecontainer"
+						ng-style="{'margin-left': calcOffset(day, $index)}"
+						track by $index>
+						<div class="datenumber" ng-class="{'day-selected': day.selected }" ng-click="selectDate(day)">
+							{{ day.daydate }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="schedule">
+				<div class='Sched'>
+	
+		  <div class="time-slots">
+		  <h2>Available Time Slots</h2>
+		  <div class='button-container'>
+			<button>9 AM</button>
+			<button>10 AM</button>
+			<button>11 AM</button>
+			<button>12 PM</button>
+			<button>1 PM</button>
+			<button>2 PM</button>
+			<button>3 PM</button>
+			<button>4 PM</button>
+			<button>5 PM</button>
+			<button>6 PM</button>
+			<button>7 PM</button>
+			<button>8 PM</button>
+			</div>
+		  </div>
+	
+		  
+	
+	
+		  </div>
+	  </div>
+			<div class="timepicker" ng-if="picktime == 'true'">
+				<div ng-class="{'am': timeframe == 'am', 'pm': timeframe == 'pm' }">
+					<div class="timepicker-container-outer" selectedtime="time" timetravel>
+						<div class="timepicker-container-inner">
+							<div class="timeline-container" ng-mousedown="timeSelectStart($event)" sm-touchstart="timeSelectStart($event)">
+								
+								<div class="timeline">
+								</div>
+								
+							</div>
+							<div class="display-time">
+								
+						</div>
+					</div>
+				</div>
+			</div>
+			 
+			
+			<div class="buttons-container">
+				<button class="cancel-button">CANCEL</button>
+				<button class="save-button">SAVE</button>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js'></script>
+<script  src="/datepicker.js"></script>
+</body>
+</html>
