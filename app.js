@@ -1,4 +1,5 @@
 const express = require('express');
+const ejs = require('ejs');
 const path = require('path');
 const mongoose = require('mongoose');
 const session = require('express-session');
@@ -6,8 +7,6 @@ var passport = require('passport');
 var crypto = require('crypto');
 var routes = require('./Routes');
 const MongoStore = require('connect-mongo');
-const { constants } = require('buffer');
-const bodyParser =require('body-parser')
 require('dotenv').config();
 
 const username =process.env.usernameMonog;

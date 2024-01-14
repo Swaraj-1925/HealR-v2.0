@@ -29,13 +29,6 @@ const docSchema = new mongoose.Schema({
         message:Number,
         inRealLife:Number,
     },
-    wokingdays:{
-        weekdays:{type:Boolean,default:true},
-        everyday:{type:Boolean,default:false}
-    },
-    accepetedTime:[Number],
-
-
     images:{
         imgS:String,
         imgB:String,
@@ -85,7 +78,6 @@ const createCollections = async () => {
         await Review.createCollection();
         await Subscription.createCollection();
         await User.createCollection();
-        await authenticateDoc.createCollection();
         console.log('Collections created successfully');
     } catch (err) {
         console.error('Error creating collections:', err);
