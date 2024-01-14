@@ -2,9 +2,15 @@ const router = require('express').Router();
 const passport = require('passport');
 const genPassword = require('./../config/passwordUtils').genPassword;
 const connection = require('./../config/Schema');
+<<<<<<< HEAD
 const usercred = connection.models.usercred; 
 const User = connection.models.User;
 
+=======
+
+const User = connection.models.User;
+
+>>>>>>> parent of 867a77c (compelted doctore store data on storage and on bloob and verfication page comepted one issue not saving avalable time in array)
 
 router.post('signin', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
@@ -31,6 +37,10 @@ router.post('signin', (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
   console.log(req.body)
+<<<<<<< HEAD
+=======
+  res.p
+>>>>>>> parent of 867a77c (compelted doctore store data on storage and on bloob and verfication page comepted one issue not saving avalable time in array)
   try {
       const saltHash = genPassword(req.body.password);
       const salt = saltHash.salt;
@@ -47,6 +57,7 @@ router.post('/signup', async (req, res, next) => {
           name: req.body.name,
           age: req.body.age,
           Profession: req.body.profession,
+<<<<<<< HEAD
           
       });   
       const newUsercred = new usercred({
@@ -64,6 +75,14 @@ router.post('/signup', async (req, res, next) => {
       passport.authenticate("local")(req,res,function(){
         res.redirect('/dashboard')
       })
+=======
+          hash: hash,
+          salt: salt
+      });
+
+      await newUser.save();
+      console.log(newUser);
+>>>>>>> parent of 867a77c (compelted doctore store data on storage and on bloob and verfication page comepted one issue not saving avalable time in array)
   } catch (error) {
       console.error(error);
       return res.status(500).send('Error creating user');
@@ -88,9 +107,15 @@ router.get('/signin', (req, res, next) => {
   res.render("signin")
  });
  
+<<<<<<< HEAD
 router.get('/dashboard', (req, res) => {
   if (req.isAuthenticated()) {
       if (req.user) { 
+=======
+router.get('/healR/dashboard', (req, res) => {
+  if (req.isAuthenticated()) {
+      if (req.user) { // Ensure user object exists
+>>>>>>> parent of 867a77c (compelted doctore store data on storage and on bloob and verfication page comepted one issue not saving avalable time in array)
           const userData = {
               name: req.user.name,
               appointmentStatus: req.user.appointmentStatus
