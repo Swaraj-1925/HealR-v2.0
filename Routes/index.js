@@ -2,10 +2,11 @@ const router = require('express').Router();
 const passport = require('passport');
 const genPassword = require('./../config/passwordUtils').genPassword;
 const connection = require('./../config/Schema');
-const usercred = connection.models.usercred; 
-const User = connection.models.User;
+const usercred = connection.models.usercred;
+const Doc = connection.models.Doc;
 const authRequest = connection.models.authRequest;
 const intoStream = require('into-stream');
+
 const docAuth =require('../config/uplodebloob').docAuth;
 const docImg =require('../config/uplodebloob').docImg;
 
@@ -76,7 +77,10 @@ router.post('/signup', async (req, res, next) => {
 // =====================doc routes=================================
 
 router.post('/doc', async (req,res) =>{
-  
+  const existingUser = await authRequest.findOne({ username: req.body.username });
+      if (existingUser) {
+          return res.send("<h4>we are working on your request</h4>");
+      }
   var imgname =req.files.doqment.name;
   var dataStream= intoStream (req.files.doqment.data);
   var imageUrl;
@@ -86,17 +90,12 @@ router.post('/doc', async (req,res) =>{
     username:req.body.username,
     name:req.body.name,
     docLink:imageUrl,
-
   });
   await newauthreq.save();
-
-  
+  return res.send('<h4>request has been sent sucsefuly</h4>')
   }catch(err){
     res.send("<h4>some error has ocured trying or Please contact <a href='mailto:healr.society@gmail.com'>healr.society@gmail.com</a> with image of error</h4><p></p>Error:"+err)
-
   }
-  
-  
 });
 
 router.post('/docSignup', async (req, res) => {
@@ -118,8 +117,8 @@ router.post('/docSignup', async (req, res) => {
 
   }
   try {
-    const findUser = await authenticateDoc.findOne({ username: req.body.username });
-    const checkForAuthentication = await authenticateDoc.findOne({ username: req.body.username, authorized: true });
+    const findUser = await authRequest.findOne({ username: req.body.username });
+    const checkForAuthentication = await authRequest.findOne({ username: req.body.username, verified: true });
 
     if (!findUser) {
       res.send("<h4>You haven't made a verification request yet. Please make a request or check your email. The email should be the same as you entered in the verification process.</h4>");
@@ -133,15 +132,11 @@ router.post('/docSignup', async (req, res) => {
         try {
             var imgnameS = req.files.imagesS.name
             var imgnameB = req.files.imagesB.name
-           
-            var bloobnameS=`image-${Date.now()}.${imgnameS}`
-            var bloobnameB=`image-${Date.now()}.${imgnameB}`
-
             var datastreamS= intoStream (req.files.imagesS.data);
             var datastreamB= intoStream (req.files.imagesB.data);
 
-            const imageurlS =await uploadImage(bloobnameS,datastreamS)
-            const imageurlB =await uploadImage(bloobnameB,datastreamB)
+            const imageurlS =await docImg(imgnameS,datastreamS)
+            const imageurlB =await docImg(imgnameB,datastreamB)
           
             if(imageurlS && imageurlB ){
           const saltHash = genPassword(req.body.password);
@@ -167,11 +162,18 @@ router.post('/docSignup', async (req, res) => {
               imgS:imageurlS,
               imgB:imageurlB
             },
+          });
+          const newUsercred = new usercred({
+            username: req.body.username,
+            role: "doctor",
             hash: hash,
             salt: salt
-          });
-          newdoc.save();
-          res.send("<h1>User saved</h1>");
+          })
+          await newdoc.save();
+          await newUsercred.save();
+          passport.authenticate("local")(req,res,function(){
+            res.redirect('docdashboard')
+          })
         }
         } catch (error) {
           console.error(error);
@@ -222,6 +224,19 @@ router.get('/dashboard', (req, res) => {
 router.get('/doc',(req,res) =>{
   res.render('docLanding')
 });
+
+router.get('/docSignup',(req,res) =>{
+  res.render('docSignup')
+});
+
+router.get('/docdashboard', (req, res) => {
+  if (req.isAuthenticated()) {
+          res.render('docdashboard');
+    } else {
+      return res.status(401).redirect('');
+  }
+});
+
 
 
 router.get('/logout', (req, res, next) => {

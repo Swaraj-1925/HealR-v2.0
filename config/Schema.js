@@ -33,9 +33,12 @@ const docSchema = new mongoose.Schema({
         imgS:String,
         imgB:String,
     },
+    wokingdays:{
+        weekdays:Boolean,
+        everyday:Boolean
+    },
+    accepetedTime:[Number],
     available:{type:Boolean, default: true },
-    hash:String,
-    salt:String
 });
 
 
@@ -69,6 +72,7 @@ const subscriptionSchema =new mongoose.Schema({
 const authRequestSchema = new mongoose.Schema({
     username:String,
     name:String,
+    verified:{type: Boolean,default:false},
     docLink:String,
     time: {type: Date,default: Date.now}
 
