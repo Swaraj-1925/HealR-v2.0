@@ -8,11 +8,12 @@ const User = connection.models.User;
 const { BlobServiceClient } =require('@azure/storage-blob');
 const intoStream = require('into-stream');
 const fileUpload = require('express-fileupload');
+
 const Doc = connection.models.Doc;
 const authenticateDoc =connection.models.authenticateDoc;
 
 router.post('/signin', (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
+  passport.authenticate('regularUser', (err, user, info) => {
     if (err) {
    
       return next(err);
@@ -57,7 +58,7 @@ router.post('/signup', async (req, res, next) => {
       console.error(error);
       return res.status(500).send('Error creating user');
   }
-  passport.authenticate("local")(req,res, function(){
+  passport.authenticate("regularUser")(req,res, function(){
     res.redirect("/dashboard")
   });
 });
@@ -160,7 +161,7 @@ router.post('/docSignup', async (req, res) => {
           });
           await newdoc.save();
           
-          passport.authenticate("local")(req, res, function (err, user) {
+          passport.authenticate('doctorAuthStrategy')(req, res, function (err, user) {
             if (err || !user) {
               console.error("Authentication failed:", err);
               return res.status(401).send("Unauthorized");
