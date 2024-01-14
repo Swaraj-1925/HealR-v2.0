@@ -66,15 +66,24 @@ const subscriptionSchema =new mongoose.Schema({
 
 });
 
+const authRequestSchema = new mongoose.Schema({
+    username:String,
+    name:String,
+    docLink:String,
+    time: {type: Date,default: Date.now}
+
+});
+
 const usercredSchema  =new mongoose.Schema({
 
     username:String,
     role:String,
     hash:String,
-    salt:String
+    salt:String,
 
 });
 
+const authRequest = connection.model('authRequest',authRequestSchema)
 const usercred = connection.model('usercred',usercredSchema)
 const Doc =connection.model('Doc',docSchema);
 const Appointment = connection.model('Appointment',appointmentSchema);
@@ -90,6 +99,7 @@ const createCollections = async () => {
         await Subscription.createCollection();
         await User.createCollection();
         await usercred.createCollection();
+        await authRequest.createCollection();
         console.log('Collections created successfully');
     } catch (err) {
         console.error('Error creating collections:', err);

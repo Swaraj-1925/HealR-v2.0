@@ -6,6 +6,7 @@ const session = require('express-session');
 var passport = require('passport');
 var crypto = require('crypto');
 var routes = require('./Routes');
+const fileUpload = require('express-fileupload');
 const MongoStore = require('connect-mongo');
 const { constants } = require('buffer');
 require('dotenv').config();
@@ -17,8 +18,9 @@ var app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
+app.use(express.static('public'))
 var  secret=process.env.SECRET
-
+app.use(fileUpload());
 app.use(session({
     secret: secret,
     resave: false,
