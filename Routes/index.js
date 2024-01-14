@@ -228,12 +228,15 @@ router.get('/doc',(req,res) =>{
 router.get('/docSignup',(req,res) =>{
   res.render('docSignup')
 });
+router.get('/docSignin',(req,res) =>{
+  res.render('docSignin')
+});
 
 router.get('/docdashboard', (req, res) => {
   if (req.isAuthenticated()) {
           res.render('docdashboard');
     } else {
-      return res.status(401).redirect('');
+      return res.status(401).redirect('/docSignin');
   }
 });
 
