@@ -193,6 +193,48 @@ router.post('/docSignup', async (req, res) => {
 
 
 
+router.post('/Schedule',(req,res) =>{
+  const id = req.query.id;
+  const selectedDate = req.body.selectedDate;
+  Doc.findById(id)
+  .then(doc => {
+    if (doc) {
+      const usernameToFind = doc.username;
+      const acceptedTimes = doc.acceptedTime|| []; 
+
+      Appointment.find({ doc_username: usernameToFind, appointment_date: selectedDate })
+        .then(appointments => {
+          const bookedTimeSlots = appointments.map(appointment => {
+            const hours = appointment.appointment_time.getHours();
+            return hours;
+          });
+
+          const freeTimeSlots = acceptedTimes.filter(timeSlot => !bookedTimeSlots.includes(timeSlot));
+          const data={
+            id:id,
+            freeTimeSlots:freeTimeSlots,
+            selectedDate:selectedDate
+          }
+          res.render('Schedule', { data });
+          console.log("Free time slots for the doctor on", usernameToFind, ":", freeTimeSlots);
+        })
+        .catch(err => {
+          console.error("Error retrieving appointments:", err);
+        });
+    } else {
+      console.log("Doctor not found");
+    }
+  })
+  .catch(err => {
+    console.error("Error finding doctor:", err);
+  })
+ 
+})
+
+
+
+
+
 // =================get routes===========================
 router.get('/', (req, res, next) => {
  res.render("landing")
@@ -212,9 +254,10 @@ router.get('/dashboard', async (req, res) => {
           name: req.user.name,
           appointmentStatus: req.user.appointmentStatus
       };
-        Doc.find({}, 'name yearOfExperience Profession fees.call images.imgS _id')
+        Doc.find({}, 'name yearOfExperience Profession fees.call images.imgS _id').exec()
         
           .then(docs => {
+            
             Review.aggregate([
               { $group: { _id: '$doc_username', count: { $sum: 1 }, avgStars: { $avg: '$stars' } } }
             ])
@@ -263,7 +306,7 @@ router.get('/docSignin',(req,res) =>{
 router.get('/doc_Description', async (req, res) => {
   try {
     const docId = req.query.id;
-
+   
     const [doc, appointmentCount, reviewCount, avgRating] = await Promise.all([
       Doc.findById(docId),
       Appointment.countDocuments({ doc_username: docId }),
@@ -288,6 +331,7 @@ router.get('/doc_Description', async (req, res) => {
         rating: avgRating || 0,
         image: doc.images.imgB,
         experience:doc.yearOfExperience ||1,
+        docId:req.query.id,
         
       }
     });
@@ -297,11 +341,43 @@ router.get('/doc_Description', async (req, res) => {
   }
 });
 
-router.get('/Schedule',(req,res) =>{
+router.get('/Schedule', (req, res) => {
+  const id = req.query.id;
+  const selectedDate = req.body.selectedDate;
+  Doc.findById(id)
+  .then(doc => {
+    if (doc) {
+      const usernameToFind = doc.username;
+      const acceptedTimes = doc.acceptedTime|| []; 
 
-  res.render('Schedule')
+      Appointment.find({ doc_username: usernameToFind, appointment_date: selectedDate })
+        .then(appointments => {
+          const bookedTimeSlots = appointments.map(appointment => {
+            const hours = appointment.appointment_time.getHours();
+            return hours;
+          });
+
+          const freeTimeSlots = acceptedTimes.filter(timeSlot => !bookedTimeSlots.includes(timeSlot));
+          const data={
+            id:id,
+            freeTimeSlots:freeTimeSlots,
+            selectedDate:''
+          }
+          res.render('Schedule', { data });
+          console.log("Free time slots for the doctor on", usernameToFind, ":", freeTimeSlots);
+        })
+        .catch(err => {
+          console.error("Error retrieving appointments:", err);
+        });
+    } else {
+      console.log("Doctor not found");
+    }
+  })
+  .catch(err => {
+    console.error("Error finding doctor:", err);
+  })
+  
 });
-
 
 
 

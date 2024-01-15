@@ -1,121 +1,135 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" dir="ltr">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Custom Date and Time Picker Using HTML, CSS, and JavaScript - BYTEWEBSTER</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="/style/Schedule.css">
-  <!-- https://bytewebster.com/ -->
-  <!-- https://bytewebster.com/ -->
-  <!-- https://bytewebster.com/ -->
+  <meta charset="utf-8">
+  <title>Dynamic Calendar JavaScript | CodingNepal</title>
+  <link rel="stylesheet" href="style/Schedule.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 </head>
+
 <body>
-<div class="app-container" ng-app="dateTimeApp" ng-controller="dateTimeCtrl as ctrl" ng-cloak>
-	<h1>Book Appointment</h1>	
-	<div date-picker
-		 datepicker-title="Select Date"
-		 picktime="true"
-		 pickdate="true"
-		 pickpast="false"
-		 mondayfirst="false"
-		 custom-message="You have selected"
-		 selecteddate="ctrl.selected_date"
-		 updatefn="ctrl.updateDate(newdate)">
-	
-		<div class="datepicker"
-			 ng-class="{
-				'am': timeframe == 'am',
-				'pm': timeframe == 'pm',
-				'compact': compact
-			}">
-			<div class="datepicker-header">
-				<div class="datepicker-subheader">{{ selectedDay }} {{ monthNames[localdate.getMonth()] }} {{ localdate.getDate() }}, {{ localdate.getFullYear() }}</div>
-			</div>
-			<div class="datepicker-calendar">
-				<div class="calendar-header">
-					<div class="goback" ng-click="moveBack()" ng-if="pickdate">
-						<svg width="30" height="30">
-							<path fill="none" stroke="#0DAD83" stroke-width="3" d="M19,6 l-9,9 l9,9"/>
-						</svg>
-					</div>
-					<div class="current-month-container">{{ currentViewDate.getFullYear() }} {{ currentMonthName() }}</div>
-					<div class="goforward" ng-click="moveForward()" ng-if="pickdate">
-						<svg width="30" height="30">
-							<path fill="none" stroke="#0DAD83" stroke-width="3" d="M11,6 l9,9 l-9,9" />
-						</svg>
-					</div>
-				</div>
-				<div class="calendar-day-header">
-					<span ng-repeat="day in days" class="day-label">{{ day.short }}</span>
-				</div>
-				<div class="calendar-grid" ng-class="{false: 'no-hover'}[pickdate]">
-					<div
-						ng-class="{'no-hover': !day.showday}"
-						ng-repeat="day in month"
-						class="datecontainer"
-						ng-style="{'margin-left': calcOffset(day, $index)}"
-						track by $index>
-						<div class="datenumber" ng-class="{'day-selected': day.selected }" ng-click="selectDate(day)">
-							{{ day.daydate }}
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="schedule">
-				<div class='Sched'>
-	
-		  <div class="time-slots">
-		  <h2>Available Time Slots</h2>
-		  <div class='button-container'>
-			<button>9 AM</button>
-			<button>10 AM</button>
-			<button>11 AM</button>
-			<button>12 PM</button>
-			<button>1 PM</button>
-			<button>2 PM</button>
-			<button>3 PM</button>
-			<button>4 PM</button>
-			<button>5 PM</button>
-			<button>6 PM</button>
-			<button>7 PM</button>
-			<button>8 PM</button>
-			</div>
-		  </div>
-	
-		  
-	
-	
-		  </div>
-	  </div>
-			<div class="timepicker" ng-if="picktime == 'true'">
-				<div ng-class="{'am': timeframe == 'am', 'pm': timeframe == 'pm' }">
-					<div class="timepicker-container-outer" selectedtime="time" timetravel>
-						<div class="timepicker-container-inner">
-							<div class="timeline-container" ng-mousedown="timeSelectStart($event)" sm-touchstart="timeSelectStart($event)">
-								
-								<div class="timeline">
-								</div>
-								
-							</div>
-							<div class="display-time">
-								
-						</div>
-					</div>
-				</div>
-			</div>
-			 
-			
-			<div class="buttons-container">
-				<button class="cancel-button">CANCEL</button>
-				<button class="save-button">SAVE</button>
-			</div>
-			
+	<div class="title">Schedule</div>
+	<div class="wrapper">
+	  <header>
+		<p class="current-date"></p>
+		<div class="icons">
+		  <span id="prev" class="material-symbols-rounded">chevron_left</span>
+		  <span id="next" class="material-symbols-rounded">chevron_right</span>
 		</div>
+	  </header>
+	  <div class="calendar">
+		<ul class="weeks">
+		  <li style="color: red;">Sun</li>
+		  <li>Mon</li>
+		  <li>Tue</li>
+		  <li>Wed</li>
+		  <li>Thu</li>
+		  <li>Fri</li>
+		  <li style="color: red;">Sat</li>
+		</ul>
+		<ul class="days"></ul>
+	  </div>
 	</div>
-</div>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js'></script>
-<script  src="/datepicker.js"></script>
-</body>
-</html>
+	<div class="grid-container">
+		<% data.freeTimeSlots.forEach(timeSlot => { %>
+		  <button><%= timeSlot %>am</button>
+		<% }) %>
+	  </div>
+	  
+	<form id="schedule-form" action="/Schedule?id=<%=data.id%>" method="post">
+	  <input id="selected-date" name="selectedDate" value="<%=data.selectedDate%>">
+	  <button class="confiremdate-button">confirm date</button>
+	</form>
+	<form id="schedule-form" action="/docdescription" method="post">
+	  <input type="hidden" id="selected-date" name="selectedDate">
+	  <input type="hidden" id="selected-time" name="selectedTime">
+	  <button class="shedule-button">Next</button>
+	</form>
+  
+	<script>
+	  const daysTag = document.querySelector(".days");
+	  const currentDate = document.querySelector(".current-date");
+	  const prevNextIcon = document.querySelectorAll(".icons span");
+	  const gridButtons = document.querySelectorAll('.grid-container button');
+	  let date = new Date();
+	  let currYear = date.getFullYear();
+	  let currMonth = date.getMonth();
+  
+	  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  
+	  const renderCalendar = () => {
+		let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(),
+		  lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(),
+		  lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(),
+		  lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
+		let liTag = "";
+  
+		for (let i = firstDayofMonth; i > 0; i--) {
+		  liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+		}
+  
+		for (let i = 1; i <= lastDateofMonth; i++) {
+		  let isToday = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear() ? "active" : "";
+		  let isPastDate = new Date(currYear, currMonth, i) < new Date() ? "past-date" : "";
+		  let isWeekend = (new Date(currYear, currMonth, i).getDay() === 0 || new Date(currYear, currMonth, i).getDay() === 6) ? "weekend" : "";
+  
+		  liTag += `<li class="${isToday} ${isPastDate} ${isWeekend}" data-day="${i}" data-month="${currMonth + 1}" data-year="${currYear}">${i}</li>`;
+		}
+  
+		for (let i = lastDayofMonth; i < 6; i++) {
+		  liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`;
+		}
+		currentDate.innerText = `${months[currMonth]} ${currYear}`;
+		daysTag.innerHTML = liTag;
+	  };
+  
+	  renderCalendar();
+	  daysTag.addEventListener("click", (e) => {
+  const selectedDay = e.target.dataset.day;
+  const selectedMonth = e.target.dataset.month;
+  const selectedYear = e.target.dataset.year;
+
+  if (selectedDay && selectedMonth && selectedYear) {
+    const selectedDate = `${selectedYear}-${selectedMonth}-${selectedDay}`;
+    console.log(`Selected Date: ${selectedDate}`);
+    document.getElementById("selected-date").value = selectedDate;
+
+    // Remove the "active" class from all li elements before adding it to the clicked one
+    daysTag.querySelectorAll("li").forEach(li => li.classList.remove("active"));
+    e.target.classList.add("active");
+  }
+});
+  
+	  prevNextIcon.forEach(icon => {
+		icon.addEventListener("click", () => {
+		  currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
+  
+		  if (currMonth < 0 || currMonth > 11) {
+			date = new Date(currYear, currMonth, new Date().getDate());
+			currYear = date.getFullYear();
+			currMonth = date.getMonth();
+		  } else {
+			date = new Date();
+		  }
+		  renderCalendar();
+		});
+	  });
+  
+gridButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const selectedTime = button.textContent;
+    document.getElementById("selected-time").value = selectedTime;
+
+    // Remove the "active" class from all buttons before adding it to the clicked one
+    gridButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+
+    console.log(selectedTime);
+  });
+});
+	</script>
+  </body>
+  
+  </html>

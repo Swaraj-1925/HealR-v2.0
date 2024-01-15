@@ -95,18 +95,20 @@
           </div>
           <div class="title-description">
             <div class="about-me">About Me</div>
-           <div class="about"><%= doc.about %></div> 
+           <div class="about">
+            <%= doc.about %>
+           </div> 
           </div>
-          <a  style="text-decoration: none;" href="C:\Users\Naquiya\OneDrive\Desktop\code\Web projects\HealR\Reviews\review.html">
-          <div class="remarks">
-            <h2>Reviews</h2>
-            <img src="/images/next.png" alt="">
+          <a href="#" style="text-decoration: none;">
+          <div class="remarks" >
+            <h2>See Reviews</h2>
           </div>
           </a>
             
          
             
-            <a to="/Schedule?docId=<%= doc._id %>"><button class="book-appointment2">Book Appointment</button></a>
+            <a class="book-appointment2" href="/Schedule?id=<%= doc.docId %>" style="text-decoration: none;" >Book Appointment</a>
+
            
          
         </div>

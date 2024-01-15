@@ -348,7 +348,7 @@
     left: 6%;
     top: 67%;
     width: 88%;
-    height: 16%;
+    height: 17%;
   }
   .about-me {
     color: var(--secondary, #101010);
@@ -394,57 +394,80 @@
     color: #ffffff;
     border-radius: 40px;
     border: none;
-    background-color: #1f3147;
+    background-color: #7FBDE7;
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: var(--body-medium-semi-bold-font-size, 19px);
     line-height: var(--body-medium-semi-bold-line-height, 20px);
     font-weight: var(--body-medium-semi-bold-font-weight, 600);
-    position: absolute;
+    position: fixed;
     bottom: 1%;
     margin: 5px 50px 0px;
     padding: 20px 70px 20px;
     flex: 1;
-    z-index: 0;
+    z-index: 10;
   }
  Link{
     text-decoration: none;
  }
  .about{
-  width: min-content;
-  color: #1f3147 ;
+  word-wrap: break-word;
+  width: 100%;
+  overflow-y: auto;
+  color: #878787;
+  font-size: medium;
  }
  .doc_container{
   position: absolute;
   top: 0;
   left: 0%;
   width: 100%;
-  /* border-radius: 40px; */
-  
   height: 812px;
   overflow: hidden;
 
  }
  .remarks{
-  width: 92%;
-    height: 45px;
+    width: 140px;
+    height: 55px;
     display: flex;
-    background-color: aqua;
-    position: absolute;
-    top: 84%;
+    position: relative;
+    bottom:10px ;
     margin-left: 6%;
     border-radius: 8px;
-    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.2);
-    background-color: #ffffec;
+    
  }
-.remarks h2{
+ .remarks h2 {
+  font-family: var(--subline-font-family, "Inter-SemiBold", sans-serif);
+    font-size: var(--subline-font-size, 16px);
+    line-height: var(--subline-line-height, 24px);
+    font-weight: var(--subline-font-weight, 600);
   margin: 0;
   width: 88%;
+  position: relative;
   padding: 9px 2%;
+  top: 38rem;
+  color: #101010;
 }
 .remarks img{
   width: 20px;
   height: 20px;
   position: relative;
   align-self: center;
+}
+@media screen and (max-width: 380px){
+
+  .image {
+    width: 355px;
+    height: 265px;
+    position: absolute;
+    left: 0%;
+    margin: 5px 10px 5px;
+    top: 7%;
+    overflow: hidden;
+}
+.book-appointment2 {
+  
+ font-size: 20px;
+ padding: 20px 48px 20px;
+}
 }
