@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 </head>
-
+ 
 <body>
 	<div class="title">Schedule</div>
 	<div class="wrapper">
@@ -41,9 +41,9 @@
 	<form id="schedule-form" action="/Schedule?id=<%=data.id%>" method="post">
 	  <input id="selected-date" name="selectedDate" value="<%=data.selectedDate%>">
 	  <button class="confiremdate-button">confirm date</button>
-	</form>
-	<form id="schedule-form" action="/docdescription" method="post">
-	  <input type="hidden" id="selected-date" name="selectedDate">
+	</form> 
+	<form id="schedule-form" action="/sessionstore?id=<%=data.id%>" method="post">
+	  <input type="hidden" id="selected-date" name="selectedDate"  value="<%=data.selectedDate%>" >
 	  <input type="hidden" id="selected-time" name="selectedTime">
 	  <button class="shedule-button">Next</button>
 	</form>

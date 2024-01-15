@@ -50,8 +50,6 @@ const appointmentSchema =new mongoose.Schema({
     appointment_time: Date,
     trasactionHash:String,
     time: {type: Date,default: Date.now}
-
-
 });
 
 const reviewSchema =new mongoose.Schema({

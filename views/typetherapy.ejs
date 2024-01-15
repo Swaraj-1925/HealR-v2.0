@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link href="/style/typetherapy.css" rel="stylesheet">
+	
+	<title>Document</title>
+</head>
+<body>
+
+
+	<form action="/typetherapy" method="POST">
+<div class="flex min-h-screen items-center justify-center bg-slate-200">
+	<div class="mx-auto max-w-6xl px-12">
+	  <div class="flex flex-wrap justify-center gap-3">
+
+
+		<label class="cursor-pointer">
+		  <input type="radio" class="peer sr-only" name="Message" />
+		  <div class="w-72 max-w-xl rounded-md bg-white p-5 text-gray-600 ring-2 ring-transparent transition-all hover:shadow peer-checked:text-sky-600 peer-checked:ring-blue-400 peer-checked:ring-offset-2">
+			<div class="flex flex-col gap-1">
+			  <div class="flex items-center justify-between">
+				<p class="text-sm font-semibold uppercase text-gray-500">Message</p>
+				<div>
+					<svg
+					class="iconly-curved-bold-message"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				  >
+					<path width="24" height="24"
+					  class='Typetherapy-icon'
+					  fill-rule="evenodd"
+					  clip-rule="evenodd"
+					  d="M18.1451 9.53C17.7931 9.952 14.6341 13.653 12.0111 13.653C9.39107 13.653 6.20007 9.955 5.84407 9.533C5.57807 9.216 5.61807 8.743 5.93507 8.476C6.25107 8.208 6.72407 8.25 6.99107 8.566C8.16207 9.953 10.5591 12.153 12.0111 12.153C13.4621 12.153 15.8371 9.955 16.9931 8.569C17.2581 8.252 17.7311 8.21 18.0491 8.473C18.3671 8.739 18.4101 9.212 18.1451 9.53ZM12.0001 2.383C4.59907 2.383 1.97607 4.899 1.97607 12C1.97607 19.1 4.59907 21.617 12.0001 21.617C19.4011 21.617 22.0241 19.1 22.0241 12C22.0241 4.899 19.4011 2.383 12.0001 2.383Z"
+					  fill="currentColor"
+					/>
+				  </svg> 
+				</div>
+			  </div>
+			  <div class="flex items-end justify-between">
+				<!-- <p><span class="text-lg font-bold">12 GB</span> of storage</p> -->
+				<p class="text-sm font-bold">₹ <%= fees.message %> </p>
+			  </div>
+			</div>
+		  </div>
+		</label>
+
+
+		<label class="cursor-pointer">
+		  <input type="radio" class="peer sr-only" name="Call" />
+		  <div class="w-72 max-w-xl rounded-md bg-white p-5 text-gray-600 ring-2 ring-transparent transition-all hover:shadow peer-checked:text-sky-600 peer-checked:ring-blue-400 peer-checked:ring-offset-2">
+			<div class="flex flex-col gap-1">
+
+			  <div class="flex items-center justify-between">
+				<p class="text-sm font-semibold uppercase text-gray-500">Call</p>
+				<div>
+				    <svg
+                class="call2"
+                width="17"
+                height="16"
+                viewBox="0 0 17 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class='Typetherapy-icon'
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M8.10982 8.39366C11.4341 11.717 12.1882 7.87227 14.3047 9.98734C16.3453 12.0273 17.5181 12.436 14.9327 15.0206C14.6089 15.2809 12.5514 18.4119 5.32054 11.1831C-1.91119 3.95334 1.21803 1.89371 1.47835 1.56996C4.06993 -1.02179 4.47159 0.157822 6.51212 2.19778C8.62868 4.31375 4.78559 5.07035 8.10982 8.39366Z"
+                  fill="currentColor"
+                />
+              </svg>
+				</div>
+			  </div>
+
+			  <div class="flex items-end justify-between">
+				<!-- <p><span class="text-lg font-bold">50 GB</span> of storage</p> -->
+				<p class="text-sm font-bold">₹ <%= fees.call %></p>
+			  </div>
+			</div>
+		  </div>
+		</label>
+
+		<label class="cursor-pointer">
+		  <input type="radio" class="peer sr-only" name="VideoCall" />
+		  <div class="w-72 max-w-xl rounded-md bg-white p-5 text-gray-600 ring-2 ring-transparent transition-all hover:shadow peer-checked:text-sky-600 peer-checked:ring-blue-400 peer-checked:ring-offset-2">
+			<div class="flex flex-col gap-1">
+			  <div class="flex items-center justify-between">
+				<p class="text-sm font-semibold uppercase text-gray-500">Video Call</p>
+				<div>
+					<svg
+					  class="video"
+					  width="20"
+					  height="14"
+					  viewBox="0 0 20 14"
+					  fill="none"
+					  xmlns="http://www.w3.org/2000/svg"
+					>
+					  <path
+						class='Typetherapy-icon'
+						fill-rule="evenodd"
+						clip-rule="evenodd"
+						d="M14.2969 10.5383C14.3778 12.3704 12.8992 13.9196 10.9946 13.9975C10.8543 14.0034 4.01531 13.9896 4.01531 13.9896C2.11996 14.1335 0.461149 12.7715 0.311651 10.9463C0.300388 10.8103 0.30346 3.47219 0.30346 3.47219C0.219495 1.63815 1.69604 0.0849882 3.60163 0.00417628C3.74396 -0.00272231 10.5738 0.0100893 10.5738 0.0100893C12.4783 -0.131824 14.1423 1.24001 14.2897 3.07405C14.3 3.2061 14.2969 10.5383 14.2969 10.5383Z"
+						fill="currentColor"
+					  />
+					  <path
+					   class='Typetherapy-icon'
+						fill-rule="evenodd"
+						clip-rule="evenodd"
+						d="M14.3 4.97984L17.593 2.28484C18.409 1.61684 19.633 2.19884 19.632 3.25184L19.62 10.6008C19.619 11.6538 18.394 12.2308 17.58 11.5628L14.3 8.86784"
+						fill="currentColor"
+					  />
+					</svg>
+
+				</div>
+			  </div>
+			  <div class="flex items-end justify-between">
+				<!-- <p><span class="text-lg font-bold">100 GB</span> of storage</p> -->
+				<p class="text-sm font-bold">₹ <%= fees.videoCall %></p>
+			  </div>
+			</div>
+		  </div>
+		</label>
+
+		<label class="cursor-pointer">
+			<input type="radio" class="peer sr-only" name="In-persontherapy" />
+			<div class="w-72 max-w-xl rounded-md bg-white p-5 text-gray-600 ring-2 ring-transparent transition-all hover:shadow peer-checked:text-sky-600 peer-checked:ring-blue-400 peer-checked:ring-offset-2">
+			  <div class="flex flex-col gap-1">
+				<div class="flex items-center justify-between">
+				  <p class="text-sm font-semibold uppercase text-gray-500">In-persontherapy</p>
+				  <div>
+					<svg fill="#4B5563" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="30px" viewBox="0 0 571.316 571.315" xml:space="preserve">
+
+						<g id="SVGRepo_bgCarrier" stroke-width="0"/>
+						
+						<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+						
+						<g id="SVGRepo_iconCarrier"> <g> <path d="M159.858,176.916c0,26.289-21.312,47.6-47.6,47.6c-26.289,0-47.6-21.311-47.6-47.6c0-26.289,21.311-47.6,47.6-47.6 C138.546,129.316,159.858,150.627,159.858,176.916z M411.458,176.916c0,26.289,21.312,47.6,47.601,47.6 c26.288,0,47.6-21.311,47.6-47.6c0-26.289-21.312-47.6-47.6-47.6C432.769,129.316,411.458,150.627,411.458,176.916z M146.258,394.516V281.942c0-20.448-16.579-37.026-37.026-37.026h-0.748c-20.448,0-37.026,16.578-37.026,37.026v119.374 c0,22.535,18.265,40.801,40.8,40.801h61.2c7.514,0,13.6,6.086,13.6,13.6v95.2c0,11.268,9.132,20.399,20.4,20.399h6.8 c11.268,0,20.4-9.132,20.4-20.399V435.315c0-22.535-18.265-40.8-40.8-40.8H146.258z M462.832,244.916h-0.748 c-20.447,0-37.025,16.578-37.025,37.026v112.574h-47.601c-22.535,0-40.8,18.265-40.8,40.8v112.438 c0,13.015,10.547,23.562,23.562,23.562h0.476c13.015,0,23.562-10.547,23.562-23.562v-92.038c0-7.514,6.086-13.6,13.601-13.6h61.2 c22.535,0,40.8-18.266,40.8-40.801V281.942C499.858,261.494,483.279,244.916,462.832,244.916z M397.858,346.916v-20.4 c0-3.753-3.047-6.8-6.8-6.8h-210.8c-3.754,0-6.8,3.047-6.8,6.8v20.4c0,3.753,3.046,6.8,6.8,6.8h210.8 C394.811,353.716,397.858,350.669,397.858,346.916z M267.305,0c-49.572,0-89.753,31.804-89.753,71.033 c0,23.372,14.328,44.043,36.339,56.991c-2.156,11.805-9.01,25.71-18.591,35.292c23.406-1.748,44.003-8.459,57.494-22.263 c4.739,0.612,9.567,1.013,14.518,1.013c49.572,0,89.753-31.804,89.753-71.033C357.065,31.804,316.87,0,267.305,0z M225.226,85.055 c-7.745,0-14.021-6.276-14.021-14.021s6.276-14.022,14.021-14.022s14.021,6.277,14.021,14.022S232.971,85.055,225.226,85.055z M267.305,85.055c-7.746,0-14.022-6.276-14.022-14.021s6.276-14.022,14.022-14.022c7.745,0,14.021,6.277,14.021,14.022 S275.05,85.055,267.305,85.055z M309.376,85.055c-7.745,0-14.021-6.276-14.021-14.021s6.276-14.022,14.021-14.022 s14.021,6.277,14.021,14.022S317.122,85.055,309.376,85.055z"/> </g> </g>
+						</svg>
+  
+				  </div>
+				</div>
+				<div class="flex items-end justify-between">
+				  <!-- <p><span class="text-lg font-bold">100 GB</span> of storage</p> -->
+				  <p class="text-sm font-bold">₹ <%= fees.inRealLife %></p>
+				</div>
+			  </div>
+			</div>
+		  </label>
+
+		  <button class="submitType" type="submit">Submit</button>
+		
+		
+
+	  </div>
+	</div>
+  </div>
+</form>
+  
+</body>
+</html>

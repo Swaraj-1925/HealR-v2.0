@@ -191,8 +191,6 @@ router.post('/docSignup', async (req, res) => {
   }
 });
 
-
-
 router.post('/Schedule',(req,res) =>{
   const id = req.query.id;
   const selectedDate = req.body.selectedDate;
@@ -229,12 +227,24 @@ router.post('/Schedule',(req,res) =>{
     console.error("Error finding doctor:", err);
   })
  
+});
+
+
+router.post('/typetherapy',(req,res) =>{
+
+  console.log(req.body)
+  });
+router.post('/sessionstore',(req,res) =>{
+  const docId = req.query.id;
+ 
+  req.session.userData = {
+    date: req.body.selectedDate,
+    doctor: docId,
+    time: req.body.selectedTime
+  };
+
+  res.redirect('/typetherapy');
 })
-
-
-
-
-
 // =================get routes===========================
 router.get('/', (req, res, next) => {
  res.render("landing")
@@ -254,7 +264,7 @@ router.get('/dashboard', async (req, res) => {
           name: req.user.name,
           appointmentStatus: req.user.appointmentStatus
       };
-        Doc.find({}, 'name yearOfExperience Profession fees.call images.imgS _id').exec()
+        Doc.find({}, 'name yearOfExperience Profession fees.call images.imgS _id')
         
           .then(docs => {
             
@@ -376,9 +386,30 @@ router.get('/Schedule', (req, res) => {
   .catch(err => {
     console.error("Error finding doctor:", err);
   })
-  
 });
 
+router.get('/typetherapy',(req,res) =>{
+
+  const userData =req.session.userData;
+  const doqId = userData.doctor;
+  Doc.findById(doqId)
+  .then(doc => {
+    if (doc) {
+  
+      const fees = doc.fees|| [];
+      
+      res.render('typetherapy',{fees})
+
+      console.log(fees)
+    } else {
+      console.log("Doctor not found");
+    }
+  })
+  .catch(err => {
+    console.error("Error finding doctor:", err);
+  })
+
+});
 
 
 router.get('/logout', (req, res, next) => {
