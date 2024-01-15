@@ -412,8 +412,13 @@ router.get('/typetherapy',(req,res) =>{
 });
 
 
-router.get('/logout', (req, res, next) => {
-  req.logout();
-  res.redirect('/protected-route');
+router.get('/settings', (req, res, next) => {
+  res.render('settings');
+});
+router.post('/logout', (req, res, next) => {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/signup');
+  });
 });
 module.exports = router;
