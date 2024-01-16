@@ -65,32 +65,38 @@
 	  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   
 	  const renderCalendar = () => {
-		let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(),
-		  lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(),
-		  lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(),
-		  lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
-		let liTag = "";
-  
-		for (let i = firstDayofMonth; i > 0; i--) {
-		  liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
-		}
-  
-		for (let i = 1; i <= lastDateofMonth; i++) {
-		  let isToday = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear() ? "active" : "";
-		  let isPastDate = new Date(currYear, currMonth, i) < new Date() ? "past-date" : "";
-		  let isWeekend = (new Date(currYear, currMonth, i).getDay() === 0 || new Date(currYear, currMonth, i).getDay() === 6) ? "weekend" : "";
-  
-		  liTag += `<li class="${isToday} ${isPastDate} ${isWeekend}" data-day="${i}" data-month="${currMonth + 1}" data-year="${currYear}">${i}</li>`;
-		}
-  
-		for (let i = lastDayofMonth; i < 6; i++) {
-		  liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`;
-		}
-		currentDate.innerText = `${months[currMonth]} ${currYear}`;
-		daysTag.innerHTML = liTag;
-	  };
-  
-	  renderCalendar();
+    let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(),
+        lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(),
+        lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(),
+        lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
+    let liTag = "";
+
+    for (let i = firstDayofMonth; i > 0; i--) {
+        liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+    }
+
+    for (let i = 1; i <= lastDateofMonth; i++) {
+        let isToday = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear() ? "active" : "";
+        let isPastDate = new Date(currYear, currMonth, i) < new Date() ? "past-date" : "";
+        let isWeekend = (new Date(currYear, currMonth, i).getDay() === 0 || new Date(currYear, currMonth, i).getDay() === 6) ? "weekend" : "";
+
+        // Disable weekends
+        if (isWeekend) {
+            isPastDate += " inactive";
+        }
+
+        liTag += `<li class="${isToday} ${isPastDate} ${isWeekend}" data-day="${i}" data-month="${currMonth + 1}" data-year="${currYear}">${i}</li>`;
+    }
+
+    for (let i = lastDayofMonth; i < 6; i++) {
+        liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`;
+    }
+    currentDate.innerText = `${months[currMonth]} ${currYear}`;
+    daysTag.innerHTML = liTag;
+};
+
+renderCalendar();
+
 	  daysTag.addEventListener("click", (e) => {
   const selectedDay = e.target.dataset.day;
   const selectedMonth = e.target.dataset.month;

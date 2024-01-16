@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Registration Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <% if (typeof verification !== 'undefined' && !verification) { %>
@@ -14,81 +15,166 @@
         <script>
           alert("Request has been sent sucsefuly");
         </script>
-      <% } %>
       <% }else if (typeof requestsucsefuly !== 'undefined' && !requestsucsefuly) { %>
         <script>
           alert("Some error has ocured trying or Please contact us healr.society@gmail.com");
         </script>
-      <% } %>
+
       <% }else if (typeof verificationExist !== 'undefined' && !verificationExist) { %>
         <script>
           alert("You haven't made a verification request yet. Please make a request or check your email. The email should be the same as you entered in the verification process.");
         </script>
-      <% } %>
+      
       <% }else if (typeof userExist !== 'undefined' && userExist) { %>
         <script>
           alert("user alerdy exist try to login ");
         </script>
       <% } %>
+
+
+
     <form action="/docSignup" method="POST" enctype="multipart/form-data" >
-        <label for="username">Email:</label>
-        <input type="email" id="username" name="username" required><br>
+      <section class="py-10 bg-gray-50 sm:py-16 lg:py-24">
+        <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
+                    Sign Up in HealR
+                </h2>
+            </div>
+            <div class="max-w-3xl mx-auto mt-8 space-y-4 md:mt-16">
+                <div
+                    class="transition-all duration-200 bg-white border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50">
+                    <button type="button" id="question1" data-state="closed" class="flex items-center justify-between w-full px-4 py-5 sm:p-6">
+                        <span class="flex text-lg font-semibold text-black">Basic Information</span>
+                        <svg id="arrow1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            class="w-6 h-6 text-gray-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="answer1" style="display:none" class="px-4 pb-5 sm:px-6 sm:pb-6">
+                      <label for="username">Email:</label>
+                      <input type="email" id="username" name="username" required><br>
+                      
+                      <label for="name">Name:</label>
+                      <input type="text" id="name" name="name" required><br>
+                      
+                      <label for="password">Password:</label>
+                      <input type="password" id="password" name="password" required><br>
+                      
+                    </div>
+                </div>
+                <div
+                    class="transition-all duration-200 bg-white border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50">
+                    <button type="button" id="question2" data-state="closed" class="flex items-center justify-between w-full px-4 py-5 sm:p-6">
+                        <span class="flex text-lg font-semibold text-black">Professional Information:</span>
+                        <svg id="arrow2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            class="w-6 h-6 text-gray-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="answer2" style="display:none" class="px-4 pb-5 sm:px-6 sm:pb-6">
+                                                
+                        <label for="experience">Years of Experience:</label>
+                        <input type="number" id="experience" name="yearOfExprience" required><br>
 
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br>
+                        <label for="profession">Profession:</label>
+                        <input type="text" id="profession" name="Profession" required><br>
+
+                        <label for="about">About You:</label>
+                        <textarea id="about" name="about" rows="4" required></textarea><br>
+
+                    </div>
+                </div>
+                <div
+                    class="transition-all duration-200 bg-white border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50">
+                    <button type="button" id="question3" data-state="closed" class="flex items-center justify-between w-full px-4 py-5 sm:p-6">
+                        <span class="flex text-lg font-semibold text-black">Fees Information</span>
+                        <svg id="arrow3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            class="w-6 h-6 text-gray-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="answer3" style="display:none" class="px-4 pb-5 sm:px-6 sm:pb-6">
+                      <label for="callFee">Call:</label>
+                      <input type="number" id="callFee" name="feescall" required><br>
+                      
+                      <label for="videoCallFee">Video Call:</label>
+                      <input type="number" id="videoCallFee" name="feesvideoCall" required><br>
+                      
+                      <label for="messageFee">Message:</label>
+                      <input type="number" id="messageFee" name="feesmessage" required><br>
+                      
+                      <label for="inRealLifeFee">In Real Life:</label>
+                      <input type="number" id="inRealLifeFee" name="feesinRealLife" required><br>
+                      
+                    </div>
+                </div>
+                <div
+                    class="transition-all duration-200 bg-white border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50">
+                    <button type="button" id="question4" data-state="closed" class="flex items-center justify-between w-full px-4 py-5 sm:p-6">
+                        <span class="flex text-lg font-semibold text-black">Working Times and images:</span>
+                        <svg id="arrow4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            class="w-6 h-6 text-gray-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="answer4" style="display:none" class="px-4 pb-5 sm:px-6 sm:pb-6">
+                      <label for="availableTimes">Available Times:</label>
+                      <input type="checkbox" id="8am" name="acceptedTime" value="7am"><label for="am">7AM</label>
+                      <input type="checkbox" id="8am" name="acceptedTime" value="8am"><label for="8am">8AM</label>
+                      <input type="checkbox" id="8am" name="acceptedTime" value="9am"><label for="8am">9AM</label>
+                      <input type="checkbox" id="10am" name="acceptedTime" value="10am"><label for="10am">10AM</label>
+                      <input type="checkbox" id="10am" name="acceptedTime" value="11am"><label for="10am">11AM</label>
+                      <input type="checkbox" id="12pm" name="acceptedTime" value="12pm"><label for="12pm">12PM</label>
+                      <input type="checkbox" id="12pm" name="acceptedTime" value="1pm"><label for="12pm">1PM</label>
+                      <input type="checkbox" id="12pm" name="acceptedTime" value="2pm"><label for="2pm">2PM</label>
+                      <input type="checkbox" id="12pm" name="acceptedTime" value="3pm"><label for="2pm">3PM</label>
+                      <input type="checkbox" id="12pm" name="acceptedTime" value="4pm"><label for="4pm">4PM</label>
+                      <input type="checkbox" id="12pm" name="acceptedTime" value="5pm"><label for="5pm">5PM</label>
+                      <input type="checkbox" id="12pm" name="acceptedTime" value="6pm"><label for="6pm">6PM</label>
+                      <input type="checkbox" id="12pm" name="acceptedTime" value="8pm"><label for="8pm">8PM</label>
+                      
+                      
+                      <label for="imgS">Image Small:</label>
+                      <input type="file" id="imgS" name="imagesS"  required><br>
+                      
+                      <label for="imgB">Image Big:</label>
+                      <input type="file" id="imgB" name="imagesB"  required><br>
+                      
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-gray-600 textbase mt-9">
+                Not done verification yet?
+                <span class="cursor-pointer font-medium text-tertiary transition-all duration-200 hover:text-tertiary focus:text-tertiary hover-underline">
+                  Send verification request
+                </span>
+            </p>
+        </div>
         
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
+    </section>
 
-        <label for="experience">Years of Experience:</label>
-        <input type="number" id="experience" name="yearOfExprience" required><br>
-
-        <label for="profession">Profession:</label>
-        <input type="text" id="profession" name="Profession" required><br>
-
-        <label for="about">About You:</label>
-        <textarea id="about" name="about" rows="4" required></textarea><br>
-
-        <label>Fees:</label><br>
-        <label for="callFee">Call:</label>
-        <input type="number" id="callFee" name="feescall" required><br>
-
-        <label for="videoCallFee">Video Call:</label>
-        <input type="number" id="videoCallFee" name="feesvideoCall" required><br>
-
-        <label for="messageFee">Message:</label>
-        <input type="number" id="messageFee" name="feesmessage" required><br>
-
-        <label for="inRealLifeFee">In Real Life:</label>
-        <input type="number" id="inRealLifeFee" name="feesinRealLife" required><br>
-
-        <label>Working Days:</label><br>
-        <input type="radio" id="weekdays" name="workingdays" value="weekdays" required><label for="weekdays">Weekdays</label>
-        <input type="radio" id="everyday" name="workingdays" value="everyday" required><label for="everyday">Everyday</label><br>
-
-        <label for="availableTimes">Available Times:</label>
-        <input type="checkbox" id="8am" name="acceptedTime" value="7am"><label for="am">7AM</label>
-        <input type="checkbox" id="8am" name="acceptedTime" value="8am"><label for="8am">8AM</label>
-        <input type="checkbox" id="8am" name="acceptedTime" value="9am"><label for="8am">9AM</label>
-        <input type="checkbox" id="10am" name="acceptedTime" value="10am"><label for="10am">10AM</label>
-        <input type="checkbox" id="10am" name="acceptedTime" value="11am"><label for="10am">11AM</label>
-        <input type="checkbox" id="12pm" name="acceptedTime" value="12pm"><label for="12pm">12PM</label>
-        <input type="checkbox" id="12pm" name="acceptedTime" value="1pm"><label for="12pm">1PM</label>
-        <input type="checkbox" id="12pm" name="acceptedTime" value="2pm"><label for="2pm">2PM</label>
-        <input type="checkbox" id="12pm" name="acceptedTime" value="3pm"><label for="2pm">3PM</label>
-        <input type="checkbox" id="12pm" name="acceptedTime" value="4pm"><label for="4pm">4PM</label>
-        <input type="checkbox" id="12pm" name="acceptedTime" value="5pm"><label for="5pm">5PM</label>
-        <input type="checkbox" id="12pm" name="acceptedTime" value="6pm"><label for="6pm">6PM</label>
-        <input type="checkbox" id="12pm" name="acceptedTime" value="8pm"><label for="8pm">8PM</label>
-       
-
-        <label for="imgS">Image Small:</label>
-        <input type="file" id="imgS" name="imagesS"  required><br>
-
-        <label for="imgB">Image Big:</label>
-        <input type="file" id="imgB" name="imagesB"  required><br>
-
-        <button type="submit">Submit</button>
+      
+      <button type="submit">Submit</button>
     </form>
+
+
+    <script>
+      // JavaScript to toggle the answers and rotate the arrows
+      document.querySelectorAll('[id^="question"]').forEach(function(button, index) {
+          button.addEventListener('click', function() {
+              var answer = document.getElementById('answer' + (index + 1));
+              var arrow = document.getElementById('arrow' + (index + 1));
+
+              if (answer.style.display === 'none' || answer.style.display === '') {
+                  answer.style.display = 'block';
+                  arrow.style.transform = 'rotate(0deg)';
+              } else {
+                  answer.style.display = 'none';
+                  arrow.style.transform = 'rotate(-180deg)';
+              }
+          });
+      });
+  </script>
 </body>
 </html>

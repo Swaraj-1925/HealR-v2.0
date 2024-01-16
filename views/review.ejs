@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/review.css">
+  <title>Document</title>
+</head>
+<body>
+    <% if (appoinmentstatus) { %>
+        <div class="label-search" style="position: absolute; z-index: 10;">
+          <div class="label-search-child"></div>
+          <input class="search-doctor" type="text" placeholder="post a review" />
+        </div>
+      <% } %>
+      
+      
+  
+    <div class="Reviews">
+      <h2>Reviews</h2>
+      <div class="review-container">
+        <% if (typeof reviews !== 'undefined' && reviews.length > 0) { %>
+          <% reviews.forEach(review => { %>
+            <div class="review-box">
+              <div class="user-image">
+                <img src="images/user.png" alt="">
+              </div>
+              <div class="user-name">
+                <div class="user-sarina">
+                  <p><%= review.patient_username %></p>
+                </div>
+                <div class="ratings">
+                  <p><%= review.stars %></p>
+                  <img src="/images/star.png" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="review-text">
+              <p><%= review.review %></p>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <p>No reviews available.</p>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

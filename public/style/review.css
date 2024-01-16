@@ -1,0 +1,57 @@
+.Reviews{
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 96%;
+  background-color: #cdf5fd;
+  left: 2%;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   }
+   .Reviews h2{
+    margin-left: 4%;
+    font-size: 37px;
+   }
+   .review-box{
+    display: flex;
+    position: absolute;
+    margin-left: 16px;
+    margin-top: 12px;
+   }
+   .user-name{
+    display: flex;
+    margin-left: 10px;
+    flex-direction: column;
+   }
+   .user-image img{
+    width: 41px;
+   }
+   .ratings{
+    display: flex;
+    position: relative;
+    bottom: 16%;
+   }
+   .ratings img{
+    width: 32%;
+    height: fit-content;
+   }
+    p{
+    margin-top: 0;
+   }
+   .ratings p{
+    margin-right: 4px;
+   }
+   .review-container{
+    background-color: white;
+    width: 91%;
+    height: fit-content;
+    margin-left: 4%;
+    border-radius: 10px;
+    box-shadow: 0 11px 5px rgba(0,0,0,0.2);
+   }
+   .review-text{
+    position: relative;
+    padding-top: 65px;
+    padding-left: 31px;
+    padding-bottom: 12px;
+   }
+  

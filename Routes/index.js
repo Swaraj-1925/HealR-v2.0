@@ -266,13 +266,13 @@ router.post('/payment', async(req,res) =>{
     return res.redirect('/signup')
   }
   const doc = await Doc.findById(req.session.userData.doctor)
-  const appointmentData ={
-    doc_username:doc.username,
-    patient_username:req.user.username,
-    Type_id:key,
-    appointment_date: req.session.userData.date,
-    appointment_time: req.session.userData.time,
-  }
+  // const appointmentData ={
+  //   doc_username:doc.username,
+  //   patient_username:req.user.username,
+  //   Type_id:key,
+  //   appointment_date: req.session.userData.date,
+  //   appointment_time: req.session.userData.time,
+  // }
   try{
     const newappoinment = new Appointment({
       doc_username:doc.username,
@@ -349,7 +349,7 @@ router.get('/dashboard', async (req, res) => {
           res.status(500).send('Internal server error');
       }
   } else {
-      res.status(401).redirect('/signup');
+    return res.render('signin',{ loggedin: false });
   }
 });
 
@@ -493,10 +493,34 @@ router.get('/settings', (req, res, next) => {
   return res.render('signin',{ loggedin: false });
 }
 });
-router.post('/logout', (req, res, next) => {
+router.get('/review', async (req, res) => {
+  let appoinmentstatus;
+  try {
+    if (req.isAuthenticated()) {
+      const doc = await Doc.findById(req.query.id);
+      const appoinmentDone = await Appointment.findOne({ patient_username: req.user.username, doc_username: doc.username });
+      const reviews = await Review.find({ doc_username: doc.username });
+      if (appoinmentDone) {
+        appoinmentstatus = true;
+        res.render('review', { appoinmentstatus, reviews });
+      } else {
+        appoinmentstatus = false;
+        res.render('review', { appoinmentstatus, reviews });
+      }
+    } else {
+      return res.render('signin', { loggedin: false });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+router.post('/logout', (req, res) => {
   req.logout(function(err) {
     if (err) { return next(err); }
     res.redirect('/signup');
   });
 });
+
 module.exports = router;
