@@ -12,8 +12,6 @@ const UserSchema = new mongoose.Schema({
     age:Number,
     Profession:String,
     appointmentStatus:{type:Boolean, default:false },
-    hash: String,
-    salt: String,
 });
 
 

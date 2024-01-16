@@ -16,7 +16,7 @@ const docImg =require('../config/uplodebloob').docImg;
 // =============== user routes ===============================
 router.post('/signin', async (req, res, next) => {
  
-  const existingUser = await User.findOne({ username: req.body.username });
+  const existingUser = await usercred.findOne({ username: req.body.username,role:"patient"});
   if (!existingUser) {
     const alertMessage = "Email dose not exists please sign up";
     req.session.alert = alertMessage;
@@ -37,7 +37,7 @@ router.post('/signin', async (req, res, next) => {
         return next(err);
       }
     
-      return res.send('authorized');
+      return res.redirect('/dashboard');
     });
   })(req, res, next);
 });
@@ -84,8 +84,38 @@ router.post('/signup', async (req, res, next) => {
       return res.status(500).send('Error creating user');
   }
 });
-// =====================doc routes=================================
 
+
+
+// =====================doc routes=================================
+router.post('/docSignin',async (req,res)=>{
+  
+  const existingUser = await usercred.findOne({ username: req.body.username,role:"doctor" });
+  if (!existingUser) {
+    const alertMessage = "Email dose not exists please sign up";
+    req.session.alert = alertMessage;
+      return res.render('signup',{ accountExists: false });
+  }
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+   
+      return next(err);
+    }
+    if (!user) {
+      
+      return res.send('Invalid credentials');
+    }
+   
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+    
+      return res.redirect('/docdashboard');
+    });
+  })(req, res);
+
+})
 router.post('/doc', async (req,res) =>{
   const existingUser = await authRequest.findOne({ username: req.body.username });
       if (existingUser) {
@@ -320,6 +350,11 @@ router.get('/signin', (req, res, next) => {
  // ==============doc===============
 router.get('/dashboard', async (req, res) => {
   if (req.isAuthenticated()) {
+   const check=  await usercred.find({ username: req.user.username ,role:"patient" })
+   
+    if(check.length === 0){
+      return res.redirect('/signin')
+    }
       if (req.user) { 
         const userData = {
           name: req.user.name,
@@ -364,8 +399,13 @@ router.get('/docSignin',(req,res) =>{
   res.render('docSignin')
 });
 
-router.get('/docdashboard', (req, res) => {
+router.get('/docdashboard', async(req, res) => {
+  
   if (req.isAuthenticated()) {
+    const check=  await usercred.find({ username: req.user.username ,role:"doctor" })
+    if(check.length === 0){
+      return res.redirect('/signin')
+    }
           res.render('docdashboard');
     } else {
       return res.status(401).redirect('/docSignin');
@@ -515,11 +555,14 @@ router.get('/review', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+router.get('/docSignIn',(req,res)=>{
 
+  res.render('docSignIn')
+})
 router.post('/logout', (req, res) => {
   req.logout(function(err) {
     if (err) { return next(err); }
-    res.redirect('/signup');
+    res.redirect('/signin');
   });
 });
 
