@@ -10,6 +10,11 @@
 	<title>Document</title>
 </head>
 <body>
+	<% if (typeof loggedin !== 'undefined' && !loggedin) { %>
+		<script>
+		  alert(" Your are not logged in! please sign in");
+		</script>
+	  <% } %>
 
 
 	<form action="/payment" method="POST">

@@ -7,6 +7,31 @@
     <title>Doctor Verification</title>
 </head>
 <body>
+    <% if (typeof verification !== 'undefined' && !verification) { %>
+        <script>
+          alert("We are working on your request ");
+        </script>
+      <% }else if (typeof requestsucsefuly !== 'undefined' && requestsucsefuly) { %>
+        <script>
+          alert("Request has been sent sucsefuly");
+        </script>
+      
+      <% }else if (typeof requestsucsefuly !== 'undefined' && !requestsucsefuly) { %>
+        <script>
+          alert("Some error has ocured trying or Please contact us healr.society@gmail.com");
+        </script>
+      
+      <% }else if (typeof verificationExist !== 'undefined' && !verificationExist) { %>
+        <script>
+          alert("You haven't made a verification request yet. Please make a request or check your email. The email should be the same as you entered in the verification process.");
+        </script>
+    
+      <% }else if (typeof userExist !== 'undefined' && userExist) { %>
+        <script>
+          alert("user alerdy exist try to login ");
+        </script>
+      <% } %>
+
     <div class="mainpage-container">
         <div class="mainpage-box">
             <div class="heading-text">

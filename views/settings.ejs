@@ -5,11 +5,14 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="Settings.css" rel="stylesheet">
-        <script src="Settings.js"></script>
-        
+        <link href="style/settings.css" rel="stylesheet">
 	</head>
     <body>
+        <% if (typeof loggedin !== 'undefined' && !loggedin) { %>
+			<script>
+			  alert(" Your are not logged in! please sign in");
+			</script>
+		  <% } %>
         <div class="Profile">
             <div class="profile-container">
     
@@ -17,7 +20,7 @@
                     <h3>Settings</h3>
     
                     <div class="box1">
-                    <a href="/editProfile" >  <div class="edit profile">
+                    <a href="/editProfile" style="text-decoration: none;" >  <div class="edit profile" >
     
                             <svg
                                 class="group2"
@@ -36,7 +39,7 @@
                             <h4>Edit profile </h4>
     
                         </div> </a>
-                      <a href="/Subscription" >  <div class="Subscription">
+                      <a href="/Subscription" style="text-decoration: none;" >  <div class="Subscription">
                         <svg
                     class="group5"
                     width="24"
@@ -53,7 +56,7 @@
                   <h4>Subscription</h4>
     
                         </div> </a>
-                        <a href="/helpsupport" >   <div class="Helpsupport">
+                        <a href="/helpsupport" style="text-decoration: none;" >   <div class="Helpsupport">
                         <svg
                     class="group6"
                     width="24"
@@ -70,7 +73,7 @@
                   <h4>Help & Support</h4>
     
                         </div></a>
-                        <a href="/deleteaccount">  <div class="Deleteaccount">
+                        <a href="/deleteaccount" style="text-decoration: none;">  <div class="Deleteaccount">
                             <svg
                                 class="vector8"
                                 width="14"
@@ -87,7 +90,7 @@
                             <h4>Delete account</h4>
     
                         </div></a>
-                        <a href="/privacypolicy"> <div class="Privacypolicy">
+                        <a href="/privacypolicy" style="text-decoration: none;"> <div class="Privacypolicy">
                             <svg
                                 class="group4"
                                 width="24"

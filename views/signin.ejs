@@ -22,6 +22,19 @@
   
         }
     </style>
+    
+
+<% if (typeof accountExists !== 'undefined' && accountExists) { %>
+    <script>
+      alert("Account already exists! please sign in");
+    </script>
+  <% }else if (typeof accountExists !== 'undefined' && !accountExists) { %>
+    <script>
+      alert("Account does not exist! please sign up");
+    </script>
+  <% } %>
+  
+
     <div class="reg">
         <div class="main">
             <main>

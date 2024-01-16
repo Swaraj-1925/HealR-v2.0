@@ -1,0 +1,96 @@
+.box1 div{
+    background-color: #40f8ff;
+    width: 300px;
+    height: 60px;
+    margin: 20px 10px 10px;
+    border-radius: 15px;
+    position: relative;
+
+}
+
+.settings h3{
+    margin: 10px;
+    font-size: 36px;
+    text-align: center;
+}
+.box1 svg{
+    position: relative;
+    margin-top: 15px;
+    left:15px
+}
+
+.box1 h4{
+   
+    position: relative;
+    left: 60px;
+    bottom: 50px;
+    color: black;
+    font-family: var(--title-poppins-large-font-family, "Poppins-SemiBold", sans-serif );
+    font-size: var(--title-poppins-large-font-size, 17px);
+    line-height: var(--title-poppins-large-line-height, 28px);
+    font-weight: var(--title-poppins-large-font-weight, 600);
+   
+}
+.profile-container{
+    background-color: #597E52;
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 100%;
+    /* border-radius: 40px; */
+    background-color: #ffffff;
+    
+    height: 812px;
+    overflow: hidden;
+}
+.logout{
+    background-color: #40f8ff;
+    width: 300px;
+    height: 60px;
+    border-radius: 15px;
+    position: relative;
+    text-align: justify;
+    display: grid;
+    border: none;
+}
+.popup{
+    width: 227px;
+    background: #ffffec;
+    border-radius: 6px;
+    position: absolute;
+    box-shadow: 0 11px 5px rgba(0, 0, 0, 0.2);
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+    transition: transfrom 0.4s, top 0.4s;
+}
+.open-popup{
+    visibility: visible;
+    top: -283%;
+    left: 56%;
+    transform: translate(-50%,-50%) scale(1);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.popup button{
+    width: 35%;
+    margin: 6px 15px;
+    padding: 11px 13px;
+    background: #6fd646;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 17px;
+    border-radius: 45px;
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+.popup p{
+    font-size: 20px;
+}
+.settings{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;;
+}

@@ -10,6 +10,11 @@
 </head>
  
 <body>
+	<% if (typeof loggedin !== 'undefined' && !loggedin) { %>
+		<script>
+		  alert(" Your are not logged in! please sign in");
+		</script>
+	  <% } %>
 	<div class="title">Schedule</div>
 	<div class="wrapper">
 	  <header>
@@ -34,7 +39,7 @@
 	</div>
 	<div class="grid-container">
 		<% data.freeTimeSlots.forEach(timeSlot => { %>
-		  <button><%= timeSlot %>am</button>
+		  <button type=""><%= timeSlot %></button>
 		<% }) %>
 	  </div>
 	  
@@ -129,6 +134,16 @@ gridButtons.forEach(button => {
     console.log(selectedTime);
   });
 });
+document.getElementById("schedule-form").addEventListener("submit", (e) => {
+  // Check if at least one button is selected
+  const selectedButtons = document.querySelectorAll('.grid-container button.active');
+  
+  if (selectedButtons.length === 0) {
+    alert("Please select at least one time slot before proceeding.");
+    e.preventDefault(); // Prevent form submission if no button is selected
+  }
+});
+
 	</script>
   </body>
   

@@ -14,7 +14,14 @@ const docAuth =require('../config/uplodebloob').docAuth;
 const docImg =require('../config/uplodebloob').docImg;
 
 // =============== user routes ===============================
-router.post('signin', (req, res, next) => {
+router.post('/signin', async (req, res, next) => {
+ 
+  const existingUser = await User.findOne({ username: req.body.username });
+  if (!existingUser) {
+    const alertMessage = "Email dose not exists please sign up";
+    req.session.alert = alertMessage;
+      return res.render('signup',{ accountExists: false });
+  }
   passport.authenticate('local', (err, user, info) => {
     if (err) {
    
@@ -36,7 +43,6 @@ router.post('signin', (req, res, next) => {
 });
 
 
-
 router.post('/signup', async (req, res, next) => {
   
   try {
@@ -47,7 +53,8 @@ router.post('/signup', async (req, res, next) => {
       const existingUser = await User.findOne({ username: req.body.username });
 
       if (existingUser) {
-          return res.send("Email already exists");
+        
+          return res.render('signin',{ accountExists: true });
       }
 
       const newUser = new User({
@@ -82,7 +89,8 @@ router.post('/signup', async (req, res, next) => {
 router.post('/doc', async (req,res) =>{
   const existingUser = await authRequest.findOne({ username: req.body.username });
       if (existingUser) {
-          return res.send("<h4>we are working on your request</h4>");
+        
+        return res.render('doc',{ verification: false })
       }
   var imgname =req.files.doqment.name;
   var dataStream= intoStream (req.files.doqment.data);
@@ -95,9 +103,9 @@ router.post('/doc', async (req,res) =>{
     docLink:imageUrl,
   });
   await newauthreq.save();
-  return res.send('<h4>request has been sent sucsefuly</h4>')
+  return res.render('doc',{ requestsucsefuly: true })
   }catch(err){
-    res.send("<h4>some error has ocured trying or Please contact <a href='mailto:healr.society@gmail.com'>healr.society@gmail.com</a> with image of error</h4><p></p>Error:"+err)
+    return res.render('doc',{ requestsucsefuly: false })
   }
 });
 
@@ -122,10 +130,11 @@ router.post('/docSignup', async (req, res) => {
     const checkForAuthentication = await authRequest.findOne({ username: req.body.username, verified: true });
 
     if (!findUser) {
-      res.send("<h4>You haven't made a verification request yet. Please make a request or check your email. The email should be the same as you entered in the verification process.</h4>");
+      return res.render('doc',{ verificationExist: false })
+
     } else {
       if (!checkForAuthentication) {
-        res.send("<h4>we are wroking on your verification </h4>");
+        return res.render('doc',{ verification: false });
       } else {
 
         const findUser = await Doc.findOne({ username: req.body.username });
@@ -181,7 +190,7 @@ router.post('/docSignup', async (req, res) => {
           res.status(500).send('<h3>Error saving user try again</h3>');
         }
       }else{
-        res.send('<h4>Error: user alerdy exist try to login </h4>')
+        return res.render('doc',{ userExist: true });
       }
     }
     }
@@ -199,15 +208,19 @@ router.post('/Schedule',(req,res) =>{
     if (doc) {
       const usernameToFind = doc.username;
       const acceptedTimes = doc.acceptedTime|| []; 
+      
 
       Appointment.find({ doc_username: usernameToFind, appointment_date: selectedDate })
         .then(appointments => {
+          console.log(appointments)
           const bookedTimeSlots = appointments.map(appointment => {
-            const hours = appointment.appointment_time.getHours();
+            const hours = appointment.appointment_time;
+            console.log(hours)
             return hours;
           });
 
           const freeTimeSlots = acceptedTimes.filter(timeSlot => !bookedTimeSlots.includes(timeSlot));
+          console.log(freeTimeSlots)
           const data={
             id:id,
             freeTimeSlots:freeTimeSlots,
@@ -245,15 +258,63 @@ router.post('/sessionstore',(req,res) =>{
 
   res.redirect('/typetherapy');
 })
+
+router.post('/payment', async(req,res) =>{
+  
+  const key = Object.keys( req.body);
+  if(!req.user){
+    return res.redirect('/signup')
+  }
+  const doc = await Doc.findById(req.session.userData.doctor)
+  const appointmentData ={
+    doc_username:doc.username,
+    patient_username:req.user.username,
+    Type_id:key,
+    appointment_date: req.session.userData.date,
+    appointment_time: req.session.userData.time,
+  }
+  try{
+    const newappoinment = new Appointment({
+      doc_username:doc.username,
+      patient_username:req.user.username,
+      Type_id:key[0],
+      appointment_date: req.session.userData.date,
+      appointment_time: req.session.userData.time,
+    })
+    await newappoinment.save();
+    console.log('appoinment saved')
+    console.log("befor",req.session)
+    if (req.session && req.session.userData) {
+      // Remove the userData from the session
+      delete req.session.userData;
+      console.log('Removed userData from the session.');
+    } else {
+      console.log('userData not found in the session.');
+    }
+    console.log("after",req.session)
+
+  }catch(err){
+    console.log(err)
+
+  }
+  
+
+});
 // =================get routes===========================
 router.get('/', (req, res, next) => {
  res.render("landing")
 });
 router.get('/signup', (req, res, next) => {
-  res.render("signup")
+  const  session =req.session
+  if(session){
+  res.render("signup",{session})
+}else{
+  res.render("signup",{session})
+}
  });
  
 router.get('/signin', (req, res, next) => {
+  
   res.render("signin")
  });
  // ==============doc===============
@@ -288,7 +349,7 @@ router.get('/dashboard', async (req, res) => {
           res.status(500).send('Internal server error');
       }
   } else {
-      res.status(401).json({ message: 'Unauthorized' });
+      res.status(401).redirect('/signup');
   }
 });
 
@@ -313,7 +374,9 @@ router.get('/docdashboard', (req, res) => {
 router.get('/docSignin',(req,res) =>{
   res.render('docSignin')
 });
+
 router.get('/doc_Description', async (req, res) => {
+  if (req.isAuthenticated()) {
   try {
     const docId = req.query.id;
    
@@ -349,9 +412,13 @@ router.get('/doc_Description', async (req, res) => {
     console.error(error);
     res.status(500).send('Error fetching doctor details');
   }
+} else {
+  return res.render('signin',{ loggedin: false });
+}
 });
 
 router.get('/Schedule', (req, res) => {
+  if (req.isAuthenticated()) {
   const id = req.query.id;
   const selectedDate = req.body.selectedDate;
   Doc.findById(id)
@@ -386,10 +453,13 @@ router.get('/Schedule', (req, res) => {
   .catch(err => {
     console.error("Error finding doctor:", err);
   })
+} else {
+  return res.render('signin',{ loggedin: false });
+}
 });
 
 router.get('/typetherapy',(req,res) =>{
-
+  if (req.isAuthenticated()) {
   const userData =req.session.userData;
   const doqId = userData.doctor;
   Doc.findById(doqId)
@@ -408,12 +478,20 @@ router.get('/typetherapy',(req,res) =>{
   .catch(err => {
     console.error("Error finding doctor:", err);
   })
+} else {
+  return res.render('signin',{ loggedin: false });
+}
 
 });
 
 
 router.get('/settings', (req, res, next) => {
+  if (req.isAuthenticated()) {
   res.render('settings');
+} else {
+  
+  return res.render('signin',{ loggedin: false });
+}
 });
 router.post('/logout', (req, res, next) => {
   req.logout(function(err) {

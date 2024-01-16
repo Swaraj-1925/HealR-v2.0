@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    <% if (typeof accountExists !== 'undefined' && !accountExists) { %>
+        <script>
+          alert("Account does not exist.");
+        </script>
+      <% } %>
     <div class="reg">
         <div class="main">
             <main>

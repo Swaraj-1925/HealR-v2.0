@@ -37,7 +37,7 @@ const docSchema = new mongoose.Schema({
         weekdays:Boolean,
         everyday:Boolean
     },
-    acceptedTime:[Number],
+    acceptedTime:[],
     available:{type:Boolean, default: true },
 });
 
@@ -45,9 +45,9 @@ const docSchema = new mongoose.Schema({
 const appointmentSchema =new mongoose.Schema({
     doc_username:{type:String,unique:false},
     patient_username:{type:String,unique:false},
-    Type_id:Number,
-    appointment_date: Date,
-    appointment_time: Date,
+    Type_id:String,
+    appointment_date: String,
+    appointment_time: String,
     trasactionHash:String,
     time: {type: Date,default: Date.now}
 });

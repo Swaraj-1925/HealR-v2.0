@@ -6,6 +6,11 @@
     <title>Document</title>
 </head>
 <body>
+    <% if (typeof loggedin !== 'undefined' && !loggedin) { %>
+        <script>
+          alert(" Your are not logged in! please sign in");
+        </script>
+      <% } %>
     <h1>payment page user saved succefuly</h1>
 </body>
 </html>

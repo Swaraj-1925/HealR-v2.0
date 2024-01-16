@@ -6,6 +6,30 @@
     <title>Doctor Registration Form</title>
 </head>
 <body>
+    <% if (typeof verification !== 'undefined' && !verification) { %>
+        <script>
+          alert("We are working on your request ");
+        </script>
+      <% }else if (typeof requestsucsefuly !== 'undefined' && requestsucsefuly) { %>
+        <script>
+          alert("Request has been sent sucsefuly");
+        </script>
+      <% } %>
+      <% }else if (typeof requestsucsefuly !== 'undefined' && !requestsucsefuly) { %>
+        <script>
+          alert("Some error has ocured trying or Please contact us healr.society@gmail.com");
+        </script>
+      <% } %>
+      <% }else if (typeof verificationExist !== 'undefined' && !verificationExist) { %>
+        <script>
+          alert("You haven't made a verification request yet. Please make a request or check your email. The email should be the same as you entered in the verification process.");
+        </script>
+      <% } %>
+      <% }else if (typeof userExist !== 'undefined' && userExist) { %>
+        <script>
+          alert("user alerdy exist try to login ");
+        </script>
+      <% } %>
     <form action="/docSignup" method="POST" enctype="multipart/form-data" >
         <label for="username">Email:</label>
         <input type="email" id="username" name="username" required><br>
@@ -43,13 +67,19 @@
         <input type="radio" id="everyday" name="workingdays" value="everyday" required><label for="everyday">Everyday</label><br>
 
         <label for="availableTimes">Available Times:</label>
-        <input type="checkbox" id="8am" name="acceptedTime" value="8"><label for="8am">8AM</label>
-        <input type="checkbox" id="10am" name="acceptedTime" value="10"><label for="10am">10AM</label>
-        <input type="checkbox" id="12pm" name="acceptedTime" value="12"><label for="12pm">12PM</label>
-        <input type="checkbox" id="12pm" name="acceptedTime" value="12"><label for="2pm">2PM</label>
-        <input type="checkbox" id="12pm" name="acceptedTime" value="12"><label for="4pm">4PM</label>
-        <input type="checkbox" id="12pm" name="acceptedTime" value="12"><label for="6pm">6PM</label>
-        <input type="checkbox" id="12pm" name="acceptedTime" value="12"><label for="8pm">8PM</label>
+        <input type="checkbox" id="8am" name="acceptedTime" value="7am"><label for="am">7AM</label>
+        <input type="checkbox" id="8am" name="acceptedTime" value="8am"><label for="8am">8AM</label>
+        <input type="checkbox" id="8am" name="acceptedTime" value="9am"><label for="8am">9AM</label>
+        <input type="checkbox" id="10am" name="acceptedTime" value="10am"><label for="10am">10AM</label>
+        <input type="checkbox" id="10am" name="acceptedTime" value="11am"><label for="10am">11AM</label>
+        <input type="checkbox" id="12pm" name="acceptedTime" value="12pm"><label for="12pm">12PM</label>
+        <input type="checkbox" id="12pm" name="acceptedTime" value="1pm"><label for="12pm">1PM</label>
+        <input type="checkbox" id="12pm" name="acceptedTime" value="2pm"><label for="2pm">2PM</label>
+        <input type="checkbox" id="12pm" name="acceptedTime" value="3pm"><label for="2pm">3PM</label>
+        <input type="checkbox" id="12pm" name="acceptedTime" value="4pm"><label for="4pm">4PM</label>
+        <input type="checkbox" id="12pm" name="acceptedTime" value="5pm"><label for="5pm">5PM</label>
+        <input type="checkbox" id="12pm" name="acceptedTime" value="6pm"><label for="6pm">6PM</label>
+        <input type="checkbox" id="12pm" name="acceptedTime" value="8pm"><label for="8pm">8PM</label>
        
 
         <label for="imgS">Image Small:</label>

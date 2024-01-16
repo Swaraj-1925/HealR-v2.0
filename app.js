@@ -9,14 +9,15 @@ var routes = require('./Routes');
 const fileUpload = require('express-fileupload');
 const MongoStore = require('connect-mongo');
 const { constants } = require('buffer');
+const bodyParser = require('body-parser')
 require('dotenv').config();
 
 const username =process.env.usernameMonog;
 const password=process.env.passwordMonog;
 
 var app = express();
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 app.set('view engine', 'ejs');
 app.use(express.static('public'))
 var  secret=process.env.SECRET
