@@ -1,162 +1,186 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>HealR</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-        <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-        <link href="style/dashboard.css" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400&family=Lavishly+Yours&family=Pangolin&display=swap" rel="stylesheet"> -->
+
+<head>
+	<title>HealR</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+	<!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+	<link href="style/dashboard.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400&family=Lavishly+Yours&family=Pangolin&display=swap" rel="stylesheet"> -->
 
 
 
 </head>
-	<body>
-		<% if (typeof loggedin !== 'undefined' && !loggedin) { %>
-			<script>
-			  alert(" Your are not logged in! please sign in");
-			</script>
-		  <% } %>
 
-        <div class="root">
-            <div class="page">
+<body>
+	<% if (typeof loggedin !=='undefined' && !loggedin) { %>
+		<script>
+			alert(" Your are not logged in! please sign in");
+		</script>
+		<% } %>
 
-				<div class="tabs">
-					<div class="setting">
-						<img src="/images/icon-message.png" alt="" >
-						<a href="/settings"><img src="/images/icons-setting.png" alt="" style="width: 30px; height: auto;"></a>
-					</div>
-				<input type="radio" id="tab1" name="tab-control" checked>
-				<input type="radio" id="tab2" name="tab-control">
-				<ul>
-					<li title="Features"><label for="tab1" role="button">
-						<img class="home-icon" src="/images/home.png" alt="">
-						<br><span>Home</span></label></li>
-					<li title="Delivery Contents"><label style="z-index: 100;" for="tab2" role="button">
-						<img class="cal-icon" src="/images/calendar.png" alt="">
-						<br><span>Appointment</span></label></li>
-					
-				</ul>
-				
-	 			<div class="slider"><div class="indicator"></div></div>
-				<div class="content">
-					<section>
-					<div class='titlePage'>
-										<div class="welcome-back-sarina-container">
-											<span class="good-afternoon"><b>Hey</b></span>
-											<span class="span">, </span>
-											<b> <%= userData.name %> </b>
-										</div>
-										
-											<div class="rectangle-group">
-											<div class="rectangle1">
-												<img src="/images/dashobard1.jpg" alt="">
-											</div>
-										
-											<div class="it-is-better">
-												Embark a new journey with HealR.
-                                            </div>
-											</div>
-											<div class="rectangle-parent">
-												<div class="rectangle"></div>
-												<img
-												class="mask-group-icon" src="/images/dashobard2.png"
-												alt=""
-												/>
-										
-												<Link to="/bookappointment">  <div class="peer-group-meetup">
-												<div class="on-1-sessions">1 on 1 Sessions</div>
-												<div class="lets-open-up">
-													Let’s open up to the things that matter the most
-												</div>
-												<div class="watch-now">
-													<div class="watch-now-child">
-														<button class="book-now" id="book-now" type="button"><b>Book Now</b></button>
-													</div>
+			<div class="root">
+				<div class="page">
 
-												</div>
-												</div></Link>
-												
-											</section>
-						<section>
-						<div class="label-search">
-										<div class="label-search-child"></div>
-										<img class="search-icon" alt="" src="/images/search.png" />
-										<input class="search-doctor" type="text" placeholder='Search doctor'/>
-										</div>
-					<div class="card-container">					
-										<% docs.forEach(doc => { %>
-									<a href="/doc_Description?id=<%= doc._id %>" style="text-decoration: none;">
-										<div class="card-9">
-										<img class="image-icon" alt="" src="<%= doc.images.imgS %>" />
-					
-										<div class="frame-parent">
-											<div class="sarah-parent">
-											<b class="name"><%= doc.name %></b>
-											
-											</div>
-											<div class="frame-child"></div>
-											<div class="frame-group">
-											<div class="frame-container">
-												<div class="vuesaxlinearlocation-wrapper">
-												<img class="vuesaxlinearlocation-icon" alt="" />
-												</div>
-												<div class="golden-cardiology-center">
-													 <%= doc.Profession %>
-												</div>
-											</div>
-											<div class="years-experience"><%= doc.yearOfExperience %> years experience</div>
-											<div class="frame-div">
-												<div class="frame-parent1">
-												<div class="subtract-parent">
-													<img
-													class="subtract-icon"
-													alt=""
-													src="/images/star.png"
-													/>
-												</div>
-												<% if (reviews.find(rev => rev._id === doc.username)) { %>
-													<div class="sarah numberstar"><%= reviews.find(rev => rev._id === doc.username).avgStars || 0 %></div>
-												  <% } else { %>
-													<div class="sarah numberstar">0</div>
-												  <% } %>
-												</div>
-												<div class="frame-item"></div>
-												<div class="reviews"><div class="reviews">( <%= (reviews.find(rev => rev._id === doc.username) || {}).count || 0 %> Reviews)</div>
-											</div>
-												<div class="div2">₹ <%= doc.fees.call %> </div>
-											</div>
-											</div>
-										</div>
-									</div> 
-								</a>
-								<% }) %>
+					<div class="tabs">
+						<div class="setting">
+							<img src="/images/icon-message.png" alt="">
+							<a href="/settings"><img src="/images/icons-setting.png" alt=""
+									style="width: 30px; height: auto;"></a>
 						</div>
-									</section>
-				</div>
+						<input type="radio" id="tab1" name="tab-control" checked>
+						<input type="radio" id="tab2" name="tab-control">
+						<ul>
+							<li title="Features"><label for="tab1" role="button">
+									<img class="home-icon" src="/images/home.png" alt="">
+									<br><span>Home</span></label></li>
+							<li title="Delivery Contents"><label style="z-index: 100;" for="tab2" role="button">
+									<img class="cal-icon" src="/images/calendar.png" alt="">
+									<br><span>Appointment</span></label></li>
+
+						</ul>
+
+						<div class="slider">
+							<div class="indicator"></div>
+						</div>
+						<div class="content">
+							<section>
+								<div class='titlePage'>
+									<div class="welcome-back-sarina-container">
+										<span class="good-afternoon"><b>Hey</b></span>
+										<span class="span">, </span>
+										<b>
+											<%= userData.name %>
+										</b>
+									</div>
+
+									<div class="rectangle-group">
+										<div class="rectangle1">
+											<img src="/images/dashobard1.jpg" alt="">
+										</div>
+
+										<div class="it-is-better">
+											Embark a new journey with HealR.
+										</div>
+									</div>
+									<div class="rectangle-parent">
+										<div class="rectangle"></div>
+										<img class="mask-group-icon" src="/images/dashobard2.png" alt="" />
+
+										<Link to="/bookappointment">
+										<div class="peer-group-meetup">
+											<div class="on-1-sessions">1 on 1 Sessions</div>
+											<div class="lets-open-up">
+												Let’s open up to the things that matter the most
+											</div>
+											<div class="watch-now">
+												<div class="watch-now-child">
+													<button class="book-now" id="book-now" type="button"><b>Book
+															Now</b></button>
+												</div>
+
+											</div>
+										</div>
+										</Link>
+
+							</section>
+							<section>
+								<div class="label-search">
+									<div class="label-search-child"></div>
+									<img class="search-icon" alt="" src="/images/search.png" />
+									<input class="search-doctor" type="text" placeholder='Search doctor' />
+								</div>
+								<div class="card-container">
+									<% if (docs && docs.length> 0) { %>
+										<% docs.forEach(doc=> { %>
+											<a href="/doc_Description?id=<%= doc._id %>" style="text-decoration: none;">
+												<div class="card-9">
+													<img class="image-icon" alt="" src="<%= doc.images.imgS %>" />
+
+													<div class="frame-parent">
+														<div class="sarah-parent">
+															<b class="name">
+																<%= doc.name %>
+															</b>
+
+														</div>
+														<div class="frame-child"></div>
+														<div class="frame-group">
+															<div class="frame-container">
+																<div class="vuesaxlinearlocation-wrapper">
+																	<img class="vuesaxlinearlocation-icon" alt="" />
+																</div>
+																<div class="golden-cardiology-center">
+																	<%= doc.Profession %>
+																</div>
+															</div>
+															<div class="years-experience">
+																<%= doc.yearOfExperience %> years experience
+															</div>
+															<div class="frame-div">
+																<div class="frame-parent1">
+																	<div class="subtract-parent">
+																		<img class="subtract-icon" alt=""
+																			src="/images/star.png" />
+																	</div>
+																	<% if (reviews.find(rev=> rev._id === doc.username))
+																		{ %>
+																		<div class="sarah numberstar">
+																			<%= reviews.find(rev=> rev._id ===
+																				doc.username).avgStars || 0 %>
+																		</div>
+																		<% } else { %>
+																			<div class="sarah numberstar">0</div>
+																			<% } %>
+																</div>
+																<div class="frame-item"></div>
+																<div class="reviews">
+																	<div class="reviews">( <%= (reviews.find(rev=>
+																			rev._id === doc.username) || {}).count || 0
+																			%> Reviews)</div>
+																</div>
+																<div class="div2">₹ <%= doc.fees.call %>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</a>
+											<% }) %>
+												<% } else { %>
+													<p class="text-center mt-4">
+														Our team is diligently working to expand our network of
+														exceptional doctors. Stay tuned for more options soon!
+													</p>
+													<% } %>
+								</div>
+							</section>
+						</div>
+					</div>
 				</div>
 			</div>
-        </div>
-		<script>
-			document.addEventListener('DOMContentLoaded', function () {
-				// Get the button element
-				var bookNowButton = document.getElementById('book-now');
-		
-				// Add a click event listener to the button
-				bookNowButton.addEventListener('click', function () {
-					// Find the radio button corresponding to tab 2
-					var tab2RadioButton = document.getElementById('tab2');
-		
-					// Check the radio button for tab 2
-					tab2RadioButton.checked = true;
-		
-					// Optionally, you can trigger the change event to make sure the tab content updates
-					var event = new Event('change');
-					tab2RadioButton.dispatchEvent(event);
+			<script>
+				document.addEventListener('DOMContentLoaded', function () {
+					// Get the button element
+					var bookNowButton = document.getElementById('book-now');
+
+					// Add a click event listener to the button
+					bookNowButton.addEventListener('click', function () {
+						// Find the radio button corresponding to tab 2
+						var tab2RadioButton = document.getElementById('tab2');
+
+						// Check the radio button for tab 2
+						tab2RadioButton.checked = true;
+
+						// Optionally, you can trigger the change event to make sure the tab content updates
+						var event = new Event('change');
+						tab2RadioButton.dispatchEvent(event);
+					});
 				});
-			});
-		</script>
-    </body>
+			</script>
+</body>
+
 </html>

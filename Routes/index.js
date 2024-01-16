@@ -400,13 +400,13 @@ router.get('/docSignin',(req,res) =>{
 });
 
 router.get('/docdashboard', async(req, res) => {
-  
   if (req.isAuthenticated()) {
     const check=  await usercred.find({ username: req.user.username ,role:"doctor" })
-    if(check.length === 0){
-      return res.redirect('/signin')
-    }
-          res.render('docdashboard');
+    if(check.length === 0){return res.redirect('/signin')}
+    console.log(req.user.username)
+    const appointments =  await Appointment.find({ doc_username: req.user.username})
+    console.log(appointments)
+          res.render('docdashboard', { appointments });
     } else {
       return res.status(401).redirect('/docSignin');
   }
