@@ -36,7 +36,7 @@
   width: 10%;
 }
 .backimg-large{
-  background-image:url('../images/home-back.jpg');
+  background-image:url('https://healr.blob.core.windows.net/webimg/home-back.jpg');
   min-height: 100vh;
   min-width: 198vh;
   background-size: cover; /* Scales the image to fit the entire element */
@@ -390,7 +390,7 @@ footer img{
           display: none;
         }
         .backimg-small{
-          background-image: url('../images/home-backMobile.jpg');
+          background-image: url('https://healr.blob.core.windows.net/webimg/home-backMobile.jpg');
           min-height: 100vh;
           min-width: 63vh;
           background-size: cover; /* Scales the image to fit the entire element */
