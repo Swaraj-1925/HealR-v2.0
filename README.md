@@ -20,7 +20,8 @@ install all required packages and nodemon if your tryin to run in development
      azure storage:- https://azure.microsoft.com/en-in/free/
    
 3) afer that complete all parts in .env file
- ![image](https://github.com/Swaraj-1925/HealR-v2.0/assets/121567727/401d4ac7-9002-4591-8dde-f2378983e077)
+![image](https://github.com/Swaraj-1925/HealR-v2.0/assets/121567727/b50db916-8762-4720-bf85-8eeb509d9d75)
+
 4) make sure to allow your IP address in mongodb atlas or you might get this error
     ![image](https://github.com/Swaraj-1925/HealR-v2.0/assets/121567727/6d038343-33b6-4b54-ba58-d57792c3bbad)
 5) make sure to allow anonymous acces to bloob in azure bloob storage or images wont load
