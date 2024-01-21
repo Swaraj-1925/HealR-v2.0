@@ -7,7 +7,8 @@ Healr is a website which wil help people who are suffuring mently health issue t
 ### Prerequisites
 
 ```
-![image](https://github.com/Swaraj-1925/HealR-v2.0/assets/121567727/9c96f1c2-1243-4bdd-a05e-2c3c976a3974)
+![image](https://github.com/Swaraj-1925/HealR-v2.0/assets/121567727/e3cbaf05-0c16-4237-81bf-5c403dc127d8)
+
 
 ```
 #nodemon  also
