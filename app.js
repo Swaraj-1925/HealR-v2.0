@@ -14,6 +14,7 @@ require('dotenv').config();
 
 const username =process.env.usernameMonog;
 const password=process.env.passwordMonog;
+const DB_name=process.env.DB_name;
 
 var app = express();
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -26,7 +27,7 @@ app.use(session({
     secret: secret,
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: `mongodb+srv://${username}:${password}@cluster0.awcvfoh.mongodb.net/Healr?retryWrites=true&w=majority`}),
+    store: MongoStore.create({ mongoUrl: `mongodb+srv://${username}:${password}@cluster0.awcvfoh.mongodb.net/${DB_name}?retryWrites=true&w=majority`}),
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 
     }
