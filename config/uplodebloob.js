@@ -5,8 +5,9 @@ require('dotenv/config');
 const connectionString = process.env.connectionString;
 
 const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
-const containerAuth = 'authenticationdoq';
-const containerImg = 'docimages';
+
+const containerAuth = process.env.CONTAINER_NAMEAUTH;
+const containerImg =  process.env.CONTAINER_NAMEIMG;
 const containerClientAuth = blobServiceClient.getContainerClient(containerAuth);
 const containerClientImg = blobServiceClient.getContainerClient(containerImg);
 
