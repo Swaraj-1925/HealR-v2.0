@@ -3,8 +3,9 @@ require('dotenv').config();
 
 const username =process.env.usernameMonog;
 const password=process.env.passwordMonog;
+const DB_name=process.env.DB_name;
 
-const connection = mongoose.createConnection(`mongodb+srv://${username}:${password}@cluster0.awcvfoh.mongodb.net/Healr?retryWrites=true&w=majority`);
+const connection = mongoose.createConnection(`mongodb+srv://${username}:${password}@cluster0.awcvfoh.mongodb.net/${DB_name}?retryWrites=true&w=majority`);
 
 const UserSchema = new mongoose.Schema({
     username: {type:String,unique:true},
