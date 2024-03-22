@@ -1,0 +1,27 @@
+.landingPage-Footer-grid-container{
+    background-color: #EEEEEE;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    justify-items: center;
+    position: relative;
+    bottom: 0px;
+    
+}
+.landingPage-Footer-grid-item {
+    position: relative;
+    bottom: 0px;
+}
+.landingPage-Footer-grid-item  img{
+    height: 20vh;
+}
+.landingPage-Footer-grid-right-flex-row{
+    display: flex;
+    justify-content: flex-start;  
+    align-items: center;
+
+}
+.landingPage-Footer-grid-right-flex-row img {
+    height: 3vh;
+    margin-right: 10px;  
+}
