@@ -28,7 +28,7 @@ function Header() {
                            <a href="/#services"> Services</a> 
                         </li>
                         <li className="Client-LandingPage-Header-navbar-item item2">
-                            <a href="/#contact">Contact</a> 
+                            <a href="#contact">Contact</a> 
                         </li>
                         <li className="Client-LandingPage-Header-navbar-item item2">
                             <Link to="/sign-in"><button type="button" className='Client-LandingPage-Header-navbar-button'>Sign In</button></Link>

@@ -27,7 +27,7 @@ function Landing() {
                         </p>
                         <div className='landing-page-buttons'>
                             <Link to="sign-up"><button type="button">Join Us</button></Link>
-                            <Link to="/about-us"><button type="button">About us</button></Link>
+                            <Link to="about-us"><button type="button">About us</button></Link>
                         </div>
                     </div>
                 </div>
