@@ -8,10 +8,10 @@ import LinkedinIcon from './style/Images/linkedin.png';
 function Footer() {
     return (
         <>
-            <div className="landingPage-Footer-grid-container">
+            <div className="landingPage-Footer-grid-container " id='contact'>
                 <div className="landingPage-Footer-grid-item flexContainer">
                     <img src={Logo} alt="Logo footer" />
-                    <h4>HealR is online therapy platform where we try to give mental health realted help at as cheap rate as possiable</h4>
+                    <p>HealR is online therapy platform where we try to give mental health realted help at as cheap rate as possiable</p>
                 </div>
                 <div className="landingPage-Footer-grid-item flexContainer">
                     <h3>Our service</h3>

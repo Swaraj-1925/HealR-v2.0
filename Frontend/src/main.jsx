@@ -10,8 +10,11 @@ const router = createBrowserRouter(
   createRoutesFromElements([
   // eslint-disable-next-line react/jsx-key
   <Route path='/' element={<Layout />}>
-    <Route path='' element={<Landing />}/>
-    <Route path='about_Us' element={<About />}/>
+      <Route path="/" element={<Landing />} /> 
+        <Route path="/home" element={<Landing />} /> 
+        <Route path="/services" element={<Landing />} /> 
+        <Route path="/contact" element={<Landing   />} /> 
+    <Route path='about-us' element={<About />}/>
   </Route>
   ])
 )

@@ -6,13 +6,18 @@ import Bipolar from './style/images/bipolar.jpg';
 import Loneliness from './style/images/loneliness.jpg';
 import Ptsd from './style/images/ptsd.jpg';
 import ADHD from './style/images/adhd.jpg';
+import ExpertTherapy from './style/images/expert-therapy.jpg';
+import QandA from './style/images/Anonymity Q&A.jpg';
+import ResourceLibrary from './style/images/Resource-Library.jpg';
+import SupportForums from './style/images/Support-Forums.jpg';
+import { Link } from 'react-router-dom';
+
 
 function Landing() {
-    const commonChallengesstr="These challenges are part of life's journey, but you don't have to face them alone. Join us we will help";
-
+    const commonChallengesstr = "These challenges are part of life's journey, but you don't have to face them alone. Join us we will help";
     return (<>
         <div className="landingPage-body-wrapper">
-            <section className="grid-container">
+            <section className="grid-container" id='home'>
                 <div className="image-container">
                     <img src={Background} alt="Image description" />
                     <div className="text-overlay">
@@ -21,8 +26,8 @@ function Landing() {
                             You are not alone. You are seen. I am with you. You are not alone.
                         </p>
                         <div className='landing-page-buttons'>
-                            <button type="button">Join Us</button>
-                            <button type="button">About us</button>
+                            <Link to="sign-up"><button type="button">Join Us</button></Link>
+                            <Link to="/about-us"><button type="button">About us</button></Link>
                         </div>
                     </div>
                 </div>
@@ -68,7 +73,49 @@ function Landing() {
 
                 </div>
             </section>
-            <section className="landingPage-body-section Services"></section>
+            <section className="landingPage-body-section Services" id='services'>
+                <div className='Services-title'>
+                    <h2>Services..</h2>
+                </div>
+                <div className='Services-gridContainer'>
+
+                    <div className='Services-gridContainer-item1'>
+                        <h2>Expert Sessions</h2>
+                        <p>
+                            Access to specialized therapist sessions.
+                        </p>
+                        <img className="Servicesimg" src={ExpertTherapy} alt="Expert Therapy" />
+                    </div>
+
+                    <div className='Services-gridContainer-item2 containerTwo'>
+                        <div className='Services-gridContainer-containerTwo-item1'>
+                            <h2>Anonymity Q&A</h2>
+                            <p>
+                                Ask questions anonymously to therapists.
+                            </p>
+                            <img className="Servicesimg" src={QandA}
+                                alt="team builder feature icon" />
+                        </div>
+                        <div className='Services-gridContainer-containerTwo-item2'>
+                            <h2>Resource Library</h2>
+                            <p>
+                                Access books,music and much more.
+                            </p>
+                            <img className="Servicesimg" src={ResourceLibrary}
+                                alt="karma feature icon" />
+                        </div>
+                    </div>
+
+                    <div className='Services-gridContainer-item3'>
+                        <h2>Support Forums</h2>
+                        <p>
+                            Share experiences and connect
+                        </p>
+                        <img className="Servicesimg" src={SupportForums} alt="" />
+                    </div>
+
+                </div>
+            </section>
         </div>
     </>);
 }

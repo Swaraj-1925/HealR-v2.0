@@ -7,19 +7,26 @@ ul {
 .Client-LandingPage-Header-gridContiner {
    position: fixed;
    display: grid;
-   grid-template-columns: 9fr 2fr 2fr 1fr;
+   grid-template-columns: 7fr 1fr 1fr 1fr 1fr ;
    justify-content: end;
    padding: 0px;
    margin: 0px 5px 10px;
    justify-items: left;
-   background-color: #FF9B50;
+   background-color: #fefbf0d0;
    width: 100%;
-   height: 8vh;
+   height: 4vw;
+   border-bottom-left-radius:10px ;
+   border-bottom-right-radius:10px ;
+   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
    top: 0px;
-   left: 0px;
+   left: -4px;
 
 }
-
+.Client-LandingPage-Header-navbar a{
+   text-decoration: none;
+   color: black;
+   scroll-behavior: smooth;
+}
 .Client-LandingPage-Header-navbar-wrapper {
    position: fixed;
    z-index: 1;
@@ -34,19 +41,32 @@ ul {
 
 .Client-LandingPage-Header-navbar-item {
    border: 10px;
-
-   height: 6vh;
+   height: 6vw;
 
 
 }
 
 .Client-LandingPage-Header-navbar-item img {
-   height: 8vh;
+   height: 4vw;
    position: relative;
    top: 0px;
+   margin-left: 10px;
 }
 
 .item2 {
    position: relative;
    top: 0.7em;
+}
+.Client-LandingPage-Header-navbar-button{
+   position: relative;
+   top: -10px;
+   padding: 1vw 2vw;
+   border-radius: 10px;
+   margin-bottom: -10px;
+   top: -10px;
+   border: none;
+   background-color: #d5a13b;
+   font-weight: 600;
+   font-size: 1vw;
+   color: #553947;
 }
