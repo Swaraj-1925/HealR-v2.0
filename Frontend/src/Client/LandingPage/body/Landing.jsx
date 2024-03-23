@@ -8,6 +8,7 @@ import Ptsd from './style/images/ptsd.jpg';
 import ADHD from './style/images/adhd.jpg';
 
 function Landing() {
+    const commonChallengesstr="These challenges are part of life's journey, but you don't have to face them alone. Join us we will help";
 
     return (<>
         <div className="landingPage-body-wrapper">
@@ -29,7 +30,7 @@ function Landing() {
             <section className="landingPage-body-section commonChallenges">
                 <div className='commonChallenges-title'>
                     <div><h1>Common Challenges</h1></div>
-                    <div><p>These challenges are part of life's journey, but you don't have to face them alone. Join us we will help</p></div>
+                    <div><p>{commonChallengesstr}</p></div>
                 </div>
                 <div className='commonChallenges-gridContainer'>
 
