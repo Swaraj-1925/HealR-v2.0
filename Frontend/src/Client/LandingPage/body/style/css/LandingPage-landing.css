@@ -1,0 +1,101 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+
+}
+
+.image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 40%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: end;
+}
+
+.text-overlay h1 {
+    margin-bottom: -20px;
+    font-size: 6vw;
+}
+
+.text-overlay p {
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+
+
+.text-overlay a:hover {
+    color: #ddd;
+    /* Optional hover effect */
+}
+
+.landing-page-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.landing-page-buttons button {
+    padding: 3vh 5vh 3vh;
+    margin-left: 10px;
+    border-radius: 10px;
+
+}
+.commonChallenges-title{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-self: center;
+    align-items:center;
+    margin: -20px 40px 30px;
+}
+.commonChallenges-title h1{
+    font-size: 10vh;
+    margin-bottom: -10px;
+}
+.commonChallenges-title p{
+    text-align: center;
+    width: 70vh;
+    font-size: 2vh;
+}
+.commonChallenges-gridContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 10px 1px 5px;
+    padding: 0px 10% 0px;
+}
+
+.gridItem-flexContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 50vh;
+    align-items: center;
+    /* Align items vertically within the container */
+    justify-content: center;
+    text-align: center;
+}
+
+.gridItem-flexContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: solid black 5px;
+    
+}

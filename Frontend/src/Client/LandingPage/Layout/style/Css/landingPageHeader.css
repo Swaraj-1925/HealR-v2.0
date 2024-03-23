@@ -1,42 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
 
 ul {
-    list-style-type: none;
-  }
- .Client-LandingPage-Header-gridContiner{
-    position: fixed;
-    display: grid;
-    grid-template-columns: 9fr 2fr 2fr 1fr;
-    justify-content: end;
-    padding: 0px;
-    margin: 0px 5px 10px;
-    justify-items: left;
-    
-    z-index: 1;
-   }
-   .Client-LandingPage-Header-navbar-wrapper{
-    background-color: #FF9B50;
-    height: 8vh;
-   }
-   .Client-LandingPage-Header-gridContiner {
-      font-size: 1.5vw;
-      font-family: "Madimi One", sans-serif;
-      font-weight: 400;
-      font-style: normal;
-   }
-   .Client-LandingPage-Header-navbar-item{
-   border: 10px;
-   
-   height: 6vh;
-   
-   
+   list-style-type: none;
 }
-.Client-LandingPage-Header-navbar-item img{
+
+.Client-LandingPage-Header-gridContiner {
+   position: fixed;
+   display: grid;
+   grid-template-columns: 9fr 2fr 2fr 1fr;
+   justify-content: end;
+   padding: 0px;
+   margin: 0px 5px 10px;
+   justify-items: left;
+   background-color: #FF9B50;
+   width: 100%;
+   height: 8vh;
+   top: 0px;
+   left: 0px;
+
+}
+
+.Client-LandingPage-Header-navbar-wrapper {
+   position: fixed;
+   z-index: 1;
+}
+
+.Client-LandingPage-Header-gridContiner {
+   font-size: 1.5vw;
+   font-family: "Madimi One", sans-serif;
+   font-weight: 400;
+   font-style: normal;
+}
+
+.Client-LandingPage-Header-navbar-item {
+   border: 10px;
+
+   height: 6vh;
+
+
+}
+
+.Client-LandingPage-Header-navbar-item img {
    height: 8vh;
    position: relative;
    top: 0px;
 }
-.item2{
+
+.item2 {
    position: relative;
    top: 0.7em;
-  }
+}

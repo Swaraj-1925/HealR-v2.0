@@ -1,6 +1,5 @@
 import './style/Css/landingPageFooter.css';
 import Logo from './style/Images/logo/HealR_transparent.png';
-import EmailIcon from './style/Images/Email.png';
 import InstagramIcon from './style/Images/instagram.png';
 import DiscordIcon from './style/Images/Discord.png';
 import LinkedinIcon from './style/Images/linkedin.png';
