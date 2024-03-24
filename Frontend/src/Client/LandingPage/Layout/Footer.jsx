@@ -1,10 +1,11 @@
-import './style/Css/landingPageFooter.css';
-import Logo from './style/Images/logo/HealR_transparent.png';
-import InstagramIcon from './style/Images/instagram.png';
-import DiscordIcon from './style/Images/Discord.png';
-import LinkedinIcon from './style/Images/linkedin.png';
 import { Link } from 'react-router-dom';
 
+import DiscordIcon from './style/Images/Discord.png';
+import LinkedinIcon from './style/Images/linkedin.png';
+import InstagramIcon from './style/Images/instagram.png';
+import Logo from './style/Images/logo/HealR_transparent.png';
+
+import './style/Css/landingPageFooter.css';
 
 function Footer() {
     const terms_and_condition="";

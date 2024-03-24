@@ -1,0 +1,41 @@
+.Dashboard-home-gridContainer {
+    margin: 10vh 1vh 1vh;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+
+}
+
+.Dashboard-home-gridItem {
+    border: solid black 10px;
+}
+
+.Dashboard-home-homePart {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    background-image: url('./images/dashboard.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 85vh;
+    width: 70vw;
+}
+
+.Dashboard-home-homePart h1 {
+    font-size: 15vh;
+    padding: 0px;
+    margin: 0px;
+}
+
+.Dashboard-home-homePart p {
+    font-size: 7vh;
+    font-weight: 500;
+    padding: 0px;
+    margin: 0px;
+    margin-left: 10px;
+}
+
+/*  */
+/*  */
+/*  */
+/*  */

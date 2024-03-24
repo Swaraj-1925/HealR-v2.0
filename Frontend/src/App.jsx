@@ -1,11 +1,13 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route,  Routes } from 'react-router-dom';
 
-import About from './Client/LandingPage/body/AboutUs.jsx';
-import SignUp from './Client/LandingPage/body/SignUp.jsx';
-import SignIn from './Client/LandingPage/body/SignIn.jsx';
-import Layout from './Client/LandingPage/Layout/Layout.jsx';
-import Landing from './Client/LandingPage/body/Landing.jsx';
-import ClientHomePage from './Client/HomePage/clientHomePage';
+import About from './Client/LandingPage/body/AboutUs';
+import SignUp from './Client/LandingPage/body/SignUp';
+import SignIn from './Client/LandingPage/body/SignIn';
+import Layout from './Client/LandingPage/Layout/Layout';
+import Landing from './Client/LandingPage/body/Landing';
+
+import ClientHomePage from './Client/Dashboard/clientHomePage';
+import DashLayout from './Client/Dashboard/layout/DashboardLayout';
 
 const App = () => {
     return (
@@ -19,7 +21,10 @@ const App = () => {
                     <Route path="/home" element={<Landing />} />
                     <Route path="/services" element={<Landing />} />
                 </Route>
-                <Route path="/dashboard" element={<ClientHomePage />} />
+                
+                <Route path="/dashboard" element={<DashLayout />}>
+                    <Route index element={<ClientHomePage />} />
+                </Route>
             </Routes>
         </BrowserRouter>
     );

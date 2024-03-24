@@ -1,9 +1,10 @@
+import { useState } from "react";
+
+import axios from 'axios';
 
 import signUpimg from './style/images/SignUp.jpg';
-import { useState } from "react";
-import axios from 'axios';
-import './style/css/LandingPage-signUp.css';
 
+import './style/css/LandingPage-signUp.css';
 
 function SignUP() {
     const [name, setName] = useState("");

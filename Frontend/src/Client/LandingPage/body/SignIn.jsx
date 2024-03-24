@@ -1,8 +1,10 @@
-import './style/css/LandingPage-signIn.css';
-import SignInimg from './style/images/SignIn.jpg';
 import { useState } from "react";
+
 import axios from 'axios';
 
+import SignInimg from './style/images/SignIn.jpg';
+
+import './style/css/LandingPage-signIn.css';
 
 function SignIn() {
     const [name, setName] = useState("");

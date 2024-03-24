@@ -1,17 +1,18 @@
-import './style/css/LandingPage-landing.css';
-import Background from './style/images/LandingPage-background.jpg';
-import Depression from './style/images/Depression.jpg';
-import Anxiety from './style/images/anxiety.jpg';
-import Bipolar from './style/images/bipolar.jpg';
-import Loneliness from './style/images/loneliness.jpg';
-import Ptsd from './style/images/ptsd.jpg';
-import ADHD from './style/images/adhd.jpg';
-import ExpertTherapy from './style/images/expert-therapy.jpg';
-import QandA from './style/images/Anonymity Q&A.jpg';
-import ResourceLibrary from './style/images/Resource-Library.jpg';
-import SupportForums from './style/images/Support-Forums.jpg';
 import { Link } from 'react-router-dom';
 
+import Ptsd from './style/images/ptsd.jpg';
+import ADHD from './style/images/adhd.jpg';
+import Anxiety from './style/images/anxiety.jpg';
+import Bipolar from './style/images/bipolar.jpg';
+import QandA from './style/images/Anonymity Q&A.jpg';
+import Depression from './style/images/Depression.jpg';
+import Loneliness from './style/images/loneliness.jpg';
+import ExpertTherapy from './style/images/expert-therapy.jpg';
+import SupportForums from './style/images/Support-Forums.jpg';
+import ResourceLibrary from './style/images/Resource-Library.jpg';
+import Background from './style/images/LandingPage-background.jpg';
+
+import './style/css/LandingPage-landing.css';
  
 function Landing() {
     const commonChallengesstr = "These challenges are part of life's journey, but you don't have to face them alone. Join us we will help";
