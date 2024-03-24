@@ -6,6 +6,11 @@
     justify-content: center;
     justify-items: center;
     position: relative;
+     
+}
+.link{
+    text-decoration: none;
+    color: black;
 }
 .landingPage-Footer-grid-item {
     position: relative;

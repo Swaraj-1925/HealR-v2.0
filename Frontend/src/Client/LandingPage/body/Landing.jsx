@@ -12,7 +12,7 @@ import ResourceLibrary from './style/images/Resource-Library.jpg';
 import SupportForums from './style/images/Support-Forums.jpg';
 import { Link } from 'react-router-dom';
 
-
+ 
 function Landing() {
     const commonChallengesstr = "These challenges are part of life's journey, but you don't have to face them alone. Join us we will help";
     return (<>
@@ -26,7 +26,7 @@ function Landing() {
                             You are not alone. You are seen. I am with you. You are not alone.
                         </p>
                         <div className='landing-page-buttons'>
-                            <Link to="sign-up"><button type="button">Join Us</button></Link>
+                            <Link to="/sign-up"><button type="button">Join Us</button></Link>
                             <Link to="about-us"><button type="button">About us</button></Link>
                         </div>
                     </div>
