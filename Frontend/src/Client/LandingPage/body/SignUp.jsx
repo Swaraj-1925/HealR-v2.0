@@ -110,7 +110,7 @@ function SignUP() {
                             onChange={(e) => setCpassword(e.target.value)}
                             placeholder="Confirm Password"
                         />
-                        <div>Do you have account on discord</div>
+                        <div>have account on discord</div>
                         <div>
                             <label>
 
