@@ -1,4 +1,4 @@
-import { BrowserRouter, Route,  Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import About from './Client/LandingPage/body/AboutUs';
 import SignUp from './Client/LandingPage/body/SignUp';
@@ -8,11 +8,13 @@ import Landing from './Client/LandingPage/body/Landing';
 
 import ClientHomePage from './Client/Dashboard/clientHomePage';
 import DashLayout from './Client/Dashboard/layout/DashboardLayout';
+import BookAppointment from './Client/Dashboard/clientBookAppointment.jsx';
 
 const App = () => {
     return (
         <BrowserRouter>
             <Routes>
+                {/* Landing Page Routes */}
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Landing />} />
                     <Route path="/about-us" element={<About />} />
@@ -21,13 +23,14 @@ const App = () => {
                     <Route path="/home" element={<Landing />} />
                     <Route path="/services" element={<Landing />} />
                 </Route>
-                
+
                 <Route path="/dashboard" element={<DashLayout />}>
                     <Route index element={<ClientHomePage />} />
+                    <Route path="/dashboard/book-appoinmet" element={<BookAppointment />} /> {/* Corrected typo */}
                 </Route>
             </Routes>
         </BrowserRouter>
     );
 };
 
-export default App; // Make the component accessible to other files
+export default App;

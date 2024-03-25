@@ -2,12 +2,7 @@
     margin: 10vh 1vh 1vh;
     display: grid;
     grid-template-columns: 2fr 1fr;
-
-
-}
-
-.Dashboard-home-gridItem {
-    border: solid black 10px;
+    
 }
 
 .Dashboard-home-homePart {
@@ -16,6 +11,7 @@
     align-items: baseline;
     background-image: url('./images/dashboard.jpg');
     background-size: cover;
+    margin: 10px;
     background-position: center;
     height: 85vh;
     width: 70vw;
@@ -39,3 +35,73 @@
 /*  */
 /*  */
 /*  */
+.Dashboard-home-upcomingAppoinment{
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr 1fr 1fr;
+    justify-content: center;
+    max-height: 85vh;
+    align-items: center;
+    border-radius: 10px;
+    margin: 10px 10px 2px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+}
+.upcomingAppoinment-title{
+    /* padding: 1px; */
+    text-align: center;
+    font-size: 2vw;
+    /* box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3); */
+}
+.upcomingAppoinment-titleContainer{
+    background-color: #d7d3b6;
+    border: 1px solid black;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+.upcomingAppoinment-modeOfTherapy{
+    width: 100%;
+    color: #FFDD95;
+    background-color: #FB6D48;
+    border-radius: 6px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.upcomingAppoinment-doctorImg{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+.upcomingAppoinment-NameDoctor{
+
+    font-size: 2vw;
+    margin: 0px;
+    padding: 0px;
+}
+.upcomingAppoinment-doctorprofession{
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.3vw;
+    font-weight: 400;
+}
+.upcomingAppoinment-item-gridContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: right;
+    align-items: center;
+    gap: 10px;
+    height: fit-content;
+    border-radius: 10px;
+    margin: 0px;
+    padding: 0px 10px 0px;
+    border: 2px solid #FFC26F;
+    font-size: 1vw;
+}
+
+.upcomingAppoinment-item-gridContainer h1{
+    
+    
+}

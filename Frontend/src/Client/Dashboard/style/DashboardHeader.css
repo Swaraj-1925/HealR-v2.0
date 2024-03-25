@@ -5,7 +5,7 @@
     justify-content: end;
     align-items: center;
     padding: 0px;
-    margin: 0px 5px 10px;
+    margin: 0px 5px 10px; 
     justify-items: left;
     background-color: #D9EDBF;
     width: 100%;
@@ -17,6 +17,10 @@
     left: -4px;
     font-size: 1.5vw;
     font-weight: 600;
+}
+.dashboard-header-item a{
+    text-decoration: none;
+    color: initial;
 }
 .dashboard-header-img{
     width: 19%;
