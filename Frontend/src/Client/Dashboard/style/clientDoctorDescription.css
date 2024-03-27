@@ -1,0 +1,153 @@
+.clientDoctorDescription-wrapper{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin: 10vh 4vh 1vh;
+}
+
+.doctordescription-gridContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* gap: 20vh; */
+    justify-content:space-between;
+    align-self:center;
+    height: 100vh;
+    border-radius: 10px;
+}
+.doctordescription-gridContaineritem-main2{
+    margin-top: 10vh;
+    width: 100vh;
+}
+
+.doctorDescription-gridContainer2{
+    display: grid;
+    position: fixed;
+    margin-right:70px ;
+    grid-template-rows: 2fr 1fr;
+    height: 80vh;
+    border: solid 2px black;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 10px;
+}
+.doctorDescription-name-Proffecsion-flex{
+    display: flex; 
+    justify-content:space-between;
+    align-items:center;
+}
+.doctorDescription-name-Proffecsion-flex button{
+    padding: 2vh 10vh 2vh;
+    font-size: 2vh;
+    font-weight: 700;
+}
+.doctorDescription-name-Proffecsion-flexcontainer{
+    display: flex;
+    flex-direction: column;
+}
+.doctorDescription-name-Proffecsion-flexcontainer h2 , .doctorDescription-name-Proffecsion-flexcontainer h3{
+    margin: 0px;
+    padding: 0px;
+    margin-left: 10px;
+   
+}
+.doctorDescription-name-Proffecsion-flexcontainer h3{
+    font-size: 2.3vh;
+    font-weight: 500;
+}
+.doctorDescription-name-Proffecsion-flexcontainer h2{
+    font-size: 4.5vh;
+    font-weight: 700;
+}
+
+.doctorDescription-gridContainer2-item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+
+}
+.doctorDescription-gridContainer3{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+.doctorDescription-flexcontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.6vh;
+    font-weight: 600;
+}
+.doctorDescription-flexcontainer img , .doctorDescription-flexcontainer svg{
+    height: 8vh;
+    
+}
+.doctorDescription-About-flex{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    text-align: left;
+    width: 80vh;
+    height: 27vh;
+}
+.doctorDescription-About-flex p{
+    margin: 0px;
+    word-wrap: break-word;
+    overflow:auto;
+}
+.doctorDescription-About-flex p::-webkit-scrollbar {
+    width: 0; 
+}
+.doctorDescription-About-flex h2{
+    margin: 0px;
+    word-wrap: break-word;
+}
+.doctorDescription-RatingsAndReviews{
+    margin: 20px;
+}
+.doctorDescription-RatingsAndReviews h2{
+    margin-bottom: 20px;
+}
+.doctorDescription-RatingsAndReviews-gridWrapper{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+.doctorDescription-RatingsAndReviews-gridContainer{
+    display: grid;
+    grid-template-columns: 6vh 50vh;
+    grid-template-rows:7vh auto;
+    border:  solid 3px rgb(187, 183, 183);
+    max-width: 60vh;
+    gap: 2px;
+    max-height: 30vh;
+    border-radius: 8px;
+}
+
+.doctorDescription-RatingsAndReviews-star{
+    display: flex;
+    align-items: center;
+    margin: 0px;
+}
+.doctorDescription-RatingsAndReviews-star{
+    font-size: 3vh;
+    font-weight: 700;
+
+}
+.doctorDescription-RatingsAndReviews-star svg{
+    width: 3vh;
+}
+.doctorDescription-RatingsAndReviews-title{
+    font-size: 4vh;
+    font-weight: 700;
+    margin: 0px;
+    margin-top: 1vh ;
+    margin-bottom: 0px;
+}
+.doctorDescription-RatingsAndReviews-description{
+    font-size: 2.5vh;
+    word-wrap: break-word;
+    overflow-y: auto;
+    margin-top: 0px;
+}

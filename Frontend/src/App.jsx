@@ -8,7 +8,8 @@ import Landing from './Client/LandingPage/body/Landing';
 
 import ClientHomePage from './Client/Dashboard/clientHomePage';
 import DashLayout from './Client/Dashboard/layout/DashboardLayout';
-import BookAppointment from './Client/Dashboard/clientBookAppointment.jsx';
+import BookAppointment from './Client/Dashboard/clientBookAppointment';
+import DoctorDescription from './Client/Dashboard/clientDoctorDescription';
 
 const App = () => {
     return (
@@ -26,7 +27,8 @@ const App = () => {
 
                 <Route path="/dashboard" element={<DashLayout />}>
                     <Route index element={<ClientHomePage />} />
-                    <Route path="/dashboard/book-appoinmet" element={<BookAppointment />} /> {/* Corrected typo */}
+                    <Route path="/dashboard/book-appoinmet" element={<BookAppointment />} / >
+                    <Route path="/dashboard/doctordes" element={<DoctorDescription />} /> 
                 </Route>
             </Routes>
         </BrowserRouter>

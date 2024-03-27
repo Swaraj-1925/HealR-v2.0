@@ -15,7 +15,7 @@
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
     top: 0px;
     left: -4px;
-    font-size: 1.5vw;
+    font-size: 3.3vh;
     font-weight: 600;
 }
 .dashboard-header-item a{
@@ -23,7 +23,7 @@
     color: initial;
 }
 .dashboard-header-img{
-    width: 19%;
+    width: 20vh;
     height: auto;
     object-fit: contain;
     margin-left: 20px;
