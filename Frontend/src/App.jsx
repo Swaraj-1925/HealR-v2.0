@@ -10,6 +10,8 @@ import ClientHomePage from './Client/Dashboard/clientHomePage';
 import DashLayout from './Client/Dashboard/layout/DashboardLayout';
 import BookAppointment from './Client/Dashboard/clientBookAppointment';
 import DoctorDescription from './Client/Dashboard/clientDoctorDescription';
+import BookAppointmentPopUp from './Client/Dashboard/clientPopupBookAppoinment';
+
 
 const App = () => {
     return (
@@ -27,8 +29,9 @@ const App = () => {
 
                 <Route path="/dashboard" element={<DashLayout />}>
                     <Route index element={<ClientHomePage />} />
-                    <Route path="/dashboard/book-appoinmet" element={<BookAppointment />} / >
+                    <Route path="/dashboard/book-appoinmet" element={<BookAppointment />} />
                     <Route path="/dashboard/doctordes" element={<DoctorDescription />} /> 
+                    <Route path="/dashboard/popup" element={<BookAppointmentPopUp />} /> 
                 </Route>
             </Routes>
         </BrowserRouter>

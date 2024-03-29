@@ -8,8 +8,10 @@ import './style/clientBookAppointment.css';
 import { Link } from 'react-router-dom';
 
 function BookAppointment() {
+
     const [docid, setDocid] = useState("red");
     console.log(docid);
+    
     return (
         <div className="bookAppointment-mainContainer-grid">
             <Link to="doctordes">

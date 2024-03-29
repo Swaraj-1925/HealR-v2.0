@@ -1,0 +1,28 @@
+.client-bookAppoinment-popup-wrapper{
+    margin: 10vw 10vw 5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+}
+.client-Bookappoinment-calender-gridcontainer{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 1fr auto;
+    border: solid 5px gray;
+
+}
+.client-Bookappoinment-calender-gridcontainer{
+    /* display: ; */
+}
+.Bookappoinment-calender-gridcontainer-calendar-datesWeek{
+    display: flex;
+    justify-content:space-between;
+    align-items: baseline;
+}
+.Bookappoinment-calender-calendar-day{
+    display: inline;
+    margin: 4px;
+}

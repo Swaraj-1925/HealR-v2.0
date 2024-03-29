@@ -3,9 +3,19 @@ import experience from './style/images/experience.png';
 import review from './style/images/review.png';
 import temp from './style/images/image.png';
 import './style/clientDoctorDescription.css';
+import { useState } from 'react';
+import BookAppointmentPopUp from './clientPopupBookAppoinment';
+
+
 
 
 function DoctorDescription() {
+    
+    const [seen, setSeen] = useState(false)
+
+    function togglePop () {
+        setSeen(!seen);
+    }
 
     return (
         <>
@@ -24,7 +34,8 @@ function DoctorDescription() {
                                     <h3>Clinical Psychologist</h3>
                                 </div>
                                 <div className="doctorDescription-name-Proffecsion">
-                                    <button type="button">Book</button>
+                                <button onClick={togglePop}>Book</button>
+                                {seen ? <BookAppointmentPopUp toggle={togglePop} /> : null}
                                 </div>
                             </div>
 
@@ -142,6 +153,7 @@ function DoctorDescription() {
                     </div>
                 </div>
             </div>
+            
         </>
     );
 }
