@@ -1,30 +1,66 @@
-.dashboard-header-conatiner{
+.dashboard-header-conatiner {
     position: fixed;
     display: grid;
-    grid-template-columns: 7fr 1fr 2fr 1fr 1fr ;
+    grid-template-columns: 7fr 1fr 2fr 1fr 1fr;
     justify-content: end;
     align-items: center;
     padding: 0px;
-    margin: 0px 5px 10px; 
+    margin: 0px 5px 10px;
     justify-items: left;
     background-color: #D9EDBF;
     width: 100%;
     height: 4vw;
-    border-bottom-left-radius:10px ;
-    border-bottom-right-radius:10px ;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
     top: 0px;
     left: -4px;
     font-size: 3.3vh;
     font-weight: 600;
 }
-.dashboard-header-item a{
+
+.dashboard-header-item a {
     text-decoration: none;
     color: initial;
 }
-.dashboard-header-img{
+
+.dashboard-header-item {
+    position: relative;
+    cursor: pointer;
+}
+
+.dashboard-header-img {
     width: 20vh;
     height: auto;
     object-fit: contain;
     margin-left: 20px;
+}
+
+.client-profile-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: -6vw;
+    background-color: white;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 10px;
+    text-decoration: none;
+    list-style: none;
+    width: max-content;
+}
+
+.dashboard-header-item:hover .client-profile-dropdown-menu,
+.dashboard-header-item.open .client-profile-dropdown-menu {
+    display: block;
+}
+
+.client-profile-dropdown-menuItem {
+    border: solid 1px black;
+    margin: 10px;
+    border-radius: 8px;
+    padding: 5px;
+}
+.Client-Header-popup{
+    background-color: green;
 }

@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import './style/clientPopupBookAppoinment.css';
 import { useEffect, useState } from 'react';
+
 function BookAppointmentPopUp( { toggle }) {
 
 
