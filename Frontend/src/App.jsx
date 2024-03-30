@@ -31,7 +31,7 @@ const App = () => {
                     <Route index element={<ClientHomePage />} />
                     <Route path="/dashboard/book-appoinmet" element={<BookAppointment />} />
                     <Route path="/dashboard/doctordes" element={<DoctorDescription />} /> 
-                    <Route path="/dashboard/popup" element={<BookAppointmentPopUp />} /> 
+                    
                 </Route>
             </Routes>
         </BrowserRouter>
