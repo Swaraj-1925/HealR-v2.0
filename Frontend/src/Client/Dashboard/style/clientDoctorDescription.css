@@ -1,3 +1,4 @@
+
 .clientDoctorDescription-wrapper{
     display: grid;
     justify-content: center;
@@ -43,7 +44,7 @@
     justify-content:space-between;
     align-items:center;
 }
-.doctorDescription-name-Proffecsion-flex button{
+.doctorDescription-name-Proffecsion-button{
     padding: 1.5vw 5vw 1.5vw;
     font-size: 2vh;
     font-weight: 700;
@@ -160,3 +161,4 @@
     overflow-y: auto;
     margin-top: 0px;
 }
+ 

@@ -10,7 +10,6 @@ import ClientHomePage from './Client/Dashboard/clientHomePage';
 import DashLayout from './Client/Dashboard/layout/DashboardLayout';
 import BookAppointment from './Client/Dashboard/clientBookAppointment';
 import DoctorDescription from './Client/Dashboard/clientDoctorDescription';
-import BookAppointmentPopUp from './Client/Dashboard/clientPopupBookAppoinment';
 
 
 const App = () => {

@@ -23,7 +23,7 @@ function DoctorDescription() {
             <div className="clientDoctorDescription-wrapper">
 
                 <div className="doctordescription-gridContainer">
-                    <div className='doctordescription-gridContaineritem-main1'>
+                     <div className='doctordescription-gridContaineritem-main1'>
                         <div className="doctorDescription-gridItem doctorDescription-gridContainer2">
 
                             <div className="doctorDescription-gridContainer2-item doctorDescription-img">
@@ -35,7 +35,7 @@ function DoctorDescription() {
                                     <h3>Clinical Psychologist</h3>
                                 </div>
                                 <div className="doctorDescription-name-Proffecsion">
-                                <button onClick={togglePop}>Book</button>
+                                <button className="doctorDescription-name-Proffecsion-button" onClick={togglePop}>Book</button>
                                 {seen ? <BookAppointmentPopUp toggle={togglePop} /> : null}
                                 </div>
                             </div>

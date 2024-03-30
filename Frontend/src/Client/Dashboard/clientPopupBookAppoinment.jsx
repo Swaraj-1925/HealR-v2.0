@@ -1,6 +1,9 @@
+/* eslint-disable no-unused-vars */
 import './style/clientPopupBookAppoinment.css';
 import { useEffect, useState } from 'react';
-function BookAppointmentPopUp() {
+function BookAppointmentPopUp( { toggle }) {
+
+
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
@@ -8,7 +11,7 @@ function BookAppointmentPopUp() {
     { time: '10:00 AM' },
     { time: '11:00 AM' },
     { time: '1:00 PM' },
-    { time: '2:00 PM' },
+    { time: '2:00 PM' }, 
     { time: '3:00 PM' },
     { time: '4:00 PM' },
     { time: '5:00 PM' },
@@ -68,6 +71,10 @@ function BookAppointmentPopUp() {
     });
   };
   console.log(selectedTimeSlot);
+  // 
+  const handleClose = () => {
+    toggle(); // Call the toggle function passed as prop to close the pop-up
+  };
 
   return (
     <>
@@ -182,7 +189,7 @@ function BookAppointmentPopUp() {
                   <span className="radio-tile">
                     <span className="radio-icon">
                       <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0">
-                        <path d="m66.57 54.617c-4.8047 3.0117-10.488 4.7578-16.57 4.7578-6.0859 0-11.762-1.7422-16.555-4.7734-1.4922-0.96094-3.2539-1.4766-5.0508-1.4766h-0.27344c-8.6289 0-15.625 6.9961-15.625 15.625v12.5c0 4.1445 1.6484 8.1172 4.5742 11.051 2.9297 2.9297 6.9062 4.5742 11.051 4.5742h43.75c4.1445 0 8.1172-1.6484 11.051-4.5742 2.9297-2.9297 4.5742-6.9062 4.5742-11.051v-12.5c0-8.6289-6.9961-15.625-15.625-15.625-0.17578 0-0.34766 0.007812-0.51953 0.023438-1.6836 0.039062-3.3438 0.55078-4.7852 1.4688zm-16.57-51.492c-13.797 0-25 11.203-25 25s11.203 25 25 25 25-11.203 25-25-11.203-25-25-25z" fill-rule="evenodd" />
+                        <path d="m66.57 54.617c-4.8047 3.0117-10.488 4.7578-16.57 4.7578-6.0859 0-11.762-1.7422-16.555-4.7734-1.4922-0.96094-3.2539-1.4766-5.0508-1.4766h-0.27344c-8.6289 0-15.625 6.9961-15.625 15.625v12.5c0 4.1445 1.6484 8.1172 4.5742 11.051 2.9297 2.9297 6.9062 4.5742 11.051 4.5742h43.75c4.1445 0 8.1172-1.6484 11.051-4.5742 2.9297-2.9297 4.5742-6.9062 4.5742-11.051v-12.5c0-8.6289-6.9961-15.625-15.625-15.625-0.17578 0-0.34766 0.007812-0.51953 0.023438-1.6836 0.039062-3.3438 0.55078-4.7852 1.4688zm-16.57-51.492c-13.797 0-25 11.203-25 25s11.203 25 25 25 25-11.203 25-25-11.203-25-25-25z" fillRule="evenodd" />
                       </svg>
                     </span>
                     <span className="radio-label">In Clinic</span>
@@ -196,6 +203,8 @@ function BookAppointmentPopUp() {
 
         </section>
 
+        <button className='client-bookAppoinment-Payment '>Payment</button>
+        <button className='client-bookAppoinment-popupClose 'onClick={handleClose}>&#10006;</button>
       </section>
     </>
   );
