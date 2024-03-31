@@ -13,6 +13,30 @@ function BookAppointment() {
     console.log(docid);
     
     return (
+        <>
+        <div className="bookAppointment-sortOption-container">
+             <div className="bookAppointment-sortOption-item sortOption-stars">
+                <h5>&#11088;</h5>
+                <div className="sortOption-stars-up"><button>&#11014;</button></div>
+                <div className="sortOption-stars-down"><button> &#11015;</button></div>
+            </div>
+            <div className="bookAppointment-sortOption-item sortOption-prices">
+                <h5>review</h5>
+                <div className="sortOption-prices-up"><button>&#11014;</button></div>
+                <div className="sortOption-prices-down"><button> &#11015;</button></div>
+            </div>
+            <div className="bookAppointment-sortOption-item sortOption-review">
+                <h5>price</h5>
+                <div className="sortOption-review-up"><button>&#11014;</button></div>
+                <div className="sortOption-review-down"><button> &#11015;</button></div>
+            </div>
+            <div className="bookAppointment-sortOption-item sortOption-numberofpatients">
+                <h5>no. patients</h5>
+                <div className="sortOption-review-up"><button>&#11014;</button></div>
+                <div className="sortOption-review-down"><button> &#11015;</button></div>
+            </div>
+
+        </div>
         <div className="bookAppointment-mainContainer-grid">
             <Link to="doctordes">
                 <div onClick={() => setDocid} className="bookAppoinment-cardContainer-grid">
@@ -48,6 +72,7 @@ function BookAppointment() {
                 </div>
             </Link>
         </div>
+        </>
     );
 }
 

@@ -1,10 +1,38 @@
+.bookAppointment-sortOption-container{
+    position: fixed;
+    top: 4.5vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid grey;
+    /* height: 5vw; */
+    border-radius: 5px;
+
+}
+.bookAppointment-sortOption-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+    border-radius: 5px;
+    border: 2px solid black;
+    padding: 7px;
+}
+.bookAppointment-sortOption-item button{
+    margin:0px 5px 0px ;
+}
+.bookAppointment-sortOption-item h5{
+    padding: 0px;
+    margin: 10px 0px 10px;
+}
 .bookAppointment-mainContainer-grid {
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(1, 1fr);
     gap: 5px;
     align-items: center;
-    margin: 20vh 25vh 2vh;
+    margin: 25vh 25vh 2vh;
 }
 
 .bookAppoinment-cardContainer-grid {
