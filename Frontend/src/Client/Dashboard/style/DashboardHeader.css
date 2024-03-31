@@ -61,6 +61,41 @@
     border-radius: 8px;
     padding: 5px;
 }
-.Client-Header-popup{
-    background-color: green;
+
+.Client-Header-popup-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3vw;
+    background-color: rgba(206, 204, 59, 0.922);
+    border-radius: 4px;
+}
+.Client-Header-popup-closebutton{
+   position: absolute;
+   right: 0px;
+   /* padding: 5px; */
+   
+}
+.Client-Header-popup-content-input{
+    margin: 5px;
+    padding: 0.8vw;
+    border-radius: 5px;
+    font-size: 1vw;
+    font-weight: 500;
+}
+.Client-Header-popup-content-button{
+    margin: 5px;
+    padding: 0.5vw;
+    border-radius: 5px;
+    font-size: 1vw;
+    font-weight: 500;
+}
+.client-header-popup-confimation button{
+    margin: 10px;
+    padding: 1vw 2vw 1vw;
+    font-size: 1vw;
+    font-weight: 600;
+    border-radius: 5px;
+   
 }

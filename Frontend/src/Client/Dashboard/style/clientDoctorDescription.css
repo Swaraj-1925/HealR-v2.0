@@ -22,7 +22,8 @@
    
 }
 .doctordescription-gridContaineritem-main1{
-    /* width: 100vh; */
+    /* display: flex;
+    flex-direction: column; */
     margin-right: 10px;
 }
 
@@ -31,7 +32,7 @@
     left: 10px;
     display: grid;
     margin-left:10vw ;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: 2fr 1fr auto;
     justify-content: center;
     align-items: center;
     border: solid 2px black;
@@ -48,6 +49,7 @@
     padding: 1.5vw 5vw 1.5vw;
     font-size: 2vh;
     font-weight: 700;
+    border-radius: 4px
 }
 .doctorDescription-name-Proffecsion-flexcontainer{
     display: flex;
@@ -80,6 +82,33 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 10px;
 }
+
+.allPricese-doctor-flexcontainer{
+    display: flex;
+    justify-content: space-between;
+}
+.allPricese-doctor-flexitem{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    font-size: 1.2vw;
+    font-weight: 600;
+    color: black;;
+    border: 2px solid gray;
+    border-radius: 6px;
+    padding: 8px;
+}
+.allPricese-doctor-flexitem svg{
+    height: 2vw;
+    width: 2vw;
+    margin-right: 5px;
+    fill: #618f24;
+}
+
+.flag-report{
+    fill: red;
+}
+
 .doctorDescription-flexcontainer{
     display: flex;
     flex-direction: column;

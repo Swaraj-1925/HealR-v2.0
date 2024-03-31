@@ -6,15 +6,15 @@ import './style/clientDoctorDescription.css';
 import { useState } from 'react';
 import BookAppointmentPopUp from './clientPopupBookAppoinment';
 
-
+import Popup from 'reactjs-popup';
 
 
 
 function DoctorDescription() {
-    
+
     const [seen, setSeen] = useState(false)
 
-    function togglePop () {
+    function togglePop() {
         setSeen(!seen);
     }
 
@@ -23,7 +23,7 @@ function DoctorDescription() {
             <div className="clientDoctorDescription-wrapper">
 
                 <div className="doctordescription-gridContainer">
-                     <div className='doctordescription-gridContaineritem-main1'>
+                    <div className='doctordescription-gridContaineritem-main1'>
                         <div className="doctorDescription-gridItem doctorDescription-gridContainer2">
 
                             <div className="doctorDescription-gridContainer2-item doctorDescription-img">
@@ -35,11 +35,102 @@ function DoctorDescription() {
                                     <h3>Clinical Psychologist</h3>
                                 </div>
                                 <div className="doctorDescription-name-Proffecsion">
-                                <button className="doctorDescription-name-Proffecsion-button" onClick={togglePop}>Book</button>
-                                {seen ? <BookAppointmentPopUp toggle={togglePop} /> : null}
+                                    <button className="doctorDescription-name-Proffecsion-button" onClick={togglePop}>Book</button>
+                                    {seen ? <BookAppointmentPopUp toggle={togglePop} /> : null}
                                 </div>
                             </div>
 
+                            <div className="allPricese-doctor-flexcontainer">
+                                <div className=" allPricese-doctor-flexitem doctorPrice-call">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M21.384,17.752a2.108,2.108,0,0,1-.522,3.359,7.543,7.543,0,0,1-5.476.642C10.5,20.523,3.477,13.5,2.247,8.614a7.543,7.543,0,0,1,.642-5.476,2.108,2.108,0,0,1,3.359-.522L8.333,4.7a2.094,2.094,0,0,1,.445,2.328A3.877,3.877,0,0,1,8,8.2c-2.384,2.384,5.417,10.185,7.8,7.8a3.877,3.877,0,0,1,1.173-.781,2.092,2.092,0,0,1,2.328.445Z" />
+                                        </svg>
+                                    </div>
+                                    <div>300</div>
+                                </div>
+                                <div className="allPricese-doctor-flexitem doctorPrice-videoCall">
+                                    <div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                        <defs>
+                                            <style>
+
+                                            </style>
+                                        </defs>
+                                        <g id="Layer_2" data-name="Layer 2">
+                                            <path className="cls-1" d="M11.92,52H36.23a7.86,7.86,0,0,0,7.86-7.86V19.89A7.86,7.86,0,0,0,36.23,12H11.92A7.92,7.92,0,0,0,4,19.95V44.05A7.92,7.92,0,0,0,11.92,52ZM36,18a2,2,0,1,1-2,2A2,2,0,0,1,36,18Z" />
+                                            <path className="cls-1" d="M60,43.76V20.24a2.64,2.64,0,0,0-3.85-2.35l-6.32,3.24A3.27,3.27,0,0,0,48.06,24V40a3.27,3.27,0,0,0,1.77,2.9l6.32,3.25A2.64,2.64,0,0,0,60,43.76Z" />
+                                        </g>
+                                    </svg>
+                                    </div>
+                                    <div>300</div>
+                                </div>
+                                <div className="allPricese-doctor-flexitem doctorPrice-message">
+                                    <div><svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="20px"
+                                        height="20px"
+                                        stroke="currentColor"
+                                        viewBox="0 0 2048 2048"
+                                    >
+                                        <defs>
+                                            <style type="text/css">{` .fil1 {fill:none}`}</style>
+                                        </defs>
+                                        <g id="Layer_x0020_1">
+                                            <metadata id="CorelCorpID_0Corel-Layer" />
+                                            <path
+                                                className="fil0"
+                                                d="M1571.22 1327.06c-132.418,110.082 -314.681,180.751 -517.719,187.107l-435.326 275.117 -47.0103 -42.6189 143.255 -285.249c-129.174,-46.6855 -240.474,-122.671 -320.941,-217.412 -86.4261,-101.76 -137.479,-225.095 -137.479,-357.271 0,-174.676 86.9776,-332.426 227.569,-446.24 138.726,-112.305 329.847,-181.782 540.433,-181.782 210.586,0 401.706,69.4772 540.432,181.782 140.591,113.813 227.569,271.564 227.569,446.24 0,170.922 -83.9753,326.596 -220.781,440.327z"
+                                            />
+                                            <g id="_244790544">
+                                                <rect id="_244790880" className="fil1" width="2048" height="2048" />
+                                                <rect id="_244788216" className="fil1" x="255.999" y="255.999" width="1536" height="1536" />
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    </div>
+                                    <div>300</div>
+                                </div>
+                                <div className="allPricese-doctor-flexitem doctorPrice-clinic">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0">
+                                            <path d="m66.57 54.617c-4.8047 3.0117-10.488 4.7578-16.57 4.7578-6.0859 0-11.762-1.7422-16.555-4.7734-1.4922-0.96094-3.2539-1.4766-5.0508-1.4766h-0.27344c-8.6289 0-15.625 6.9961-15.625 15.625v12.5c0 4.1445 1.6484 8.1172 4.5742 11.051 2.9297 2.9297 6.9062 4.5742 11.051 4.5742h43.75c4.1445 0 8.1172-1.6484 11.051-4.5742 2.9297-2.9297 4.5742-6.9062 4.5742-11.051v-12.5c0-8.6289-6.9961-15.625-15.625-15.625-0.17578 0-0.34766 0.007812-0.51953 0.023438-1.6836 0.039062-3.3438 0.55078-4.7852 1.4688zm-16.57-51.492c-13.797 0-25 11.203-25 25s11.203 25 25 25 25-11.203 25-25-11.203-25-25-25z" fillRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <div>1000</div>
+                                </div>
+                                <div className="allPricese-doctor-flexitem doctorClient report">
+                                    <div>
+                                    <Popup trigger=
+                                {<div><svg className='flag-report'  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path  opacity="0.5" fillRule="evenodd" clipRule="evenodd" d="M6.5 1.75C6.5 1.33579 6.16421 1 5.75 1C5.33579 1 5 1.33579 5 1.75V21.75C5 22.1642 5.33579 22.5 5.75 22.5C6.16421 22.5 6.5 22.1642 6.5 21.75V13.6V3.6V1.75Z" fill="#d71414" />
+                                <path d="M13.5582 3.87333L13.1449 3.70801C11.5821 3.08288 9.8712 2.9258 8.22067 3.25591L6.5 3.60004V13.6L8.22067 13.2559C9.8712 12.9258 11.5821 13.0829 13.1449 13.708C14.8385 14.3854 16.7024 14.5119 18.472 14.0695L18.5721 14.0445C19.1582 13.898 19.4361 13.2269 19.1253 12.7089L17.5647 10.1078C17.2232 9.53867 17.0524 9.25409 17.0119 8.94455C16.9951 8.81543 16.9951 8.68466 17.0119 8.55553C17.0524 8.24599 17.2232 7.96141 17.5647 7.39225L18.8432 5.26136C19.1778 4.70364 18.6711 4.01976 18.0401 4.17751C16.5513 4.54971 14.9831 4.44328 13.5582 3.87333Z" fill="#d71414" />
+                            </svg></div>}
+                                modal nested>
+                                {
+                                    close => (
+                                        <div className='Client-Header-popup'>
+                                            <div>
+                                                <button className='Client-Header-popup-closebutton' onClick=
+                                                    {() => close()}>&#10006;
+                                                </button>
+                                            </div>
+                                            <div className='Client-Header-popup-content'>
+                                                <p>We are sorry that you faced a problems during your time with us, we will be sure to work on it plese exaplain your problem bellow</p>
+                                                <div className='Client-Header-popup-content'>
+                                                <input className='Client-Header-popup-content-input' type="text" name="newName" placeholder='Enter Report' />
+                                                <button className='Client-Header-popup-content-button' type="submit">Report doctor</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                            </Popup>
+                                        
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -154,7 +245,7 @@ function DoctorDescription() {
                     </div>
                 </div>
             </div>
-            
+
         </>
     );
 }

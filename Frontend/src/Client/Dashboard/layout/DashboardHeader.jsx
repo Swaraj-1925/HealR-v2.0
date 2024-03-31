@@ -57,15 +57,15 @@ function DashHeader() {
                                 {
                                     close => (
                                         <div className='Client-Header-popup'>
-                                            <div className='content'>
-                                                <input type="text" name="newName" placeholder='Enter your new name' />
-                                                <button type="submit">Change Name</button>
-                                            </div>
                                             <div>
-                                                <button className='' onClick=
+                                                <button className='Client-Header-popup-closebutton' onClick=
                                                     {() => close()}>
-                                                    Close modal
+                                                    &#10006;
                                                 </button>
+                                            </div>
+                                            <div className='Client-Header-popup-content'>
+                                                <input className='Client-Header-popup-content-input' type="text" name="newName" placeholder='Enter your new name' />
+                                                <button className='Client-Header-popup-content-button' type="submit">Change Name</button>
                                             </div>
                                         </div>
                                     )
@@ -79,15 +79,15 @@ function DashHeader() {
                                 {
                                     close => (
                                         <div className='Client-Header-popup'>
-                                            <div className='content'>
-                                                <input type="email" name="newName" placeholder='Enter your new email' />
-                                                <button type="submit">Change Email</button>
-                                            </div>
                                             <div>
-                                                <button className='' onClick=
+                                                <button className='Client-Header-popup-closebutton' onClick=
                                                     {() => close()}>
-                                                    Close modal
+                                                    &#10006;
                                                 </button>
+                                            </div>
+                                            <div className='Client-Header-popup-content' >
+                                                <input className='Client-Header-popup-content-input' type="email" name="newName" placeholder='Enter your new email' />
+                                                <button className='Client-Header-popup-content-button' type="submit">Change Email</button>
                                             </div>
                                         </div>
                                     )
@@ -103,19 +103,17 @@ function DashHeader() {
                                 {
                                     close => (
                                         <div className='Client-Header-popup'>
-                                            <div className='content'>
-                                                <h3>Are you sure you want to <b>delete</b> your Account??</h3>
-                                                <div className='client-header-popup-confimation'>
-                                                    <button type="submit">Yes</button>
-                                                    <button type="submit">no</button>
-
-                                                </div>
-                                            </div>
                                             <div>
-                                                <button className='' onClick=
-                                                    {() => close()}>
-                                                    Close modal
+                                                <button className='Client-Header-popup-closebutton' onClick=
+                                                    {() => close()}>&#10006;
                                                 </button>
+                                            </div>
+                                            <div className='Client-Header-popup-content'>
+                                                <h3>Are you sure you want to <b>delete</b> your account??</h3>
+                                                <div className='client-header-popup-confimation'>
+                                                    <button  type="submit">Yes</button>
+                                                    <button type="submit">no</button>
+                                                </div>
                                             </div>
                                         </div>
                                     )
@@ -129,20 +127,16 @@ function DashHeader() {
                                 {
                                     close => (
                                         <div className='Client-Header-popup'>
-                                            <div className='content'>
-                                                <div className='content'>
-                                                    <h3>Are you sure you want to <b>Log Out</b></h3>
-                                                    <div className='client-header-popup-confimation'>
-                                                        <button type="submit">Yes</button>
-                                                        <button type="submit">no</button>
-
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <button className='' onClick=
-                                                        {() => close()}>
-                                                        Close modal
-                                                    </button>
+                                            <div>
+                                                <button className='Client-Header-popup-closebutton' onClick=
+                                                    {() => close()}>&#10006;
+                                                </button>
+                                            </div>
+                                            <div className='Client-Header-popup-content'>
+                                                <h3>Are you sure you want to <b>Log Out</b></h3>
+                                                <div className='client-header-popup-confimation'>
+                                                    <button  type="submit">Yes</button>
+                                                    <button type="submit">no</button>
                                                 </div>
                                             </div>
                                         </div>
