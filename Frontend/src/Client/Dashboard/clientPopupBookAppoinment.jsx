@@ -2,18 +2,19 @@
 /* eslint-disable no-unused-vars */
 import './style/clientPopupBookAppoinment.css';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-function BookAppointmentPopUp( { toggle }) {
+function BookAppointmentPopUp({ toggle }) {
 
 
-
+  const temrsandcondtion = "/";
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const [availableTimeSlots, setAvailableTimeSlots] = useState([
     { time: '10:00 AM' },
     { time: '11:00 AM' },
     { time: '1:00 PM' },
-    { time: '2:00 PM' }, 
+    { time: '2:00 PM' },
     { time: '3:00 PM' },
     { time: '4:00 PM' },
     { time: '5:00 PM' },
@@ -23,6 +24,7 @@ function BookAppointmentPopUp( { toggle }) {
   // eslint-disable-next-line no-unused-vars
   const handleDateClick = (date) => {
     setSelectedDate(date);
+     
   };
 
   const getCalendarDays = () => {
@@ -48,7 +50,7 @@ function BookAppointmentPopUp( { toggle }) {
     const isSelected = selectedDate.getDate() === dayObj.date.getDate() &&
       selectedDate.getMonth() === dayObj.date.getMonth() &&
       selectedDate.getFullYear() === dayObj.date.getFullYear();
-    const selectedDateStyle = isSelected ? { backgroundColor: 'blue', color: 'white' } : {};
+    const selectedDateStyle = isSelected ? { backgroundColor: '#FFC94A', color: 'balck' } : {};
     return (
       <div key={dayObj.date} className={`Bookappoinment-calender-calendar-day${isSelected ? ' selected' : ''} `} style={selectedDateStyle} onClick={() => handleDateClick(dayObj.date)}>
         <div className="Bookappoinment-calender-day-name">{dayObj.dayName}</div>
@@ -73,6 +75,7 @@ function BookAppointmentPopUp( { toggle }) {
     });
   };
   console.log(selectedTimeSlot);
+
   // 
   const handleClose = () => {
     toggle(); // Call the toggle function passed as prop to close the pop-up
@@ -81,6 +84,7 @@ function BookAppointmentPopUp( { toggle }) {
   return (
     <>
       <section className="client-bookAppoinment-popup-wrapper">
+        <button className='client-bookAppoinment-popupClose ' onClick={handleClose}>&#10006;</button>
 
         <section className=" client-bookAppoinment-popup-wrapperItem bookAppoinment-calender-section">
 
@@ -204,9 +208,15 @@ function BookAppointmentPopUp( { toggle }) {
           </div>
 
         </section>
+        <div className='client-bookAppoinment-popup-submit'>
+          <div className="client-bookappoinment-terms">
+            <input type="checkbox" id="terms" name="terms" />
+            <label htmlFor="vehicle1"> accept terms and condition,click <Link style={{ color: 'blue' }} to={temrsandcondtion}>here</Link> to read them
+            </label>
+          </div>
+          <button className='client-bookAppoinment-Payment '>Payment</button>
+        </div>
 
-        <button className='client-bookAppoinment-Payment '>Payment</button>
-        <button className='client-bookAppoinment-popupClose 'onClick={handleClose}>&#10006;</button>
       </section>
     </>
   );

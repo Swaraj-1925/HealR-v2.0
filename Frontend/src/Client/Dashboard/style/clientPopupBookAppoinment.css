@@ -1,12 +1,11 @@
 .client-bookAppoinment-popupClose {
-  position: absolute;
-  right: 0px;
-  top: 10px;
-  margin: 10px;
-  text-align: center;
+  
   padding: 5px 8px;
   background-color: rgba(235, 61, 61, 0.759);
-
+  align-self: flex-end; /* Align close button to the right side */
+  margin-bottom: 10px; 
+  margin-top: 15px;
+   
 }
 
 .client-bookAppoinment-popup-wrapper {
@@ -16,15 +15,16 @@
   justify-content: center;
   align-items: center;
   position: fixed;
-  z-index: 1;
+  z-index: 1000;
   right:8vw;
   top: 4vw;
   width: 80vw;
-  height: 90%;
+  height:92%;
   overflow: auto;
   border: 2px solid black;
   border-radius: 10px;
-  background-color: #e1f0dac2;
+  padding: 30px;
+  background-color: white;
 }
 
 .client-Bookappoinment-calender-gridcontainer {
@@ -38,7 +38,9 @@
 }
 
 .Bookappoinment-calender-gridcontainer-calendar-month {
-  border: solid 4px #d9edbf;
+  /* border: solid 4px #d9edbf; */
+  background-color: #124076;
+  color: white;
   border-radius: 5px;
   padding: 0px 10px 0px;
   box-shadow: 25px 0 20px -20px rgba(0, 0, 0, 0.45);
@@ -49,10 +51,10 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  /* border: red 3px solid; */
-  width: 40vw;
+  
+  width: 40vw;  
   overflow: auto;
-  scrollbar-width: none;
+  /* scrollbar-width: none; */
 }
 
 .Bookappoinment-calender-calendar-day {
@@ -63,7 +65,7 @@
   padding: 10px;
   margin: 5px;
   border-radius: 5px;
-  border: 2px solid pink;
+  border: 2px solid #F9E897;
 }
 
 .bookAppoinment-availabletime-section {
@@ -85,7 +87,7 @@
 
 .availabledate-grid-button input[type="radio"] {
   display: none;
-  /* Hide the default radio button */
+   
 }
 
 .availabledate-grid-button label {
@@ -104,7 +106,7 @@
   text-align: center;
   text-decoration: none #D1D5DB solid;
   text-decoration-thickness: auto;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
@@ -366,4 +368,13 @@
   font-size: 2vh;
   font-weight: 700;
   border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 50px;
+}
+.client-bookAppoinment-popup-submit{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: fit-content;
+  color: initial;
 }

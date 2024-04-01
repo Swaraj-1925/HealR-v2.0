@@ -33,10 +33,30 @@ function DoctorDescription() {
                                 <div className="doctorDescription-name-Proffecsion-flexcontainer">
                                     <h2>Dr. Jonathan Rivers</h2>
                                     <h3>Clinical Psychologist</h3>
+                                    <div className='doctorDescription-clinicLocation'> <svg
+                                        fill="#000000"
+                                        version="1.1"
+                                        id="Capa_1"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        xmlnsXlink="http://www.w3.org/1999/xlink"
+                                        width="20px"
+                                        height="20px"
+                                        viewBox="0 0 395.71 395.71"
+                                        xmlSpace="preserve"
+                                    >
+                                        <g>
+                                            <path
+                                                d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,129.896,250.388l4.951,6.738 c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388 C335.179,61.609,273.569,0,197.849,0z M197.849,88.138c27.13,0,49.191,22.062,49.191,49.191c0,27.115-22.062,49.191-49.191,49.191 c-27.114,0-49.191-22.076-49.191-49.191C148.658,110.2,170.734,88.138,197.849,88.138z"
+                                            />
+                                        </g>
+                                    </svg>
+                                    <p>SKIN BLISS CLINIC FIRST FLOOR SATYAM ARCADE, Viman Nagar,Viman Nagar, Pune - 411014  </p>
+                                    </div>
                                 </div>
                                 <div className="doctorDescription-name-Proffecsion">
                                     <button className="doctorDescription-name-Proffecsion-button" onClick={togglePop}>Book</button>
                                     {seen ? <BookAppointmentPopUp toggle={togglePop} /> : null}
+                                    {seen && <div className="overlay"></div>}
                                 </div>
                             </div>
 
@@ -100,35 +120,35 @@ function DoctorDescription() {
                                 </div>
                                 <div className="allPricese-doctor-flexitem doctorClient report">
                                     <div>
-                                    <Popup trigger=
-                                {<div><svg className='flag-report'  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path  opacity="0.5" fillRule="evenodd" clipRule="evenodd" d="M6.5 1.75C6.5 1.33579 6.16421 1 5.75 1C5.33579 1 5 1.33579 5 1.75V21.75C5 22.1642 5.33579 22.5 5.75 22.5C6.16421 22.5 6.5 22.1642 6.5 21.75V13.6V3.6V1.75Z" fill="#d71414" />
-                                <path d="M13.5582 3.87333L13.1449 3.70801C11.5821 3.08288 9.8712 2.9258 8.22067 3.25591L6.5 3.60004V13.6L8.22067 13.2559C9.8712 12.9258 11.5821 13.0829 13.1449 13.708C14.8385 14.3854 16.7024 14.5119 18.472 14.0695L18.5721 14.0445C19.1582 13.898 19.4361 13.2269 19.1253 12.7089L17.5647 10.1078C17.2232 9.53867 17.0524 9.25409 17.0119 8.94455C16.9951 8.81543 16.9951 8.68466 17.0119 8.55553C17.0524 8.24599 17.2232 7.96141 17.5647 7.39225L18.8432 5.26136C19.1778 4.70364 18.6711 4.01976 18.0401 4.17751C16.5513 4.54971 14.9831 4.44328 13.5582 3.87333Z" fill="#d71414" />
-                            </svg></div>}
-                                modal nested>
-                                {
-                                    close => (
-                                        <div className='Client-Header-popup'>
-                                            <div>
-                                                <button className='Client-Header-popup-closebutton' onClick=
-                                                    {() => close()}>&#10006;
-                                                </button>
-                                            </div>
-                                            <div className='Client-Header-popup-content'>
-                                                <p>We are sorry that you faced a problems during your time with us, we will be sure to work on it plese exaplain your problem bellow</p>
-                                                <div className='Client-Header-popup-content'>
-                                                <input className='Client-Header-popup-content-input' type="text" name="newName" placeholder='Enter Report' />
-                                                <button className='Client-Header-popup-content-button' type="submit">Report doctor</button>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                            </Popup>
-                                        
-                                        
+                                        <Popup trigger=
+                                            {<div><svg className='flag-report' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.5" fillRule="evenodd" clipRule="evenodd" d="M6.5 1.75C6.5 1.33579 6.16421 1 5.75 1C5.33579 1 5 1.33579 5 1.75V21.75C5 22.1642 5.33579 22.5 5.75 22.5C6.16421 22.5 6.5 22.1642 6.5 21.75V13.6V3.6V1.75Z" fill="#d71414" />
+                                                <path d="M13.5582 3.87333L13.1449 3.70801C11.5821 3.08288 9.8712 2.9258 8.22067 3.25591L6.5 3.60004V13.6L8.22067 13.2559C9.8712 12.9258 11.5821 13.0829 13.1449 13.708C14.8385 14.3854 16.7024 14.5119 18.472 14.0695L18.5721 14.0445C19.1582 13.898 19.4361 13.2269 19.1253 12.7089L17.5647 10.1078C17.2232 9.53867 17.0524 9.25409 17.0119 8.94455C16.9951 8.81543 16.9951 8.68466 17.0119 8.55553C17.0524 8.24599 17.2232 7.96141 17.5647 7.39225L18.8432 5.26136C19.1778 4.70364 18.6711 4.01976 18.0401 4.17751C16.5513 4.54971 14.9831 4.44328 13.5582 3.87333Z" fill="#d71414" />
+                                            </svg></div>}
+                                            modal nested>
+                                            {
+                                                close => (
+                                                    <div className='Client-Header-popup'>
+                                                        <div>
+                                                            <button className='Client-Header-popup-closebutton' onClick=
+                                                                {() => close()}>&#10006;
+                                                            </button>
+                                                        </div>
+                                                        <div className='Client-Header-popup-content'>
+                                                            <p>We are sorry that you faced a problems during your time with us, we will be sure to work on it plese exaplain your problem bellow</p>
+                                                            <div className='Client-Header-popup-content'>
+                                                                <input className='Client-Header-popup-content-input' type="text" name="newName" placeholder='Enter Report' />
+                                                                <button className='Client-Header-popup-content-button' type="submit">Report doctor</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+                                        </Popup>
+
+
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>

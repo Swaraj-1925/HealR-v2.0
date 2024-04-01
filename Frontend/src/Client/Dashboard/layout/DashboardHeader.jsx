@@ -42,7 +42,7 @@ function DashHeader() {
         <>
             <header className="dashboard-header-conatiner">
                 <div className="dashboard-header-item">
-                    <img className='dashboard-header-img' src={Logo} alt="" />
+                <Link to="/dashboard">   <img className='dashboard-header-img' src={Logo} alt="" /></Link> 
                 </div>
                 <div className="dashboard-header-item"><Link to="/dashboard">Home</Link></div>
                 <div className="dashboard-header-item"><Link to="book-appoinmet">Book Appoinment</Link></div>

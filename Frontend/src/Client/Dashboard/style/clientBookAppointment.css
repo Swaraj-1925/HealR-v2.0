@@ -18,6 +18,7 @@
     border-radius: 5px;
     border: 2px solid black;
     padding: 7px;
+    font-size: 1vw;
 }
 .bookAppointment-sortOption-item button{
     margin:0px 5px 0px ;
