@@ -40,9 +40,8 @@ const App = () => {
 
                 <Route path="/doctor" element={<Doc_layout />}>
                     <Route index element={<Doc_landingPage />} />
-                    <Route path='/doc-signup' element={<Doc_signUp />} />
-                    <Route path='/doc-signin' element={<Doc_signIn />} />
-
+                    <Route path='doc-signup' element={<Doc_signUp />} />
+                    <Route path='doc-signin' element={<Doc_signIn />} />
                 </Route>
             </Routes>
         </BrowserRouter>
