@@ -1,0 +1,37 @@
+.doc-signupInput{
+    border: 1px solid black;
+    border-radius: 5px ;
+}
+.doc-signupInput-conatiner{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+   
+}
+.doc-signupInput-widhtreduce{
+    width: 20vw;
+}
+
+.doc-signupInput-conatiner{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    /* align-items: center; */
+    /* width: 10vw; */
+}
+.docsignup-submitbutton-coantiner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+.docsignup-submitbutton-coantiner button{
+    padding: 1vw 4vw 1vw;
+    border-radius: 8px;
+    font-size: 1.8vw;
+    font-weight: 600;
+    position: relative;
+    bottom: 4vw;
+    background-color: #0D9276;
+    color: #ffff;
+}
