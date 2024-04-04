@@ -1,0 +1,17 @@
+.admin-headerContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 1.5vw;
+    font-weight: 600;
+    /* margin-top: 1vw; */
+    padding: 1vw;
+    z-index: 1;
+    box-shadow: 0px 25px 20px -20px rgba(0, 0, 0, 0.45);
+    background-color: #50727B;
+    color: #ffff;
+}
+.admin-header-item{
+    text-decoration: none;
+   color: #ffff;
+}

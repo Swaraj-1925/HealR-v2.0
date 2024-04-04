@@ -1,0 +1,33 @@
+.admin_signIn_conatiner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #222831;
+    width: 100vw;
+    height: 100vh;
+}
+.adminignin-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 29px 52px rgba(0,0,0,0.40), 0 25px 16px rgba(0,0,0,0.20);
+    background-color: #31363F;
+    gap: 8px;
+    width: 30vw;
+    height: 60vh;
+    border-radius: 8px;
+}
+.adminignin-container input{
+    padding: 1vw;
+    border-radius: 8px;
+    border: solid 1px black;
+    font-size: 1.2vw;
+}
+.adminignin-container button{
+    padding: 1vw 3.4vw 1vw;
+    background-color: #76ABAE;
+    border-radius: 8px;
+    margin-top: 5px;
+    font-size: 1.2vw;
+}

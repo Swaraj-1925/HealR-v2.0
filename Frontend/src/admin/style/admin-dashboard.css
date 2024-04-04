@@ -1,0 +1,36 @@
+.adminDashboard-conatiner{
+    width: 100vw;
+    height: 100vh;
+}
+.adminDahsboard-gridContainer1{
+    margin: 1vw 2vw 1vw;
+    display: grid;
+    justify-content: space-around;
+    align-items: center;
+    grid-template-columns: repeat(4,15vw);
+    gap: 20px;
+    
+}
+.adminDahsboard-gridContainer1-item{
+    height: 10vw;
+    background-color: #EEEEEE;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.12), 0 4px 4px rgba(0,0,0,0.12), 0 8px 8px rgba(0,0,0,0.12), 0 16px 16px rgba(0,0,0,0.12);
+    border-radius: 10px;
+    gap: 10px;
+}
+.adminDashboard-statusContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.adminDashboard-statusContainer h1{
+    font-size: 2vw;
+    font-weight: 600;
+    color: #1B4242;
+}
+.statusContainerNumber{
+    font-size: 1.5vw;
+    font-weight: 500;
+    color: #363062;
+}
