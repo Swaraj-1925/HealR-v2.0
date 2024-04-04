@@ -11,7 +11,7 @@ function clientHomePage() {
                 <div className='Dashboard-home-gridContainer' >
                     <div className='Dashboard-home-gridItem Dashboard-home-homePart '>
                         <h1>Welcome</h1>
-                        <p>{name}</p>
+                        <p>{name}</p> 
                     </div>
 
                     <div className='Dashboard-home-gridItem Dashboard-home-upcomingAppoinment' >

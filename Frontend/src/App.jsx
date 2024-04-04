@@ -42,6 +42,7 @@ const App = () => {
                     <Route index element={<Doc_landingPage />} />
                     <Route path='doc-signup' element={<Doc_signUp />} />
                     <Route path='doc-signin' element={<Doc_signIn />} />
+                    <Route path="#doc-home" element={<Doc_landingPage />} />
                 </Route>
             </Routes>
         </BrowserRouter>

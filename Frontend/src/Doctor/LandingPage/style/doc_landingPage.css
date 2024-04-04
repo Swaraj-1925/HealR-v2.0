@@ -1,0 +1,43 @@
+.landingPageDoctor-landingPage-container{
+    margin: 4.1vw 0vw 0vw;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background-image: url("./../style/images/dashboard.jpg");
+    background-size: cover;
+    /* margin-top: 100px; */
+    background-position: center;
+    height: 85vh;
+    width: 100vw;
+}
+.landingPageDoctor-textAndButton{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 5vw;
+}
+.landingPageDoctor-textAndButton h1{
+    font-size:10vw ;
+    margin: 0px;
+    padding: 0px;
+}
+.landingPageDoctor-textAndButton p{
+    font-size:1.4vw ;
+    width:20vw;
+    margin: 0px;
+    margin-bottom: 15px;
+    padding: 0px;
+    text-align: center;
+}
+.landingPageDoctor-textAndButton button{
+    border: none;
+    background-color: #d5a13b;
+    font-weight: 600;
+    font-size: 1.3vw;
+    color: #553947;
+    padding: 1.5vw 2vw;
+    border: none;
+    width: 20vw;
+    border-radius: 10px;
+}
+ 
