@@ -16,12 +16,18 @@ import Doc_landingPage from './Doctor/LandingPage/body/doc_landingPage';
 import Doc_signUp from './Doctor/LandingPage/Layout/doc-signup';
 import Doc_signIn from './Doctor/LandingPage/Layout/doc-signin';
 
+import AdminSignIN from './admin/admin-signIn.jsx';
+import AdminDashboard from './admin/admin-dashboard.jsx';
+import AdminLayout from './admin/componets/admin-layout.jsx';
+import AdminDoctor from './admin/admin-doctor.jsx';
+import AdminPatient from './admin/admin-Patient.jsx';
+import AdminStaff from './admin/admin-staff.jsx';
 
 const App = () => {
     return (
         <BrowserRouter>
-            <Routes>
-                {/* Landing Page Routes */}
+            <Routes> 
+
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Landing />} />
                     <Route path="/about-us" element={<About />} />
@@ -34,7 +40,7 @@ const App = () => {
                 <Route path="/dashboard" element={<DashLayout />}>
                     <Route index element={<ClientHomePage />} />
                     <Route path="/dashboard/book-appoinmet" element={<BookAppointment />} />
-                    <Route path="/dashboard/doctordes" element={<DoctorDescription />} /> 
+                    <Route path="/dashboard/doctordes" element={<DoctorDescription />} />
                 </Route>
 
 
@@ -44,6 +50,16 @@ const App = () => {
                     <Route path='doc-signin' element={<Doc_signIn />} />
                     <Route path="#doc-home" element={<Doc_landingPage />} />
                 </Route>
+
+                    <Route path='/admin' element={<AdminSignIN />} />   
+                <Route path="/admin"element={<AdminLayout />}>
+                    <Route path="admin_dashboard" element={<AdminDashboard />} />  
+                    <Route path="admin_doctor" element={<AdminDoctor />} />  
+                    <Route path="admin_patient" element={<AdminPatient />} />  
+                    <Route path="admin_staff" element={<AdminStaff />} />  
+                </Route>
+
+
             </Routes>
         </BrowserRouter>
     );

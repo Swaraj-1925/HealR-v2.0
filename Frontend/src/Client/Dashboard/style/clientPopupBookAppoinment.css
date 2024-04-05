@@ -19,7 +19,7 @@
   right:8vw;
   top: 4vw;
   width: 80vw;
-  height:92%;
+  height:100vh;
   overflow: auto;
   border: 2px solid black;
   border-radius: 10px;
@@ -42,7 +42,7 @@
   background-color: #124076;
   color: white;
   border-radius: 5px;
-  padding: 0px 10px 0px;
+  padding: 2.5vw 1vw 2.5vw;
   box-shadow: 25px 0 20px -20px rgba(0, 0, 0, 0.45);
   z-index: 1;
 }
@@ -370,6 +370,7 @@
   border-radius: 8px;
   margin-top: 5px;
   margin-bottom: 50px;
+  background-color: #d5a13b;
 }
 .client-bookAppoinment-popup-submit{
   display: flex;

@@ -22,7 +22,7 @@ function Footer() {
                 </div>
                 <div className="landingPage-Footer-grid-item flexContainer">
                     <h3>Our service</h3>
-                    <div>
+                    <div className='landingPage-footer-flex'>
                         <Link to='/about-us' className='link'><h5>About us</h5></Link>
                         <Link to='/sign-up' className='link'> <h5>Sign up</h5></Link>
                         <Link to='/sign-in' className='link'><h5>Sign in</h5></Link>
@@ -30,7 +30,7 @@ function Footer() {
                 </div>
                 <div className="landingPage-Footer-grid-item flexContainer">
                     <h3>Company</h3>
-                    <div>
+                    <div className='landingPage-footer-flex'>
                     <Link to={terms_and_condition} className='link'> <h5>Terms and conditions</h5></Link>
                         <Link to={contactUs} className='link'> <h5>Contact Us</h5></Link>
                     </div>

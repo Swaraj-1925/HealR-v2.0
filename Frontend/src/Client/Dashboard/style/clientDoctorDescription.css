@@ -46,10 +46,12 @@
     align-items:center;
 }
 .doctorDescription-name-Proffecsion-button{
-    padding: 1.5vw 5vw 1.5vw;
-    font-size: 2vh;
+    padding: 1vw 4vw 1vw;
+    font-size: 1.4vw;
     font-weight: 700;
-    border-radius: 4px
+    background-color: #d5a13b;
+    border-radius: 6px;
+    
 }
 .doctorDescription-name-Proffecsion-flexcontainer{
     display: flex;

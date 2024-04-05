@@ -1,6 +1,7 @@
 .doc-signupInput{
     border: 1px solid black;
     border-radius: 5px ;
+    overflow: auto;
 }
 .doc-signupInput-conatiner{
     display: flex;
@@ -34,4 +35,11 @@
     bottom: 4vw;
     background-color: #0D9276;
     color: #ffff;
+}
+  textarea  {
+    resize: none;
+    width: 30vw;
+    height: 10vw;
+    font-size: 1.3vw;
+    font-weight: 300;
 }

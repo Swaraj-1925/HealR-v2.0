@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import Footer from './doc-footer';
 import Header from './doc-header';
+import Footer from './../../../Client/LandingPage/Layout/Footer.jsx';
 
 
 

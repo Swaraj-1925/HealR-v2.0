@@ -1,3 +1,6 @@
+import './style/admin-dashboard.css';
+import VerifactionReq from './componets/admin-docVerificationReq.jsx';
+
 function Admin_dashboard() {
   return (
     <>
@@ -21,8 +24,10 @@ function Admin_dashboard() {
               <div className="statusContainerNumber">10</div>
           </div>
         </div>
+
         <div className="adminDahsboard-gridContainer2">
-          
+          <VerifactionReq />
+            
         </div>
       </div>
     </>

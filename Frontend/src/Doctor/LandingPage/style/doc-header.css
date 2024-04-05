@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
-html{
-   background-color: #F1EEDC;
-}
+ 
 .doctor-LandingPage-Header-navbar ul {
    list-style-type: none;
 }
@@ -14,7 +12,7 @@ html{
    padding: 0px;
    margin: 0px 5px 10px;
    justify-items: left;
-   background-color: #FFF2E1;
+   background-color: #FFF6E9;
    width: 100%;
    height: 4vw;
    border-bottom-left-radius:10px ;
@@ -67,8 +65,8 @@ html{
    margin-bottom: -10px;
    top: -10px;
    border: none;
-   background-color: #d5a13b;
-   font-weight: 600;
+   background-color: #0D9276;
+   font-weight: 400;
    font-size: 1vw;
-   color: #553947;
+   color: #fff;
 }
