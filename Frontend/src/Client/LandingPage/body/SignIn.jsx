@@ -11,8 +11,8 @@ function SignIn() {
     const [password, setPassword] = useState("");
 
     function postData() {
-        axios.post('/sign-in', {
-            email: name,
+        axios.post('http://localhost:3000/signin', {
+            username: name,
             password: password
         })
             .then(function (response) {

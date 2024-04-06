@@ -1,9 +1,10 @@
-import   { useState } from 'react';
+import { useState } from 'react';
 import './../style/doc-signup.css';
+import axios from 'axios';
 
 function DocSignUp() {
-    const [answersVisibility, setAnswersVisibility] = useState([false, false, false, false]);
 
+    const [answersVisibility, setAnswersVisibility] = useState([false, false, false, false]);
     const toggleAnswer = (index) => {
         setAnswersVisibility(prevState => {
             const newState = [...prevState];
@@ -12,12 +13,75 @@ function DocSignUp() {
         });
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Handle form submission here
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [age, setAge] = useState("");
+    const [gender, setGender] = useState('');
+    const [password, setPassword] = useState("");
+    const [cpassword, setCpassword] = useState("");
+
+    const [yearOfExperience, setyearOfExperience] = useState("");
+    const [proofExperience, setproofExperience] = useState("");
+    const [proofExperienceimg, setproofExperienceimg] = useState("");
+    const [about, setabout] = useState("");
+
+    const [workingTimes, setWorkingTimes] = useState(Array(16).fill(false));
+    const [imageSmall, setImageSmall] = useState(null);
+    const [imageBig, setImageBig] = useState(null);
+
+    const handleWorkingTimeChange = (index) => {
+        setWorkingTimes(prevState => {
+            const newState = [...prevState];
+            newState[index] = !newState[index];
+            return newState;
+        });
+    };
+    const handleImageSmallChange = (event) => {
+        setImageSmall(event.target.files[0]);
     };
 
-    return (  
+    const handleImageBigChange = (event) => {
+        setImageBig(event.target.files[0]);
+    };
+
+
+    const handleGenderChange = (event) => {
+        setGender(event.target.value);
+    };
+
+
+    const handleSubmit = async () => {
+        try {
+            // Prepare data to send
+            const postData = {
+                name: name,
+                email: email,
+                age: age,
+                gender: gender,
+                password: password,
+
+                yearOfExperience: yearOfExperience,
+                proofExperience: proofExperience,
+                proofExperienceimg: proofExperienceimg,
+                about: about,
+                
+                workingTimes: workingTimes,
+                imageSmall: imageSmall,
+                imageBig: imageBig,
+            };
+
+            // Send POST request using Axios
+            const response = await axios.post('http://localhost:5173/doctor/signupa', postData);
+
+            // Handle response
+            console.log('Response:', response.data);
+        } catch (error) {
+            // Handle error
+            console.error('Error:', error);
+        }
+    };
+
+    return (
         <>
             <section className="py-8 bg-gray-50 sm:py-14 lg:py-22" id='docsignUp'>
                 <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
@@ -43,39 +107,166 @@ function DocSignUp() {
                                 <div style={{ display: answersVisibility[index - 1] ? 'block' : 'none' }} className="px-4 pb-5 sm:px-6 sm:pb-6">
                                     {index === 1 && (
                                         <div className='doc-signupInput-conatiner doc-signupInput-widhtreduce'>
-                                            <label htmlFor="username">Email:</label>
-                                            <input className='doc-signupInput' type="email" id="username" name="username" required /><br />
-                                            <label htmlFor="name">Name:</label>
-                                            <input className='doc-signupInput' type="text" id="name" name="name" required /><br />
-                                            <label htmlFor="password">Password:</label>
-                                            <input className='doc-signupInput' type="password" id="password" name="password" required /><br />
+
+                                            <input
+                                                value={email}
+                                                onChange={(e) => setEmail(e.target.value)}
+                                                className='doc-signupInput'
+                                                type="email"
+                                                id="username"
+                                                placeholder='Email'
+                                                required /><br />
+                                            <input
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)}
+                                                className='doc-signupInput'
+                                                type="text"
+                                                id="name"
+                                                name="name"
+                                                placeholder='Name'
+                                                required />
+                                            <br />
+                                            <input
+                                                className='doc-signupInput'
+                                                type="number"
+                                                value={age}
+                                                onChange={(e) => setAge(e.target.value)}
+                                                placeholder="age"
+                                            />
+                                            <br />
+                                            <div className=''>
+                                                <label>
+                                                    <div>Gender</div>
+                                                    <input
+                                                        type="radio"
+                                                        name="gender"
+                                                        value="male"
+                                                        checked={gender === 'male'}
+                                                        onChange={handleGenderChange}
+                                                    />
+                                                    Male
+                                                </label>
+                                                <label>
+                                                    <input
+                                                        type="radio"
+                                                        name="gender"
+                                                        value="female"
+                                                        checked={gender === 'female'}
+                                                        onChange={handleGenderChange}
+                                                    />
+                                                    Female
+                                                </label>
+                                            </div>
+                                            <br />
+                                            <input
+                                                value={password}
+                                                onChange={(e) => setPassword(e.target.value)}
+                                                className='doc-signupInput'
+                                                type="password"
+                                                id="password"
+                                                placeholder='Password'
+                                                required />
+                                            <br />
+                                            <input
+                                                value={cpassword}
+                                                onChange={(e) => setCpassword(e.target.value)}
+                                                className='doc-signupInput'
+                                                type="password"
+                                                id="cpassword"
+                                                placeholder='Confirm Password'
+                                                required />
+                                            <br />
                                         </div>
                                     )}
                                     {index === 2 && (
                                         <div className='doc-signupInput-conatiner doc-signupInput-widhtreduce'>
-                                            <label htmlFor="experience">Years of Experience:</label>
-                                            <input className='doc-signupInput' type="number" id="experience" name="yearOfExperience" required /><br />
+
+                                            <input
+                                                value={yearOfExperience}
+                                                onChange={(e) => setyearOfExperience(e.target.value)}
+                                                className='doc-signupInput'
+                                                type="number"
+                                                id="experience"
+                                                name="yearOfExperience"
+                                                placeholder='Years of Experience'
+                                                required />
+                                            <br />
                                             <label htmlFor="imgB">Proof of experience:</label>
-                                            <input type="file" id="imgB" name="experience" required /><br />
-                                            <label htmlFor="profession">Profession:</label>
-                                            <input className='doc-signupInput' type="text" id="profession" name="profession" required /><br />
+                                            <input
+                                                value={proofExperience}
+                                                onChange={(e) => setproofExperience(e.target.value)}
+                                                type="file"
+                                                id="imgB"
+                                                name="experience"
+                                                required />
+                                            <br />
+                                            <input
+                                                className='doc-signupInput'
+                                                type="text" id="profession"
+                                                name="profession"
+                                                placeholder='Profession'
+                                                required />
+                                            <br />
                                             <label htmlFor="imgB">Proof of profession:</label>
-                                            <input type="file" id="imgB" name="profession" required /><br />
+                                            <input
+                                                value={proofExperienceimg}
+                                                onChange={(e) => setproofExperienceimg(e.target.value)}
+                                                type="file"
+                                                id="imgB"
+                                                name="profession"
+                                                required />
+                                            <br />
                                             <label htmlFor="about">About You:</label>
-                                            <textarea className='doc-signupInput' id="about" name="about" required></textarea><br />
-                                            
+                                            <textarea
+                                                value={about}
+                                                onChange={(e) => setabout(e.target.value)}
+                                                className='doc-signupInput'
+                                                id="about"
+                                                name="about"
+                                                required>
+                                            </textarea>
+                                            <br />
+
                                         </div>
                                     )}
                                     {index === 3 && (
                                         <div className='doc-signupInput-conatiner doc-signupInput-widhtreduce'>
-                                            <label htmlFor="callFee">Call:</label>
-                                            <input className='doc-signupInput' type="number" id="callFee" name="feesCall" required /><br />
-                                            <label htmlFor="videoCallFee">Video Call:</label>
-                                            <input className='doc-signupInput' type="number" id="videoCallFee" name="feesVideoCall" required /><br />
-                                            <label htmlFor="messageFee">Message:</label>
-                                            <input className='doc-signupInput' type="number" id="messageFee" name="feesMessage" required /><br />
-                                            <label htmlFor="inRealLifeFee">In Real Life:</label>
-                                            <input className='doc-signupInput' type="number" id="inRealLifeFee" name="feesInRealLife" required /><br />
+
+                                            <input
+                                                className='doc-signupInput'
+                                                type="number"
+                                                id="callFee"
+                                                name="feesCall"
+                                                placeholder='Call'
+                                                required />
+                                            <br />
+
+                                            <input
+                                                className='doc-signupInput'
+                                                type="number"
+                                                id="videoCallFee"
+                                                name="feesVideoCall"
+                                                placeholder=' Video Call'
+                                                required />
+                                            <br />
+
+                                            <input
+                                                className='doc-signupInput'
+                                                type="number"
+                                                id="messageFee"
+                                                name="feesMessage"
+                                                placeholder='Message'
+                                                required />
+                                            <br />
+
+                                            <input
+                                                className='doc-signupInput'
+                                                type="number"
+                                                id="inRealLifeFee"
+                                                name="feesInRealLife"
+                                                placeholder='irl'
+                                                required />
+                                            <br />
                                         </div>
                                     )}
                                     {index === 4 && (
@@ -87,7 +278,14 @@ function DocSignUp() {
                                                     const hourString = hour < 12 ? `${hour}AM` : hour === 12 ? '12PM' : `${hour - 12}PM`;
                                                     return (
                                                         <div key={hour}>
-                                                            <input className='doc-signupInput' type="checkbox" id={`${hour}am`} name="acceptedTime" value={`${hour}am`} />
+                                                            <input
+                                                                className='doc-signupInput'
+                                                                type="checkbox" id={`${hour}am`}
+                                                                name="acceptedTime"
+                                                                value={`${hour}am`}
+                                                                checked={workingTimes[hourIndex]}
+                                                                onChange={() => handleWorkingTimeChange(hourIndex)}
+                                                            />
                                                             <label htmlFor={`${hour}am`}>{hourString}</label>
                                                         </div>
                                                     );
@@ -96,23 +294,38 @@ function DocSignUp() {
                                             {/* Add more time options as needed */}
                                             <br />
                                             <label htmlFor="imgS">Image Small:</label>
-                                            <input type="file" id="imgS" name="imagesS" required /><br />
+                                            <input
+                                                type="file"
+                                                id="imgS"
+                                                name="imagesS"
+                                                required
+                                                onChange={handleImageSmallChange}
+                                                value={imageSmall}
+                                            /><br />
                                             <label htmlFor="imgB">Image Big:</label>
-                                            <input type="file" id="imgB" name="imagesB" required /><br />
+                                            <input
+                                                type="file"
+                                                id="imgB"
+                                                name="imagesB"
+                                                required
+                                                onChange={handleImageBigChange}
+                                                value={imageBig}
+                                            />
+                                            <br />
                                         </div>
                                     )}
                                 </div>
                             </div>
                         ))}
                     </div>
-                     
+
                 </div>
             </section>
             <div className='docsignup-submitbutton-coantiner'>
 
-            <button onClick={handleSubmit}  type="submit">Submit</button>
+                <button onClick={handleSubmit} type="submit">Submit</button>
             </div>
-         </>
+        </>
     );
 }
 

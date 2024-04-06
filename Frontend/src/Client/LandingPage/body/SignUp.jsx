@@ -27,9 +27,9 @@ function SignUP() {
 
         } else {
             
-            axios.post('/sign-in', {
+            axios.post('http://localhost:3000/signup', {
                 name: name,
-                email: email,
+                username: email,
                 password: password,
                 age: age,
                 gender: gender,
