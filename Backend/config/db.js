@@ -30,7 +30,7 @@ const Credential_Schema = new mongoose.Schema({
         required: true,
     }
 });
-// client schema for to store client info
+// client schema for to store client inf
 
 const User_Schema = new mongoose.Schema({
     name: {
