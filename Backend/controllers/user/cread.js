@@ -10,7 +10,7 @@ const connection = require('./../../config/db');
 const User = connection.models.User;
 const Credential = connection.models.Credential;
 
-// passport
+// passport js
 const passport = require('passport');
 
 
