@@ -28,7 +28,7 @@ const Credential_Schema = new mongoose.Schema({
         type: Date,
         default: Date.now,
         required: true,
-    },
+    }
 });
 // client schema for to store client info
 
