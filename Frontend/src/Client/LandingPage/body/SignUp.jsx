@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 import axios from 'axios';
 
@@ -14,7 +16,10 @@ function SignUP() {
     const [discord, setDiscord] = useState('');
     const [password, setPassword] = useState("");
     const [cpassword, setCpassword] = useState("");
-    console.log(name)
+
+    const navigate = useNavigate(); // Utilize useNavigate hook
+
+    
     const handleGenderChange = (event) => {
         setGender(event.target.value);
     };
@@ -22,7 +27,7 @@ function SignUP() {
         setDiscord(event.target.value);
     };
     function postData() {
-        if (password != cpassword) {
+        if (password != cpassword) { 
             alert("password dont match!")
 
         } else {
@@ -38,6 +43,13 @@ function SignUP() {
             })
                 .then(function (response) {
                     console.log(response);
+                    if (response.data.message === 'Signup successful!') { // Check for success response from backend
+                        navigate('/dashboard'); 
+                  } else {
+                    console.error('Login failed:', response.data.message);
+                    // Handle login failure (e.g., display error message)
+                  }
+
                 })
                 .catch(function (error) {
                     console.log(error);

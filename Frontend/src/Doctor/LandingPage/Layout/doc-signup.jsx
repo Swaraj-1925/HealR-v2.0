@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './../style/doc-signup.css';
 import axios from 'axios';
-
+import { useNavigate } from "react-router-dom";
 function DocSignUp() {
     const [answersVisibility, setAnswersVisibility] = useState([false, false, false, false]);
     const toggleAnswer = (index) => {
@@ -11,7 +11,7 @@ function DocSignUp() {
             return newState;
         });
     };
-
+    const navigate = useNavigate(); // Utilize useNavigate hook
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [age, setAge] = useState("");
@@ -88,12 +88,19 @@ function DocSignUp() {
 
             // Handle response
             console.log('Response:', response.data);
+            console.log(response);
+                    if (response.data.message === 'Signup successful!') { // Check for success response from backend
+                        navigate('/doc'); 
+                  } else {
+                    console.error('Login failed:', response.data.message);
+                    // Handle login failure (e.g., display error message)
+                  }
         } catch (error) {
             // Handle error
             console.error('Error:', error);
         }
     };
-
+ 
     return (
         <div>
             <form onSubmit={handleSubmit}>

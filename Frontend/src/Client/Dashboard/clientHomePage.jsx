@@ -3,6 +3,7 @@ import temp from './style/images/image.png';
 
 
 function clientHomePage() {
+    
     const name ="name"
     
     return (

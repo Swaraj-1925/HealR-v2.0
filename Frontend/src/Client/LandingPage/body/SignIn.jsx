@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, } from "react";
+import { useNavigate } from "react-router-dom";
 
 import axios from 'axios';
 
@@ -9,6 +10,7 @@ import './style/css/LandingPage-signIn.css';
 function SignIn() {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate(); // Utilize useNavigate hook
 
     function postData() {
         axios.post('http://localhost:3000/signin', {
@@ -17,6 +19,12 @@ function SignIn() {
         })
             .then(function (response) {
                 console.log(response);
+                if (response.data.success) { // Check for success response from backend
+                    navigate('/dashboard'); // Redirect to dashboard on successful login
+                  } else {
+                    console.error('Login failed:', response.data.message);
+                    // Handle login failure (e.g., display error message)
+                  }
             })
             .catch(function (error) {
                 console.log(error);
