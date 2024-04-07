@@ -92,6 +92,7 @@ newDoctor.save()
         console.log('New doctor saved:', savedCredential);
         passport.authenticate("local")(req, res, function () {
             console.log("\nsignup successful\n");
+            res.status(200).json({ message: 'Signup successful!' });
         });
     })
     .catch(error => {
@@ -100,5 +101,41 @@ newDoctor.save()
     });
 
 });
+
+
+router.post('/signin', async (req, res) => {
+    const existingUser = await Credential.findOne({ username: req.body.username, type: "doctor" });
+    if (!existingUser) {
+        console.log("acount dont exsit");
+        return;
+    }
+    
+    passport.authenticate('local', (err, user, info) => {
+        console.log("acount exsit");
+        
+        if (err) {
+   
+            return next(err);
+          }
+        if (!user) {
+
+            return res.send('Invalid credentials');
+        }
+
+        req.logIn(user, (err) => {
+            if (!user) {
+      
+                console.log("signup faild")
+              }
+
+            if (err) {
+                return next(err);
+            }
+            console.log("signup done")
+        });
+    });
+
+});
+
 
 module.exports = router;

@@ -22,7 +22,7 @@ router.post('/signup', async (req, res) => {
     const salt = saltHash.salt;
 
     // check for excting account
-    const existingUser = await User.findOne({ username: req.body.username});
+    const existingUser = await User.findOne({ username: req.body.username });
     if (existingUser) {
         return;
     }
@@ -43,19 +43,19 @@ router.post('/signup', async (req, res) => {
         type: "patient",
         joiningDate: new Date()
     });
-    await newUser.save();
-
-    newCredential.save()
-    .then(savedCredential => {
-        console.log('New User saved:', savedCredential);
+    try {
+        await newUser.save();
+        await newCredential.save();
+        console.log('New User saved:', newUser);
+        console.log('New Credential saved:', newCredential);
         passport.authenticate("local")(req, res, function () {
             console.log("\nsignup successful\n");
+            res.status(200).json({ message: 'Signup successful!' });
         });
-    })
-    .catch(error => {
-        console.error('Error saving doctor:', error);
-        // Handle error
-    });
+    } catch (error) {
+        console.error('Error saving user or credential:', error);
+        res.status(500).json({ message: 'Signup failed' });
+    }
 
 });
 
@@ -68,21 +68,21 @@ router.post('/signin', async (req, res) => {
     console.log("acount exsit");
 
     passport.authenticate('local', (err, user, info) => {
-       
+
         if (err) {
-   
+
             return next(err);
-          }
+        }
         if (!user) {
 
             return res.send('Invalid credentials');
         }
         req.logIn(user, (err) => {
             if (!user) {
-      
+
                 // return res.send('Invalid credentials');
                 console.log("signup faild")
-              }
+            }
 
             if (err) {
                 return next(err);
