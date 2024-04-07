@@ -92,7 +92,6 @@ const User_Schema = new mongoose.Schema({
 });
 
 // doctor schema
-
 const Doctor_Schema = new mongoose.Schema({
     name: {
         type: String,
@@ -103,9 +102,13 @@ const Doctor_Schema = new mongoose.Schema({
         required: true,
         unique: true, // Ensure username is unique
     },
+    verified: {
+        type: Boolean,
+        default: false // Default value is false
+    },
     verifiedBy: {
-        type: String, // Can be "staff" or "admin"
-        required: true,
+        type: String,
+        default: "" // Default value is an empty string
     },
     age: {
         type: Number,
@@ -163,6 +166,7 @@ const Doctor_Schema = new mongoose.Schema({
         required: true,
     },
 });
+
 
 // staff schema
 const Staff_Schema = new mongoose.Schema({

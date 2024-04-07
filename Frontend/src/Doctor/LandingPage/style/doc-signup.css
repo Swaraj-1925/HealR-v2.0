@@ -2,6 +2,7 @@
     border: 1px solid black;
     border-radius: 5px ;
     overflow: auto;
+    padding: 5px;
 }
 .doc-signupInput-conatiner{
     display: flex;
@@ -13,13 +14,6 @@
     width: 20vw;
 }
 
-.doc-signupInput-conatiner{
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    /* align-items: center; */
-    /* width: 10vw; */
-}
 .docsignup-submitbutton-coantiner{
     display: flex;
     justify-content: center;
@@ -42,4 +36,9 @@
     height: 10vw;
     font-size: 1.3vw;
     font-weight: 300;
+}
+.grid-workingTime {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+    gap: 10px; /* adjust the gap between items */
 }

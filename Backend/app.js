@@ -6,7 +6,10 @@ require('dotenv').config();
 // const connectDB = require('./config/connectDB');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+
 const userRoutes = require('./routes/user');
+const doctorRoutes = require('./routes/doctor');
+
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -41,7 +44,7 @@ app.use(session({
 
 // routes
 app.use('/', userRoutes); // Mount the router under /user base path
-app.use('/doctor', userRoutes); // Mount the router under /doctor base path
+app.use('/doctor', doctorRoutes); // Mount the router under /doctor base path
 
 
 

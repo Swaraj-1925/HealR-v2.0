@@ -44,13 +44,18 @@ router.post('/signup', async (req, res) => {
         joiningDate: new Date()
     });
     await newUser.save();
-    await newCredential.save();
 
-    if (newUser && newCredential) {
+    newCredential.save()
+    .then(savedCredential => {
+        console.log('New User saved:', savedCredential);
         passport.authenticate("local")(req, res, function () {
-            console.log("signup succeful");
-        })
-    }
+            console.log("\nsignup successful\n");
+        });
+    })
+    .catch(error => {
+        console.error('Error saving doctor:', error);
+        // Handle error
+    });
 
 });
 
