@@ -186,3 +186,34 @@
 .Services-gridContainer h2{
  text-align: center;
 }
+
+@keyframes pulse {
+    from,to{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.05);
+    }
+}
+
+/* on hover Animations */
+.gridItem-flexContainer img:hover {
+    animation: pulse 1s  alternate;
+}
+
+.Services-gridContainer-item1,
+.Services-gridContainer-containerTwo-item1,
+.Services-gridContainer-containerTwo-item2,
+.Services-gridContainer-item3 {
+ 
+  position: relative; 
+}
+
+.Services-gridContainer-item1:hover,
+.Services-gridContainer-containerTwo-item1:hover,
+.Services-gridContainer-containerTwo-item2:hover,
+.Services-gridContainer-item3:hover {
+  transform: translateY(-15px); 
+  transition: transform 0.4s ease; 
+}
+
