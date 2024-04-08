@@ -42,7 +42,11 @@
   background-color: #124076;
   color: white;
   border-radius: 5px;
-  padding: 2.5vw 1vw 2.5vw;
+  margin: 6px;
+  height: 80px;
+  width: 60px;
+  padding-top: 18px;
+  padding-left: 10px;
   box-shadow: 25px 0 20px -20px rgba(0, 0, 0, 0.45);
   z-index: 1;
 }
@@ -378,4 +382,62 @@
   justify-content: center;
   width: fit-content;
   color: initial;
+}
+
+
+@media (max-width: 768px) {
+  .client-bookAppoinment-popup-wrapper {
+    width: 90vw;
+    padding: 20px;
+  }
+  
+  .Bookappoinment-calender-gridcontainer-calendar-datesWeek {
+    width: 80vw;
+  }
+  
+  .radio-inputs {
+    max-width: 90vw;
+  }
+  
+  .radio-tile {
+    width: 20vw;
+    min-height: 20vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .client-bookAppoinment-popup-wrapper {
+    width: 95vw;
+  }
+  
+  .Bookappoinment-calender-gridcontainer-calendar-datesWeek {
+    width: 90vw;
+  }
+  
+  .radio-tile {
+    width: 40vw;
+    min-height: 40vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Bookappoinment-calender-gridcontainer-calendar-month {
+    margin: 6px;
+    height: 80px;
+    width: 60px;
+    padding-top: 18px;
+    padding-left: 16px; /* Adjusted padding for smaller screens */
+    font-size: 90%; /* Adjusted font size */
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .Bookappoinment-calender-gridcontainer-calendar-month {
+    margin: 6px;
+  height: 80px;
+  width: 60px;
+  padding-top: 18px;
+  padding-left: 10px; 
+    font-size: 80%; 
+  }
 }
