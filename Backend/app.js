@@ -8,43 +8,33 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const userRoutes = require('./routes/user');
-const doctorRoutes = require('./routes/doctor');
+ 
 
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
+const cookieParser = require('cookie-parser');
 
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser())
 
 // Enable All CORS Requests (for development only)
 app.use(cors());
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow requests from your React frontend
-}));
-
-const username = process.env.Username_Mongodb;
-const password = process.env.Password_Mongodb;
-const DB_name = process.env.Name_Database_Mongodb;
-var secret = process.env.Secret;
-app.use(session({
-    secret: secret,
-    resave: false,
-    saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: `mongodb+srv://${username}:${password}@cluster0.awcvfoh.mongodb.net/${DB_name}?retryWrites=true&w=majority` }),
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24
-    }
-}));
+    origin: 'http://localhost:5173',  
+    credentials: true // Allow credentials
+  }));
 
 
+ 
 
 // routes
-app.use('/', userRoutes); // Mount the router under /user base path
-app.use('/doctor', doctorRoutes); // Mount the router under /doctor base path
+app.use('/user', userRoutes);  
+  
 
 
 

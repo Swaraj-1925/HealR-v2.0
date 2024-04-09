@@ -169,7 +169,7 @@ const Doctor_Schema = new mongoose.Schema({
 
 
 // staff schema
-const Staff_Schema = new mongoose.Schema({
+const Staff_Schema = new mongoose.Schema({ 
     username: {
         type: String,
         required: true,

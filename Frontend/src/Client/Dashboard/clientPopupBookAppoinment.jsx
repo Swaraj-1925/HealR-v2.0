@@ -58,6 +58,7 @@ function BookAppointmentPopUp({ toggle }) {
       </div>
     );
   };
+  console.log(selectedDate);
 
   // section of time slots code
 

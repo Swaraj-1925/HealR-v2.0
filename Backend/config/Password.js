@@ -6,13 +6,17 @@ function genPassword(password) {
     
     return {
       salt: salt,
-      hash: genHash
+      hash: genHash 
     };
 }
 
 function validPassword(password, hash, salt) {
     var hashVerify = crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha512').toString('hex');
-    return hash === hashVerify;
+    if( hash === hashVerify){
+      return true;
+    }else{
+      return false;
+    }
 }
 
 module.exports.validPassword = validPassword;

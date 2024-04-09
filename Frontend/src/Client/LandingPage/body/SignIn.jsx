@@ -13,28 +13,31 @@ function SignIn() {
     const navigate = useNavigate(); // Utilize useNavigate hook
 
     function postData() {
-        axios.post('http://localhost:3000/signin', {
+        axios.post('http://localhost:3000/user/signin', {
             username: name,
             password: password
         })
             .then(function (response) {
                 console.log(response);
-                if (response.data.success) { // Check for success response from backend
+                if (response.data.message === 'Successfully') { // Check for success response from backend
+                    const expirationTime = new Date(Date.now() + 20 * 24 * 60 * 60 * 1000);
+                // Save token to cookies with expiration time
+                document.cookie = `token=${response.data.token}; expires=${expirationTime.toUTCString()}; path=/dashboard`;
                     navigate('/dashboard'); // Redirect to dashboard on successful login
-                  } else {
+                } else {
                     console.error('Login failed:', response.data.message);
                     // Handle login failure (e.g., display error message)
-                  }
+                }
             })
             .catch(function (error) {
                 console.log(error);
             });
-    } 
+    }
 
     return (
         <>
             <div className="landingPage-signIn-flexContainer">
-            
+
                 <div className="landingPage-signIn-centeredContent">
                     <img className="landingPage-signIn-flexItem imagSignIN" src={SignInimg} alt="" />
                     <div className="landingPage-signIn-flexItem flexContainerTwo">

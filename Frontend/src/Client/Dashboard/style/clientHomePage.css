@@ -101,7 +101,9 @@
     font-size: 1vw;
 }
 
-.upcomingAppoinment-item-gridContainer h1{
-    
-    
+.noAppoinmenttxt{
+    text-align: center;
+    font-size: 2vw;
+    margin-top: 10vw;
+    font-weight: 500;
 }

@@ -32,7 +32,7 @@ function SignUP() {
 
         } else {
             
-            axios.post('http://localhost:3000/signup', {
+            axios.post('http://localhost:3000/user/signup', {
                 name: name,
                 username: email,
                 password: password,
@@ -43,8 +43,8 @@ function SignUP() {
             })
                 .then(function (response) {
                     console.log(response);
-                    if (response.data.message === 'Signup successful!') { // Check for success response from backend
-                        navigate('/dashboard'); 
+                    if (response.data.message === 'Successfully') { 
+                        navigate('/sign-in'); 
                   } else {
                     console.error('Login failed:', response.data.message);
                     // Handle login failure (e.g., display error message)
