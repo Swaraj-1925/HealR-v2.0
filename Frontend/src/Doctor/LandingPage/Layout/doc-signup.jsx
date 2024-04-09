@@ -25,6 +25,8 @@ function DocSignUp() {
     const [professionimg, setprofessionimg] = useState("");
     const [clinic, setclinic] = useState("");
     const [about, setabout] = useState("");
+    const [points, setPoints] = useState(["", "", ""]);
+
 
     const [selectedTimes, setSelectedTimes] = useState([]);
     const [imageSmall, setImageSmall] = useState(null);
@@ -49,7 +51,13 @@ function DocSignUp() {
             return newTimes;
         });
     };
-
+    const handlePointsChange = (index, value) => {
+        setPoints(prevPoints => {
+            const newPoints = [...prevPoints];
+            newPoints[index] = value;
+            return newPoints;
+        });
+    };
 
 
     const handleGenderChange = (event) => {
@@ -89,18 +97,18 @@ function DocSignUp() {
             // Handle response
             console.log('Response:', response.data);
             console.log(response);
-                    if (response.data.message === 'Signup successful!') { // Check for success response from backend
-                        navigate('/doc'); 
-                  } else {
-                    console.error('Login failed:', response.data.message);
-                    // Handle login failure (e.g., display error message)
-                  }
+            if (response.data.message === 'Signup successful!') { // Check for success response from backend
+                navigate('/doc');
+            } else {
+                console.error('Login failed:', response.data.message);
+                // Handle login failure (e.g., display error message)
+            }
         } catch (error) {
             // Handle error
             console.error('Error:', error);
         }
     };
- 
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -259,7 +267,26 @@ function DocSignUp() {
                                                     required>
                                                 </textarea>
                                                 <br />
-
+                                                <label htmlFor="imgB">Key Points about you:</label>
+                                                <input
+                                                    value={points[0]}
+                                                    onChange={(e) => handlePointsChange(0, e.target.value)}
+                                                    type="text"
+                                                    className='doc-signupInput'
+                                                    required />
+                                                <input
+                                                    value={points[1]} // Set value from points array
+                                                    onChange={(e) => handlePointsChange(1, e.target.value)}
+                                                    type="text"
+                                                    className='doc-signupInput'
+                                                    required />
+                                                <input
+                                                    value={points[2]} // Set value from points array
+                                                    onChange={(e) => handlePointsChange(2, e.target.value)}
+                                                    type="text"
+                                                    className='doc-signupInput'
+                                                    required />
+                                                <br />
                                             </div>
                                         )}
                                         {index === 3 && (

@@ -118,6 +118,10 @@ const Doctor_Schema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    shortdescription: [{
+        type: String,
+        required: true
+    }],
     description: {
         type: String,
     },

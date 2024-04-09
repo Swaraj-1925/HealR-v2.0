@@ -226,7 +226,7 @@ function DoctorDescription() {
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> 
                             {/* review end */}
 
                             {/* review start */}

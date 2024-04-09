@@ -3,6 +3,7 @@
     border-radius: 5px ;
     overflow: auto;
     padding: 5px;
+    margin: 5px;
 }
 .doc-signupInput-conatiner{
     display: flex;

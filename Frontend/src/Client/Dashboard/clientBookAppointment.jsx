@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-import { useState } from "react";
 
 import star from './style/images/star.png';
 import temp from './style/images/image.png';
@@ -9,9 +10,30 @@ import { Link } from 'react-router-dom';
 
 function BookAppointment() {
 
-    const [docid, setDocid] = useState("red");
-    console.log(docid);
-    
+    const [doctors, setDoctors] = useState([]);
+
+    useEffect(() => {
+
+        const fetchUserName = async () => {
+
+            try {
+                const response = await axios.get('http://localhost:3000/user/bookappoinmet', {
+                    withCredentials: true
+                });
+                setDoctors(response.data);
+                console.log(doctors)
+                
+
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            
+            } 
+        };
+        fetchUserName();
+
+
+    }, []);
+     
     return (
         <>
         <div className="bookAppointment-sortOption-container">
@@ -38,18 +60,19 @@ function BookAppointment() {
 
         </div>
         <div className="bookAppointment-mainContainer-grid">
-            <Link to="doctordes">
-                <div onClick={() => setDocid} className="bookAppoinment-cardContainer-grid">
+        {doctors.map((doctor) => (
+            <Link to={`/doctor/${doctor._id}`} key={doctor._id}>
+                <div   className="bookAppoinment-cardContainer-grid">
                     <div className="bookAppoinment-cardItem bookAppoinment-cardItem-doctorImgdiv">
                         <img className="bookAppoinment-cardItem-doctorImg" src={temp} alt="" />
                     </div>
                     <div className="bookAppoinment-cardItem bookAppoinment-doctordescriptiondiv">
                         <div className="bookAppoinment-cardItem-doctordescription-gridContainer">
                             <div className="doctordescription-gridItem name">
-                                <h1>Dr. Jonathan Rivers</h1>
+                                <h1>Dr{doctor.name}</h1>
                             </div>
                             <div className="doctordescription-gridItem proffesion">
-                                <h3> Clinical Psychologist</h3>
+                                <h3> {doctor.experience.profession}</h3>
                                 <hr />
                             </div>
                             <div className="doctordescription-gridItem Doctor-reviwsAndStar">
@@ -58,10 +81,9 @@ function BookAppointment() {
                             </div>
                             <div className="doctordescription-gridItem keyPoints">
                                 <ul>
-                                    <li>Over 20 years of experience in diverse mental health concerns.</li>
-                                    <li>Holistic approach focusing on biological, psychological, social, and environmental factors.</li>
-                                    <li>Culturally competent care tailored to diverse backgrounds.</li>
-                                    <li>Compassionate and nonjudgmental support fostering authentic heali</li>
+                                    {doctor.shortdescription.map((item, index) => (
+                                            <li key={index}>{item}</li>
+                                        ))}
                                 </ul>
                             </div>
                         </div>
@@ -71,6 +93,7 @@ function BookAppointment() {
                     </div>
                 </div>
             </Link>
+            ))}
         </div>
         </>
     );
