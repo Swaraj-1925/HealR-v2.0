@@ -108,7 +108,7 @@ const Doctor_Schema = new mongoose.Schema({
     },
     verifiedBy: {
         type: String,
-        default: "" // Default value is an empty string
+        default: "" // Default value is an empty strin
     },
     age: {
         type: Number,
