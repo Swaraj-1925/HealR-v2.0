@@ -10,8 +10,7 @@ const connection = require('./../../config/db');
 const User = connection.models.User;
 const Credential = connection.models.Credential;
 
-// const Cookie = require('./../../config/cookie');
-var cookieParser = require('cookie-parser')
+
 const secretKey = process.env.Secret;
 const jwt = require('jsonwebtoken');
  

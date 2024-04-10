@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './../style/doc-signup.css';
 import axios from 'axios';
+
+import FormData from 'form-data'
 import { useNavigate } from "react-router-dom";
 function DocSignUp() {
     const [answersVisibility, setAnswersVisibility] = useState([false, false, false, false]);
@@ -19,10 +21,15 @@ function DocSignUp() {
     const [password, setPassword] = useState("");
     const [cpassword, setCpassword] = useState("");
 
+    const [callFee, setCallFee] = useState('');
+    const [videoCallFee, setVideoCallFee] = useState('');
+    const [messageFee, setMessageFee] = useState('');
+    const [inRealLifeFee, setInRealLifeFee] = useState('');
+
     const [yearOfExperience, setyearOfExperience] = useState("");
-    const [proofExperience, setproofExperience] = useState("");
+    const [proofExperience, setproofExperience] = useState(null);
     const [profession, setprofession] = useState("");
-    const [professionimg, setprofessionimg] = useState("");
+    const [professionimg, setprofessionimg] = useState(null);
     const [clinic, setclinic] = useState("");
     const [about, setabout] = useState("");
     const [points, setPoints] = useState(["", "", ""]);
@@ -65,43 +72,56 @@ function DocSignUp() {
     };
 
     const handleSubmit = async (event) => {
-        if (password != cpassword) {
-            alert("Password dont match")
-            return
+        if (password !== cpassword) {
+            alert("Passwords don't match");
+            return;
         }
+
         event.preventDefault();
+
         try {
-            // Prepare data to send
-            const postData = {
-                name: name,
-                email: email,
-                age: age,
-                gender: gender,
-                password: password,
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('age', age);
+            formData.append('gender', gender);
+            formData.append('password', password);
 
-                yearOfExperience: yearOfExperience,
-                proofExperience: proofExperience,
-                profession: profession,
-                proofProfession: professionimg,
-                clinic: clinic,
-                about: about,
+            formData.append('yearOfExperience', yearOfExperience);
+            formData.append('profession', profession);
+            formData.append('clinic', clinic);
+            formData.append('about', about);
+            formData.append('points', JSON.stringify(points));
 
-                selectedTimes: selectedTimes,
-                imageSmall: imageSmall,
-                imageBig: imageBig,
-            };
+            formData.append('feesCall', callFee);
+            formData.append('feesVideoCall', videoCallFee);
+            formData.append('feesMessage', messageFee);
+            formData.append('feesInRealLife', inRealLifeFee);
 
+            formData.append('selectedTimes', JSON.stringify(selectedTimes));
+            formData.append('imageSmall', imageSmall);
+            formData.append('imageBig', imageBig);
+            formData.append('proofExperience', proofExperience);
+            formData.append('professionimg', professionimg);
+
+            console.log('Proof of Experience File:', formData.get('proofExperience'));
             // Send POST request using Axios
-            const response = await axios.post('http://localhost:3000/doctor/signup', postData);
+            const response = await axios.post(
+                'http://localhost:3000/doctor/signup',
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+            );
 
             // Handle response
             console.log('Response:', response.data);
-            console.log(response);
-            if (response.data.message === 'Signup successful!') { // Check for success response from backend
+            if (response.data.message === 'Signup successful!') {
                 navigate('/doc');
             } else {
-                console.error('Login failed:', response.data.message);
-                // Handle login failure (e.g., display error message)
+                console.error('Signup failed:', response.data.message);
             }
         } catch (error) {
             // Handle error
@@ -222,8 +242,7 @@ function DocSignUp() {
                                                 <br />
                                                 <label htmlFor="imgB">Proof of experience:</label>
                                                 <input
-                                                    value={proofExperience}
-                                                    onChange={(e) => setproofExperience(e.target.value)}
+                                                    onChange={(event) => setproofExperience(event.target.files[0])}
                                                     type="file"
                                                     id="imge"
                                                     name="experience"
@@ -240,8 +259,7 @@ function DocSignUp() {
                                                 <br />
                                                 <label htmlFor="imgB">Proof of profession:</label>
                                                 <input
-                                                    value={professionimg}
-                                                    onChange={(e) => setprofessionimg(e.target.value)}
+                                                    onChange={(event) => setprofessionimg(event.target.files[0])}
                                                     type="file"
                                                     id="imgp"
                                                     name="profession"
@@ -298,7 +316,10 @@ function DocSignUp() {
                                                     id="callFee"
                                                     name="feesCall"
                                                     placeholder='Call'
-                                                    required />
+                                                    value={callFee}
+                                                    onChange={(e) => setCallFee(e.target.value)}
+                                                    required
+                                                />
                                                 <br />
 
                                                 <input
@@ -306,8 +327,11 @@ function DocSignUp() {
                                                     type="number"
                                                     id="videoCallFee"
                                                     name="feesVideoCall"
-                                                    placeholder=' Video Call'
-                                                    required />
+                                                    placeholder='Video Call'
+                                                    value={videoCallFee}
+                                                    onChange={(e) => setVideoCallFee(e.target.value)}
+                                                    required
+                                                />
                                                 <br />
 
                                                 <input
@@ -316,7 +340,10 @@ function DocSignUp() {
                                                     id="messageFee"
                                                     name="feesMessage"
                                                     placeholder='Message'
-                                                    required />
+                                                    value={messageFee}
+                                                    onChange={(e) => setMessageFee(e.target.value)}
+                                                    required
+                                                />
                                                 <br />
 
                                                 <input
@@ -324,8 +351,11 @@ function DocSignUp() {
                                                     type="number"
                                                     id="inRealLifeFee"
                                                     name="feesInRealLife"
-                                                    placeholder='irl'
-                                                    required />
+                                                    placeholder='In Real Life'
+                                                    value={inRealLifeFee}
+                                                    onChange={(e) => setInRealLifeFee(e.target.value)}
+                                                    required
+                                                />
                                                 <br />
                                             </div>
                                         )}
@@ -361,8 +391,7 @@ function DocSignUp() {
                                                     type="file"
                                                     id="imgS"
                                                     name="imagesS"
-                                                    value={imageSmall}
-                                                    onChange={(e) => setImageSmall(e.target.value)}
+                                                    onChange={(e) => setImageSmall(e.target.files[0])}
                                                     required
 
                                                 /><br />
@@ -371,8 +400,7 @@ function DocSignUp() {
                                                     type="file"
                                                     id="imgB"
                                                     name="imagesB"
-                                                    value={imageBig}
-                                                    onChange={(e) => setImageBig(e.target.value)}
+                                                    onChange={(e) => setImageBig(e.target.files[0])}
                                                     required
 
                                                 />
