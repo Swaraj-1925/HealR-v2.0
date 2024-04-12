@@ -108,3 +108,6 @@ a{
     text-decoration: none;
     color: initial;
 }
+.user-keyPoints{
+    list-style:initial;
+}

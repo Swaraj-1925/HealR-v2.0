@@ -37,7 +37,11 @@
     color: #ffff;
     padding: 1.5vw 2vw;
     border: none;
-    width: 20vw;
+    width: 10vw;
+    margin: 5px;
     border-radius: 10px;
 }
- 
+.landingPageDoctor-button{
+    display: flex;
+    
+}

@@ -14,7 +14,7 @@ const Credential = connection.models.Credential;
 const secretKey = process.env.Secret;
 const jwt = require('jsonwebtoken');
 
-const uplode = require('./../../config/uplodeimg');
+const uplode = require('./../../config/uplodeimg').UploadImg;
 
 
 
@@ -37,16 +37,22 @@ async function Signup(userData, userfiles) {
     const link_experience = await uplode(img_experience, buffer_experience)
     const link_profession = await uplode(img_profession, buffer_profession)
 
+    const notVerified = await Doctor_verification.findOne({ username: userData.email, verified: "rejected" });
+    if (notVerified) {
+        throw new Error('not verified');
+    }
+
+
     const existingUser = await Credential.findOne({ username: userData.email, type: "doctor" });
     if (existingUser) {
-
         throw new Error('User exists');
-    } else {
+    }
+    else {
         try {
 
             const newDoctor = new Doctor({
                 name: userData.name,
-                username: userData.email, // Assuming email is used as username
+                username: userData.email, 
                 age: userData.age,
                 gender: userData.gender,
                 shortdescription: userData.points,
@@ -56,6 +62,13 @@ async function Signup(userData, userfiles) {
                 experience: {
                     years: userData.yearOfExperience,
                     profession: userData.profession,
+                },
+                fees: {
+                    message: userData.feesMessage,
+                    call: userData.feesCall,
+                    videoCall: userData.feesVideoCall,
+                    inClinic: userData.feesInRealLife
+
                 },
                 availability: 'public',
                 image: {
@@ -79,7 +92,8 @@ async function Signup(userData, userfiles) {
                 joiningDate: new Date()
             });
             await newCredential.save();
-        } catch (e) {
+        }
+        catch (e) {
             console.log("doc auth", e)
             throw new Error('error while saving user ');
         }

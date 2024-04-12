@@ -147,6 +147,22 @@ const Doctor_Schema = new mongoose.Schema({
         required: true,
         enum: ['public', 'private'],
     },
+    fees: {
+        type:{
+            message:{
+                type:String,
+            },
+            call:{
+                type:String,
+            },
+            videoCall:{
+                type:String,
+            },
+            inClinic:{
+                type:String,
+            },
+        }
+    },
     image: {
         type: {
             big: {
@@ -203,6 +219,33 @@ const Staff_Schema = new mongoose.Schema({
     },
 });
 
+// verify doctor
+const Doctor_verify = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        unique: true, // Ensure username is unique
+    },
+    profession: {
+        type: String,
+        required: true,
+    },
+    document: {
+        type: String,
+        required: true,
+    },
+    verified: {
+        type: String,
+        default: "rejected",
+        enum: ['accepted', 'rejected'],
+    },
+     
+    description: {
+        type: String,
+        default: "",
+    }
+
+});
 //   admin schema
 const Admin_Schema = new mongoose.Schema({
     username: {
@@ -239,6 +282,7 @@ const User = connection.model('User', User_Schema)
 const Doctor = connection.model('Doctor', Doctor_Schema);
 const Staff = connection.model('Staff', Staff_Schema);
 const Admin = connection.model('Admin', Admin_Schema);
+const Verification = connection.model('Verification', Doctor_verify);
 
 
 const createCollections = async () => {
@@ -248,6 +292,7 @@ const createCollections = async () => {
         await Doctor.createCollection();
         await Staff.createCollection();
         await Admin.createCollection();
+        await Verification.createCollection();
         console.log('Collections created successfully');
     } catch (err) {
         console.error('Error creating collections:- \n', err);

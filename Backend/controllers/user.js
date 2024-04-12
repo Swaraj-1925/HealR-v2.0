@@ -2,8 +2,9 @@ const Signup = require("./../services/user/auth").Signup;
 const Signin = require("./../services/user/auth").Signin;
 
 const Dashboard = require("./../services/user/dashboard");
-const Bookappoinment = require("./../services/user/bookappoinment");
- const Doc_description = require("../services/user/doctordescription");
+const Bookappoinment = require("./../services/user/bookappoinment").Bookappoinmet;
+const Doc_description = require("./../services/user/bookappoinment").Docdescription;
+ 
 
 
 
@@ -58,7 +59,7 @@ async function Bookappoinmet_Controller(req, res) {
 }
 async function Doc_description_Controller(req, res) {
     try {
-        const doc_description = Doc_description(req, res)
+        const doc_description = Doc_description(req,res)
     } catch (error) {
         console.log(error.message)
         res.status(500).json({ message: error.message });

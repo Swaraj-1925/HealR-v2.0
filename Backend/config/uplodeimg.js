@@ -6,24 +6,47 @@ const Connection_String = process.env.connection_String;
 const blobServiceClient = BlobServiceClient.fromConnectionString(Connection_String);
 
 const containerImg = process.env.CONTAINER_NAMEIMG;
-const containerClient = blobServiceClient.getContainerClient(containerImg);
+const containerVerifyImg = process.env.Container_Verify_Img;
+const containerClient1 = blobServiceClient.getContainerClient(containerImg);
+const containerClient2 = blobServiceClient.getContainerClient(containerVerifyImg);
 
 
 async function UploadImg(blobName, imageBuffer) {
     const fileName = `image-${Date.now()}.${blobName}`;
 
-    const blobClient = containerClient.getBlockBlobClient(fileName);
+    const blobClient = containerClient1.getBlockBlobClient(fileName);
 
     const uploadBlobResponse = await blobClient.uploadData(imageBuffer, {
         blobHTTPHeaders: {
             blobContentType: 'image/jpeg' // Set the content type of the blob
         }
     });
-    const blobUrl = blobClient.url;
+     
 
-    return blobUrl;
+    return blobClient.url;
 
 
 
 }
-module.exports = UploadImg
+
+async function VerifyUploadImg(blobName, imageBuffer) {
+    const fileName = `image-${Date.now()}.${blobName}`;
+
+    const blobClient = containerClient2.getBlockBlobClient(fileName);
+
+    const uploadBlobResponse = await blobClient.uploadData(imageBuffer, {
+        blobHTTPHeaders: {
+            blobContentType: 'image/jpeg' // Set the content type of the blob
+        }
+    });
+    
+    return blobClient.url;
+
+
+
+}
+module.exports = {
+    UploadImg,
+    VerifyUploadImg
+
+}

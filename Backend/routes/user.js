@@ -6,7 +6,7 @@ const UserSignin = require('./../controllers/user').Signincontroller;
 const UserDashboard = require('./../controllers/user').Dashboardcontroller;
 
 const Bookappoinmet = require('./../controllers/user').Bookappoinmet_Controller;
-const  Doc_description = require('./../controllers/user').Doc_description_Controller;
+const Doc_description = require('./../controllers/user').Doc_description_Controller;
 
 const auth = require('./../config/middleware');
 
@@ -17,6 +17,6 @@ router.post("/signin", UserSignin);
 router.get("/dashboard", auth, UserDashboard);
 
 router.get("/bookappoinmet", Bookappoinmet);
-router.get("/doc_description", Doc_description);
+router.post("/docDescription", Doc_description);
 
 module.exports = router;

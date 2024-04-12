@@ -15,6 +15,7 @@ import Doc_layout from './Doctor/LandingPage/Layout/doc-layout';
 import Doc_landingPage from './Doctor/LandingPage/body/doc_landingPage';
 import Doc_signUp from './Doctor/LandingPage/Layout/doc-signup';
 import Doc_signIn from './Doctor/LandingPage/Layout/doc-signin';
+import Doc_verify from './Doctor/LandingPage/Layout/doc-verify.jsx';
 
 
 import Doc_home_layout from './Doctor/Dashboard/layout/layout.jsx';
@@ -44,7 +45,7 @@ const App = () => {
                 <Route path="/dashboard" element={<DashLayout />}>
                     <Route index element={<ClientHomePage />} />
                     <Route path="/dashboard/book-appoinmet" element={<BookAppointment />} />
-                    <Route path="/dashboard/doctordes" element={<DoctorDescription />} />
+                    <Route path="/dashboard/book-appoinmet/doc:id" element={<DoctorDescription />} />
                 </Route>
 
 
@@ -52,6 +53,7 @@ const App = () => {
                     <Route index element={<Doc_landingPage />} />
                     <Route path='doc-signup' element={<Doc_signUp />} />
                     <Route path='doc-signin' element={<Doc_signIn />} />
+                    <Route path='doc-verify' element={<Doc_verify />} />
                     <Route path="#doc-home" element={<Doc_landingPage />} />
                     <Route path="home" element={<Doc_home />} />
                 </Route>

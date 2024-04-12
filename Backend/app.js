@@ -9,6 +9,8 @@ const bodyParser = require('body-parser');
 
 const userRoutes = require('./routes/user');
 const doctorRoutes = require('./routes/doctor');
+const adminRoutes = require('./routes/admin');
+
 
 var multer = require('multer');
  
@@ -16,17 +18,18 @@ const upload = multer();
 
 // Middleware to log the multipart/form-data
 
- 
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+
 const cookieParser = require('cookie-parser');
 
 
 const app = express();
 app.use(upload.any());
-app.use(cors());
 app.use(cors({
-    origin: 'http://localhost:5173',  
-    credentials: true // Allow credentials
-  }));
+  origin: 'http://localhost:5173', // Allow requests from this origin
+  credentials: true // Allow credentials (cookies, authorization headers, etc.)
+}));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -39,6 +42,7 @@ app.use(cookieParser())
 // routes
 app.use('/user', userRoutes);  
 app.use('/doctor',doctorRoutes );  
+app.use('/admin',adminRoutes );  
   
 
 

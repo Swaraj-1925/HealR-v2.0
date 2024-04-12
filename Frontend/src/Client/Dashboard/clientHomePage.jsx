@@ -21,7 +21,7 @@ function ClientHomePage() {
                 const userData = response.data;
                 setUsername(userData.user);
                 setClosestAppointment(userData.docObj);
-                c
+                
 
             } catch (error) {
                 console.error('Error fetching user data:', error);
@@ -92,7 +92,7 @@ function ClientHomePage() {
                 </div>
             </div>
         </>
-       
+
     );
 }
 

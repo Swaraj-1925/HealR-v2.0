@@ -3,20 +3,44 @@ import experience from './style/images/experience.png';
 import review from './style/images/review.png';
 import temp from './style/images/image.png';
 import './style/clientDoctorDescription.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BookAppointmentPopUp from './clientPopupBookAppoinment';
 
 import Popup from 'reactjs-popup';
 
-
+import { useParams } from 'react-router-dom';
 
 function DoctorDescription() {
-
+    const { parameter } = useParams();
+    console.log("parameter", parameter)
     const [seen, setSeen] = useState(false)
 
     function togglePop() {
         setSeen(!seen);
     }
+    useEffect(() => {
+
+        const fetchdocdetails = async () => {
+
+            try {
+                const response = await axios.get('http://localhost:3000/user/dashboard', {
+                    withCredentials: true
+                });
+                const userData = response.data;
+                console.log(userData)
+                
+
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                // setError(error);
+            } finally {
+                // setIsLoading(false);
+            }
+        };
+        fetchdocdetails();
+
+
+    }, []);
 
     return (
         <>
