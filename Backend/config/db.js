@@ -64,7 +64,7 @@ const User_Schema = new mongoose.Schema({
             required: true,
         },
         time: {
-            type: Date, // Consider using Date object for time manipulation
+            type: Date, 
             required: true,
         },
         default: [],
@@ -101,10 +101,6 @@ const Doctor_Schema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true, // Ensure username is unique
-    },
-    verified: {
-        type: Boolean,
-        default: false // Default value is false
     },
     verifiedBy: {
         type: String,
@@ -193,7 +189,7 @@ const Staff_Schema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        unique: true, // Ensure username is unique
+        unique: true, 
     },
     name: {
         type: String,
@@ -207,7 +203,7 @@ const Staff_Schema = new mongoose.Schema({
         required: true,
     },
     identityProof: {
-        type: String, // URL or path to the identity proof document
+        type: String,  
         required: true,
     },
     yearsOfExperience: {
@@ -215,7 +211,7 @@ const Staff_Schema = new mongoose.Schema({
         required: true,
     },
     hiredBy: {
-        type: String, // Username of the staff member who hired this staff (optional)
+        type: String, 
     },
 });
 

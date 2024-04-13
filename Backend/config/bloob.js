@@ -21,19 +21,12 @@ async function UploadImg(blobName, imageBuffer) {
             blobContentType: 'image/jpeg' // Set the content type of the blob
         }
     });
-     
-
     return blobClient.url;
-
-
-
 }
 
 async function VerifyUploadImg(blobName, imageBuffer) {
     const fileName = `image-${Date.now()}.${blobName}`;
-
     const blobClient = containerClient2.getBlockBlobClient(fileName);
-
     const uploadBlobResponse = await blobClient.uploadData(imageBuffer, {
         blobHTTPHeaders: {
             blobContentType: 'image/jpeg' // Set the content type of the blob
@@ -41,12 +34,20 @@ async function VerifyUploadImg(blobName, imageBuffer) {
     });
     
     return blobClient.url;
-
-
-
 }
+async function deleteBlob(oldUrl) {
+
+    const parts = oldUrl.split('/');
+    const blobName = parts[parts.length - 1];
+
+    const blobClient = containerClient2.getBlobClient(blobName);
+    await blobClient.delete();
+   
+}
+
 module.exports = {
     UploadImg,
-    VerifyUploadImg
+    VerifyUploadImg,
+    deleteBlob
 
 }

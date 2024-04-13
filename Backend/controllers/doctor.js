@@ -7,7 +7,7 @@ const Verify =require('./../services/doctor/verify')
 async function Verifycontroller(req, res) {
 
     try {
-        console.log(req)
+       
         const userData = req.body;
         const userfiles = req.files;
         const user = await Verify(userData,userfiles);
@@ -26,18 +26,25 @@ async function Verifycontroller(req, res) {
 async function Signupcontroller(req, res) {
 
     try {
-        console.log(req)
         const userData = req.body;
         const userfiles = req.files;
-        const user = await Signup(userData,userfiles);
-
+         await Signup(userData,userfiles);
         res.status(201).json({ message: "Successfully" });
 
-
-
     } catch (error) {
-        console.log(error)
-        res.status(400).json({ message: error.message });
+        
+        console.error(error);
+        let errorMessage = "An error occurred while signing up";
+        if (error.message === "not verified") {
+            errorMessage = "User not verified";
+        } else if (error.message.startsWith("rejected")) {
+            errorMessage = error.message;
+        } else if (error.message === "User exists") {
+            errorMessage = "User already exists";
+        } else {
+            errorMessage = error.message;
+        }
+        res.status(400).json({ message: errorMessage })
     }
 }
 

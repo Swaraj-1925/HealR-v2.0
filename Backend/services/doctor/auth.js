@@ -9,19 +9,19 @@ const validPassword = require('../../config/Password').validPassword;
 const connection = require('./../../config/db');
 const Doctor = connection.models.Doctor;
 const Credential = connection.models.Credential;
+const Doctor_verification = connection.models.Verification;
 
 
 const secretKey = process.env.Secret;
 const jwt = require('jsonwebtoken');
 
-const uplode = require('./../../config/uplodeimg').UploadImg;
+const uplode = require('./../../config/bloob').UploadImg;
 
 
 
 async function Signup(userData, userfiles) {
 
 
-    console.log(userData)
     const img_small = userfiles[0].fieldname;
     const img_big = userfiles[1].fieldname;
     const img_experience = userfiles[2].fieldname;
@@ -37,11 +37,16 @@ async function Signup(userData, userfiles) {
     const link_experience = await uplode(img_experience, buffer_experience)
     const link_profession = await uplode(img_profession, buffer_profession)
 
-    const notVerified = await Doctor_verification.findOne({ username: userData.email, verified: "rejected" });
+    const notVerified = await Doctor_verification.findOne({ username: userData.email, verified: "rejected", description: '' });
     if (notVerified) {
         throw new Error('not verified');
     }
+    const rejected = await Doctor_verification.findOne({ username: userData.email, verified: "rejected", description: { $ne: "" } });
+    if (rejected) {
+        const message =rejected.description
 
+        throw new Error(`rejected for resone :-  ${message}` );
+    }
 
     const existingUser = await Credential.findOne({ username: userData.email, type: "doctor" });
     if (existingUser) {

@@ -8,8 +8,7 @@ const Doctor_req = connection.models.Verification
 
 async function Doctor_verification(userData, res) {
     try {
-        const verifiedreq = await Doctor_req.find({ verified: 'rejected' }).select('username profession document');;
-        console.log(verifiedreq)
+        const verifiedreq = await Doctor_req.find({ verified: 'rejected' }).select('username profession document');
         res.status(200).json(verifiedreq); 
     } catch (error) {
         
