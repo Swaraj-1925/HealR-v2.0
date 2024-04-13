@@ -1,5 +1,9 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+
+import AdminDocPopUp from './admin-docPopup';
+import RejectPopup from './admin-rejeactPopup.jsx'; // Corrected import statement
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,11 +12,13 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import AdminDocPopUp from './admin-docPopup';
+ 
 
 export default function CustomizedTable() {
   const [rows, setRows] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [showRejectPopup, setShowRejectPopup] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null); // Define selectedUser state
 
   useEffect(() => {
     // Make GET request to fetch data
@@ -21,7 +27,7 @@ export default function CustomizedTable() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/admin/docverication'); // Change the URL to your backend endpoint
+      const response = await axios.get('http://localhost:3000/admin/docverication');
       setRows(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -36,13 +42,27 @@ export default function CustomizedTable() {
     setSelectedImage(null);
   };
 
-  const handleAccept = (row) => {
-    console.log(`Accepted: ${row.username}`);
+  const handleAccept = async (row) => {
+    
+    const username = row.username;
+
+    try {
+      const response = await axios.put('http://localhost:3000/admin/acceptReq', { username });
+      console.log(response);
+      if (response.status === 200) {
+        window.location.reload();
+      }
+    } catch (error) {
+      alert("Error has occurred! Try again");
+      console.error('Error updating data:', error);
+    }
   };
 
   const handleSendBack = (row) => {
-    console.log(`Sent back: ${row.name}`);
-  }
+    setSelectedUser(row.username);
+    console.log(row.username)
+    setShowRejectPopup(true);
+  };
 
   return (
     <TableContainer component={Paper} style={{ width: '90%', margin: '5vw' }}>
@@ -65,10 +85,10 @@ export default function CustomizedTable() {
               </TableCell>
               <TableCell align="right">{row.profession}</TableCell>
               <TableCell align="center" style={{ padding: '8px 4px' }}>
-                <Button variant="contained" color="primary" onClick={() => handleAccept(row)}>
+                <Button variant="contained" color="info" onClick={() => handleAccept(row)}>
                   Accept
                 </Button>
-                <Button style={{ margin: '5px' }} variant="contained" color="secondary" onClick={() => handleSendBack(row)}>
+                <Button style={{ margin: '5px' }} variant="contained" color="error" onClick={() => handleSendBack(row)}>
                   Reject
                 </Button>
               </TableCell>
@@ -77,6 +97,7 @@ export default function CustomizedTable() {
         </TableBody>
       </Table>
       {selectedImage && <AdminDocPopUp imageURL={selectedImage} onClose={handleClosePopUp} />}
+      {showRejectPopup && <RejectPopup onClose={() => setShowRejectPopup(false)} selectedUser={selectedUser} />} {/* Pass selectedUser to RejectPopup */}
     </TableContainer>
   );
 }

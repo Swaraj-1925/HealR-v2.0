@@ -120,12 +120,12 @@ function DocSignUp() {
             console.log('Response:', response.data);
             if (response.data.message === 'Signup successful!') {
                 navigate('/doc');
-            } else {
-                console.error('Signup failed:', response.data.message);
-            }
+            }  
+
         } catch (error) {
-            // Handle error
+
             console.error('Error:', error);
+            alert(error.response.data.message);
         }
     };
 
