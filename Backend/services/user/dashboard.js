@@ -4,7 +4,7 @@ const Doctor = connection.models.Doctor;
 
 async function Dashboard(req, res) {
     try {
-        const existingUser = await User.findOne({ patientUsername: req.user.email });
+        const existingUser = await User.findOne({ patientUsername: req.user });
 
         if (!existingUser) {
             throw new Error('User not found');

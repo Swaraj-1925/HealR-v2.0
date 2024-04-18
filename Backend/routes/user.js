@@ -7,6 +7,8 @@ const UserDashboard = require('./../controllers/user').Dashboardcontroller;
 
 const Bookappoinmet = require('./../controllers/user').Bookappoinmet_Controller;
 const Doc_description = require('./../controllers/user').Doc_description_Controller;
+const Doc_appoinmentdata = require('./../controllers/user').Doc_description_Appoinmentdata_Controller;
+const Scheduleappointment = require('./../controllers/user').Doc_Schedule_appointment_Controller;
 
 const auth = require('./../config/middleware');
 
@@ -17,6 +19,9 @@ router.post("/signin", UserSignin);
 router.get("/dashboard", auth, UserDashboard);
 
 router.get("/bookappoinmet", Bookappoinmet);
-router.post("/docDescription", Doc_description);
+router.get("/docDescription/:doctorId", Doc_description);
+router.get("/docAppoinmentdata/:doctorId", Doc_appoinmentdata);
+
+router.post("/docAppoinmentdatapost/:doctorId", auth,Scheduleappointment);
 
 module.exports = router;
