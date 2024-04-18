@@ -11,13 +11,14 @@ function ClientHomePage() {
     const [closestAppointment, setClosestAppointment] = useState(null);
 
     useEffect(() => {
-
+ 
         const fetchUserName = async () => {
 
             try {
                 const response = await axios.get('http://localhost:3000/user/dashboard', {
                     withCredentials: true
-                });
+                },
+            );
                 const userData = response.data;
                 setUsername(userData.user);
                 setClosestAppointment(userData.docObj);

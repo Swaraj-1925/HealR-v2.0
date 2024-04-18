@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Docverify() {
   const [email, setEmail] = useState('');
   const [profession, setProfession] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileName, setFileName] = useState('');
+  const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -15,6 +17,10 @@ function Docverify() {
     const fileName = file ? file.name : '';
     setFileName(fileName);
   };
+  useEffect(() => {
+    console.log('Email:', email);
+    console.log('Profession:', profession);
+  }, [email, profession, selectedFile]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,24 +29,26 @@ function Docverify() {
       const formData = new FormData();
       formData.append('email', email);
       formData.append('profession', profession);
-      formData.append('file', selectedFile); // Assuming selectedFile is the file selected by the user
+      formData.append('file', selectedFile);
 
       const response = await axios.post('http://localhost:3000/doctor/verify', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
-        if(response.data.message==="Successfully"){
-          alert("Request has been sent!! try to signup after few days to check if your verified ")
-          window.location.reload();
-        }
-      console.log('Response from server:', response.data);
-      // Handle success response from server
 
+      if (response.data.message === "Successfully") {
+        alert("Request has been sent! You may try signing up as a doctor after a few days to check your verification status.");
+        navigate('/doctor');
+      } else {
+        alert("Error: " + response.data.message);
+      }
     } catch (error) {
-      console.error('Error:', error);
-      // Handle error
+      console.error("Error submitting verification request:", error);
+      // Handle errors gracefully (e.g., display a generic error message)
+      alert("An error occurred while submitting your request. Please try again later.");
     }
+
   };
 
 
@@ -58,7 +66,7 @@ function Docverify() {
           <form className="mt-8 space-y-3" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 space-y-2">
               <label className="text-sm font-bold text-gray-500 tracking-wide">Email</label>
-              <input className="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500" type="email" placeholder="mail@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+              <input className="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500" type="email" placeholder="mail@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
             </div>
             <div className="grid grid-cols-1 space-y-2">
               <label className="text-sm font-bold text-gray-500 tracking-wide">Profession</label>
@@ -73,13 +81,13 @@ function Docverify() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
                     <div className="flex flex-auto max-h-48 w-2/5 mx-auto -mt-10">
-                      
+
                     </div>
                     <p className="pointer-none text-gray-500">
                       {fileName ? `Selected file: ${fileName}` : 'No file selected'}
                     </p>
                   </div>
-                  <input type="file" className="hidden" onChange={handleFileChange}  required />
+                  <input type="file" className="hidden" onChange={handleFileChange} required />
                 </label>
               </div>
             </div>

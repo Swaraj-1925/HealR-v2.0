@@ -11,28 +11,27 @@ function SignIn() {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate(); // Utilize useNavigate hook
-
     function postData() {
-        axios.post('http://localhost:3000/user/signin', {
+        axios.post('http://localhost:3000/user/signin', { 
             username: name,
             password: password
+        }, {
+            withCredentials: true
         })
-            .then(function (response) {
-                console.log(response);
-                if (response.data.message === 'Successfully') { // Check for success response from backend
-                    const expirationTime = new Date(Date.now() + 20 * 24 * 60 * 60 * 1000);
-                // Save token to cookies with expiration time
-                document.cookie = `token=${response.data.token}; expires=${expirationTime.toUTCString()}; path=/dashboard`;
-                    navigate('/dashboard'); // Redirect to dashboard on successful login
-                } else {
-                    console.error('Login failed:', response.data.message);
-                    // Handle login failure (e.g., display error message)
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        .then(function (response) {
+            console.log(response);
+            if (response.data.message === 'Successfully') {
+                navigate('/dashboard'); 
+            } else {
+                console.error('Login failed:', response.data.message);
+                // Handle login failure (e.g., display error message)
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
+    
 
     return (
         <>

@@ -3,13 +3,18 @@
 import './style/clientPopupBookAppoinment.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 function BookAppointmentPopUp({ toggle }) {
-
-
+  const { doctorId } = useParams();
   const temrsandcondtion = "/";
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+  const [selectedMethod, setSelectedMethod] = useState(null);
+
+
+
   const [availableTimeSlots, setAvailableTimeSlots] = useState([
     { time: '10:00 AM' },
     { time: '11:00 AM' },
@@ -20,20 +25,64 @@ function BookAppointmentPopUp({ toggle }) {
     { time: '5:00 PM' },
 
   ]);
+  useEffect(() => {
+    const fetchAvailableTimeSlots = async () => {
+      if (selectedDate) { // Check if selectedDate has a value
+        try {
+          const response = await axios.get(
+            `http://localhost:3000/user/availableTimeSlots/${doctorId}`,  // Replace with your actual endpoint
+            {
+              params: { selectedDate: selectedDate.toISOString() }, // Add selected date as query parameter
+              withCredentials: true, // Send credentials along with the request
+            }
+          );
+  
+          setAvailableTimeSlots(response.data); // Update available time slots based on response
+        } catch (error) {
+          console.error('Error fetching available time slots:', error);
+        }
+      }
+    };
+  
+    fetchAvailableTimeSlots();
+  }, [selectedDate]); 
+  
+  const handleSubmit = async () => {
+    console.log(selectedDate)
+    try {
+      const response = await axios.post(`http://localhost:3000/user/docAppoinmentdatapost/${doctorId}`, {
+        selectedDate,
+        selectedTimeSlot,
+        selectedMethod
+      }, {
+        withCredentials: true // Send credentials along with the request
+      });
 
-  // eslint-disable-next-line no-unused-vars
-  const handleDateClick = (date) => {
-    setSelectedDate(date);
-     
+      console.log(response.data);
+
+      // Redirect to '/doctor' after successful response
+      history.push('/doctor');
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
+
+  const handleDateClick = (date) => {
+    console.log(date)
+    setSelectedDate(date);
+
+  };
+  const handleMethodChange = (method) => {
+    setSelectedMethod(method); // Update selected method
+  };
   const getCalendarDays = () => {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const today = new Date();
     const calendarDays = [];
 
     // Add calendar days for today and the next 29 days
-    for (let i = 0; i < 30; i++) {
+    for (let i = 1; i < 30; i++) {
       const date = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
       const dayName = days[date.getDay()];
       calendarDays.push({ dayName, date });
@@ -41,37 +90,36 @@ function BookAppointmentPopUp({ toggle }) {
 
     return calendarDays;
   };
-
   const renderCalendarDay = (dayObj) => {
     if (!dayObj) {
       return <div className="calendar-day-empty"></div>;
     }
-
-    const isSelected = selectedDate.getDate() === dayObj.date.getDate() &&
+  
+    const isSelected =
+      selectedDate.getDate() === dayObj.date.getDate() &&
       selectedDate.getMonth() === dayObj.date.getMonth() &&
       selectedDate.getFullYear() === dayObj.date.getFullYear();
-    const selectedDateStyle = isSelected ? { backgroundColor: '#FFC94A', color: 'balck' } : {};
+    const selectedDateStyle = isSelected ? { backgroundColor: '#FFC94A', color: 'black' } : {};
     return (
-      <div key={dayObj.date} className={`Bookappoinment-calender-calendar-day${isSelected ? ' selected' : ''} `} style={selectedDateStyle} onClick={() => handleDateClick(dayObj.date)}>
+      <div
+        key={dayObj.date}
+        className={`Bookappoinment-calender-calendar-day${isSelected ? ' selected' : ''} `}
+        style={selectedDateStyle}
+        onClick={() => handleDateClick(new Date(dayObj.date))}
+      >
         <div className="Bookappoinment-calender-day-name">{dayObj.dayName}</div>
         <div className="Bookappoinment-calender-date">{dayObj.date.getDate()}</div>
       </div>
     );
   };
-  console.log(selectedDate);
-
-  // section of time slots code
-
-
-
+  
   const handleTimeSlotChange = (timeSlot) => {
     setSelectedTimeSlot(timeSlot); // Update selected time slot
   };
 
   const getAvailableTimeSlots = () => {
-    // Replace this logic with your own to filter available time slots based on selected date
+  
     return availableTimeSlots.filter(slot => {
-      // For demonstration, let's assume all slots are available for the selected date
       return true;
     });
   };
@@ -92,7 +140,6 @@ function BookAppointmentPopUp({ toggle }) {
           <div className="client-Bookappoinment-calender-gridcontainer">
             <div className="Bookappoinment-calender-gridcontainer-calendar-month">
               <h2>{selectedDate.toLocaleDateString('en-US', { month: 'long', })}</h2>
-              {/* <h2>Selected Date: {selectedDate.getDate()}</h2> */}
             </div>
             <div className="Bookappoinment-calender-gridcontainer-calendar-datesWeek">
               {getCalendarDays(selectedDate).map(renderCalendarDay)}
@@ -120,7 +167,14 @@ function BookAppointmentPopUp({ toggle }) {
 
               <div className="radio-inputs">
                 <label>
-                  <input className="radio-input" type="radio" name="engine" />
+                  <input
+                    className="radio-input"
+                    type="radio"
+                    name="method"
+                    value="Message"
+                    checked={selectedMethod === "Message"}
+                    onChange={() => handleMethodChange("Message")}
+                  />
                   <span className="radio-tile">
                     <span className="radio-icon">
                       <svg
@@ -157,22 +211,34 @@ function BookAppointmentPopUp({ toggle }) {
                   </span>
                 </label>
                 <label>
-                  <input className="radio-input" type="radio" name="engine" />
+                  <input
+                    className="radio-input"
+                    type="radio"
+                    name="method"
+                    value="Call"
+                    checked={selectedMethod === "Call"}
+                    onChange={() => handleMethodChange("Call")}
+                  />
+
                   <span className="radio-tile">
                     <span className="radio-icon">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M21.384,17.752a2.108,2.108,0,0,1-.522,3.359,7.543,7.543,0,0,1-5.476.642C10.5,20.523,3.477,13.5,2.247,8.614a7.543,7.543,0,0,1,.642-5.476,2.108,2.108,0,0,1,3.359-.522L8.333,4.7a2.094,2.094,0,0,1,.445,2.328A3.877,3.877,0,0,1,8,8.2c-2.384,2.384,5.417,10.185,7.8,7.8a3.877,3.877,0,0,1,1.173-.781,2.092,2.092,0,0,1,2.328.445Z" />
                       </svg>
                     </span>
-                    <span className="radio-label">Message</span>
+                    <span className="radio-label">Call</span>
                     <span className="radio-label">200</span>
                   </span>
                 </label>
-
-
-
                 <label>
-                  <input className="radio-input" type="radio" name="engine" />
+                  <input
+                    className="radio-input"
+                    type="radio"
+                    name="method"
+                    value="Video call"
+                    checked={selectedMethod === "Video_call"}
+                    onChange={() => handleMethodChange("Video_call")}
+                  />
                   <span className="radio-tile">
                     <span className="radio-icon">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
@@ -192,7 +258,14 @@ function BookAppointmentPopUp({ toggle }) {
                   </span>
                 </label>
                 <label>
-                  <input className="radio-input" type="radio" name="engine" />
+                  <input
+                    className="radio-input"
+                    type="radio"
+                    name="method"
+                    value="In Clinic"
+                    checked={selectedMethod === "In_Clinic"}
+                    onChange={() => handleMethodChange("In_Clinic")}
+                  />
                   <span className="radio-tile">
                     <span className="radio-icon">
                       <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0">
@@ -215,7 +288,7 @@ function BookAppointmentPopUp({ toggle }) {
             <label htmlFor="vehicle1"> accept terms and condition,click <Link style={{ color: 'blue' }} to={temrsandcondtion}>here</Link> to read them
             </label>
           </div>
-          <button className='client-bookAppoinment-Payment '>Payment</button>
+          <button onClick={handleSubmit} className='client-bookAppoinment-Payment '>Payment</button>
         </div>
 
       </section>

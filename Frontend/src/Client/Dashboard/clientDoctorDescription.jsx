@@ -1,47 +1,40 @@
-import patient from './style/images/patient.png';
-import experience from './style/images/experience.png';
-import review from './style/images/review.png';
-import temp from './style/images/image.png';
-import './style/clientDoctorDescription.css';
+import axios from 'axios';
 import { useEffect, useState } from 'react';
-import BookAppointmentPopUp from './clientPopupBookAppoinment';
-
 import Popup from 'reactjs-popup';
-
 import { useParams } from 'react-router-dom';
 
+import BookAppointmentPopUp from './clientPopupBookAppoinment';
+
+import './style/clientDoctorDescription.css';
+import experience from './style/images/experience.png';
+import patient from './style/images/patient.png';
+import review from './style/images/review.png';
+
+
 function DoctorDescription() {
-    const { parameter } = useParams();
-    console.log("parameter", parameter)
+    const { doctorId } = useParams();
     const [seen, setSeen] = useState(false)
+    const [userData, setuserData] = useState("")
 
     function togglePop() {
         setSeen(!seen);
     }
     useEffect(() => {
-
-        const fetchdocdetails = async () => {
-
+        const fetchDocDetails = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/user/dashboard', {
+                const response = await axios.get(`http://localhost:3000/user/docDescription/${doctorId}`, {
                     withCredentials: true
                 });
-                const userData = response.data;
+                setuserData(response.data.docData)  
                 console.log(userData)
-                
-
             } catch (error) {
                 console.error('Error fetching user data:', error);
-                // setError(error);
-            } finally {
-                // setIsLoading(false);
-            }
+                
+            }  
         };
-        fetchdocdetails();
-
-
-    }, []);
-
+        fetchDocDetails();
+    }, [doctorId]);
+    
     return (
         <>
             <div className="clientDoctorDescription-wrapper">
@@ -51,12 +44,12 @@ function DoctorDescription() {
                         <div className="doctorDescription-gridItem doctorDescription-gridContainer2">
 
                             <div className="doctorDescription-gridContainer2-item doctorDescription-img">
-                                <img src={temp} alt="" />
+                                <img src={userData.imageB}  alt="" />
                             </div>
                             <div className="doctorDescription-gridContainer2-item doctorDescription-name-Proffecsion-flex">
                                 <div className="doctorDescription-name-Proffecsion-flexcontainer">
-                                    <h2>Dr. Jonathan Rivers</h2>
-                                    <h3>Clinical Psychologist</h3>
+                                    <h2>Dr. {userData.name}   </h2>
+                                    <h3>  {userData.profession}  </h3>
                                     <div className='doctorDescription-clinicLocation'> <svg
                                         fill="#000000"
                                         version="1.1"
@@ -74,7 +67,7 @@ function DoctorDescription() {
                                             />
                                         </g>
                                     </svg>
-                                    <p>SKIN BLISS CLINIC FIRST FLOOR SATYAM ARCADE, Viman Nagar,Viman Nagar, Pune - 411014  </p>
+                                    <p>{userData.clinicLocation} </p>
                                     </div>
                                 </div>
                                 <div className="doctorDescription-name-Proffecsion">
@@ -91,7 +84,7 @@ function DoctorDescription() {
                                             <path d="M21.384,17.752a2.108,2.108,0,0,1-.522,3.359,7.543,7.543,0,0,1-5.476.642C10.5,20.523,3.477,13.5,2.247,8.614a7.543,7.543,0,0,1,.642-5.476,2.108,2.108,0,0,1,3.359-.522L8.333,4.7a2.094,2.094,0,0,1,.445,2.328A3.877,3.877,0,0,1,8,8.2c-2.384,2.384,5.417,10.185,7.8,7.8a3.877,3.877,0,0,1,1.173-.781,2.092,2.092,0,0,1,2.328.445Z" />
                                         </svg>
                                     </div>
-                                    <div>300</div>
+                                    <div>{userData.feesc}</div>
                                 </div>
                                 <div className="allPricese-doctor-flexitem doctorPrice-videoCall">
                                     <div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
@@ -106,7 +99,7 @@ function DoctorDescription() {
                                         </g>
                                     </svg>
                                     </div>
-                                    <div>300</div>
+                                    <div>{userData.feesvc}</div>
                                 </div>
                                 <div className="allPricese-doctor-flexitem doctorPrice-message">
                                     <div><svg
@@ -132,7 +125,7 @@ function DoctorDescription() {
                                         </g>
                                     </svg>
                                     </div>
-                                    <div>300</div>
+                                    <div>{userData.feesM}</div>
                                 </div>
                                 <div className="allPricese-doctor-flexitem doctorPrice-clinic">
                                     <div>
@@ -140,7 +133,7 @@ function DoctorDescription() {
                                             <path d="m66.57 54.617c-4.8047 3.0117-10.488 4.7578-16.57 4.7578-6.0859 0-11.762-1.7422-16.555-4.7734-1.4922-0.96094-3.2539-1.4766-5.0508-1.4766h-0.27344c-8.6289 0-15.625 6.9961-15.625 15.625v12.5c0 4.1445 1.6484 8.1172 4.5742 11.051 2.9297 2.9297 6.9062 4.5742 11.051 4.5742h43.75c4.1445 0 8.1172-1.6484 11.051-4.5742 2.9297-2.9297 4.5742-6.9062 4.5742-11.051v-12.5c0-8.6289-6.9961-15.625-15.625-15.625-0.17578 0-0.34766 0.007812-0.51953 0.023438-1.6836 0.039062-3.3438 0.55078-4.7852 1.4688zm-16.57-51.492c-13.797 0-25 11.203-25 25s11.203 25 25 25 25-11.203 25-25-11.203-25-25-25z" fillRule="evenodd" />
                                         </svg>
                                     </div>
-                                    <div>1000</div>
+                                    <div>{userData.feesCli}</div>
                                 </div>
                                 <div className="allPricese-doctor-flexitem doctorClient report">
                                     <div>
@@ -215,7 +208,7 @@ function DoctorDescription() {
 
                         <div className="doctorDescription-gridItem doctorDescription-About-flex">
                             <h2>About</h2>
-                            <p>Online therapy, also known as e-therapy, cyber-counseling, or teletherapy, represents a transformative evolution in mental health care delivery. In recent years, the rise of digital platforms and advancements in telecommunications technology have facilitated unprecedented access to therapeutic services, transcending geographical barriers and offering a spectrum of modalities tailored to individual needs. The essence of online therapy lies in its ability to provide confidential and convenient mental health support through various mediums, ranging from text-based messaging and video conferencing to phone calls and virtual reality environments. This paradigm shift has democratized mental health care, making it accessible to populations previously underserved due to factors such as remote location, physical disability, stigma, or time constraints. Moreover, online therapy offers flexibility in scheduling sessions, enabling clients to seek help without disrupting their daily routines or facing logistical challenges associated with traditional in-person appointments.         </p>
+                            <p>{userData.description}  </p>
                         </div>
 
                         <div className="doctorDescription-gridItem doctorDescription-RatingsAndReviews">

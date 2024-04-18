@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom'; 
 
 import star from './style/images/star.png';
-// import temp from './style/images/image.png';
-
 import './style/clientBookAppointment.css';
-import { Link } from 'react-router-dom';
+
 
 function BookAppointment() {
 
     const [doctors, setDoctors] = useState([]);
+    const navigate = useNavigate();
+    // const [doctorsinfo, setDoctorsinfo] = useState([]);
 
     useEffect(() => {
 
@@ -34,7 +34,12 @@ function BookAppointment() {
 
     }, []);
 
-   
+    async function Doc_description(docid) {
+        const url = `/dashboard/book-appoinmet/doctor/${docid}`;
+        navigate(url);
+    }
+    
+    
 
     return (
         <>
@@ -64,7 +69,7 @@ function BookAppointment() {
             <div className="bookAppointment-mainContainer-grid">
                 {doctors.map((doctor) => (
 
-                    <Link to={`/dashboard/book-appoinmet/doc:id${doctor._id}`} key={doctor._id}>
+                        <div key={doctor._id} onClick={() =>Doc_description(doctor._id)}>
 
                         <div className="bookAppoinment-cardContainer-grid">
                             <div className="bookAppoinment-cardItem bookAppoinment-cardItem-doctorImgdiv">
@@ -96,7 +101,7 @@ function BookAppointment() {
                                 {doctor.fees.message} /hr
                             </div>
                         </div>
-                    </Link>
+                        </div>  
                 ))}
             </div>
         </>

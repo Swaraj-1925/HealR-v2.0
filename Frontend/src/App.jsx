@@ -45,7 +45,7 @@ const App = () => {
                 <Route path="/dashboard" element={<DashLayout />}>
                     <Route index element={<ClientHomePage />} />
                     <Route path="/dashboard/book-appoinmet" element={<BookAppointment />} />
-                    <Route path="/dashboard/book-appoinmet/doc:id" element={<DoctorDescription />} />
+                    <Route path="/dashboard/book-appoinmet/doctor/:doctorId" element={<DoctorDescription />} />
                 </Route>
 
 

@@ -24,7 +24,7 @@ function SignUP() {
         setGender(event.target.value);
     };
     const handleDiscordChange = (event) => {
-        setDiscord(event.target.value);
+        setDiscord(event.target.value); 
     };
     function postData() {
         if (password != cpassword) { 
@@ -73,7 +73,7 @@ function SignUP() {
                         />
                         <input
                             className='signUp-flexContainerTwo-input'
-                            type="email"
+                            type="text"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="Email"
