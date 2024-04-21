@@ -25,16 +25,16 @@ function DoctorDescription() {
                 const response = await axios.get(`http://localhost:3000/user/docDescription/${doctorId}`, {
                     withCredentials: true
                 });
-                setuserData(response.data.docData)  
+                setuserData(response.data.docData)
                 console.log(userData)
             } catch (error) {
                 console.error('Error fetching user data:', error);
-                
-            }  
+
+            }
         };
         fetchDocDetails();
     }, [doctorId]);
-    
+
     return (
         <>
             <div className="clientDoctorDescription-wrapper">
@@ -44,7 +44,7 @@ function DoctorDescription() {
                         <div className="doctorDescription-gridItem doctorDescription-gridContainer2">
 
                             <div className="doctorDescription-gridContainer2-item doctorDescription-img">
-                                <img src={userData.imageB}  alt="" />
+                                <img src={userData.imageB} alt="" />
                             </div>
                             <div className="doctorDescription-gridContainer2-item doctorDescription-name-Proffecsion-flex">
                                 <div className="doctorDescription-name-Proffecsion-flexcontainer">
@@ -67,7 +67,7 @@ function DoctorDescription() {
                                             />
                                         </g>
                                     </svg>
-                                    <p>{userData.clinicLocation} </p>
+                                        <p>{userData.clinicLocation} </p>
                                     </div>
                                 </div>
                                 <div className="doctorDescription-name-Proffecsion">
@@ -152,7 +152,6 @@ function DoctorDescription() {
                                                             </button>
                                                         </div>
                                                         <div className='Client-Header-popup-content'>
-                                                            <p>We are sorry that you faced a problems during your time with us, we will be sure to work on it plese exaplain your problem bellow</p>
                                                             <div className='Client-Header-popup-content'>
                                                                 <input className='Client-Header-popup-content-input' type="text" name="newName" placeholder='Enter Report' />
                                                                 <button className='Client-Header-popup-content-button' type="submit">Report doctor</button>
@@ -162,7 +161,6 @@ function DoctorDescription() {
                                                 )
                                             }
                                         </Popup>
-
 
                                     </div>
 
@@ -212,9 +210,40 @@ function DoctorDescription() {
                         </div>
 
                         <div className="doctorDescription-gridItem doctorDescription-RatingsAndReviews">
-                            <h2>Ratings & Reviews</h2>
+                            <div className="button_review_add_flex">
+                                <h2>Ratings & Reviews</h2>
+                                <div >
+                                <Popup trigger=
+                                            { <div>
+                                                <button type="button">
+                                                &#10010;
+                                                </button>
+                                            </div>}
+                                            modal nested>
+                                            {
+                                                close => (
+                                                    <div className='Client-Header-popup' >
+                                                        <div>
+                                                            <button className='Client-Header-popup-closebutton' onClick=
+                                                                {() => close()}>&#10006;
+                                                            </button>
+                                                        </div>
+                                                        <div className='Client-Header-popup-content'>
+                                                             
+                                                            <div className='Client-Header-popup-content'>
+                                                                <input className='Client-Header-popup-content-input' type="text" name="newName" placeholder='Enter review' />
+                                                                <button className='Client-Header-popup-content-button' type="submit">Report doctor</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+                                        </Popup>
+                                        </div>
+                                
+                            </div>
 
-                            {/* review start */}
+
                             <div className='doctorDescription-RatingsAndReviews-gridWrapper'>
                                 <div className="doctorDescription-RatingsAndReviews-gridContainer">
                                     <div className="RatingsAndReviews-griditem doctorDescription-RatingsAndReviews-star">
@@ -243,7 +272,7 @@ function DoctorDescription() {
                                     </div>
                                 </div>
 
-                            </div> 
+                            </div>
                             {/* review end */}
 
                             {/* review start */}

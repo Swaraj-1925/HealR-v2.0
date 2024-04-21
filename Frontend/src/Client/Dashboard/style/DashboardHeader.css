@@ -67,34 +67,53 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 3vw;
-    background-color: rgba(206, 204, 59, 0.922);
-    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    background-color: white;
+    color: black;
+    max-width:40vw;
+    min-width:35vw;
+    border-radius: 8px;
+   
+}
+.Client-Header-popup-content h3{
+    margin-top:1.5vw ;
 }
 .Client-Header-popup-closebutton{
    position: absolute;
    right: 0px;
+   background-color: bisque;
    /* padding: 5px; */
+   margin: 0.3vw;
    
 }
 .Client-Header-popup-content-input{
-    margin: 5px;
+    margin-top: 1.5vw;
+    margin-bottom: 10px;
     padding: 0.8vw;
+    border: solid 2px black;
     border-radius: 5px;
     font-size: 1vw;
-    font-weight: 500;
+    width: 15vw;
+    color: gray;
+    font-weight: 400;
 }
+
 .Client-Header-popup-content-button{
-    margin: 5px;
+    
     padding: 0.5vw;
+    border: solid 2px black;
+    background-color: bisque;
     border-radius: 5px;
     font-size: 1vw;
+    margin-bottom: 2vw;
     font-weight: 500;
 }
 .client-header-popup-confimation button{
     margin: 10px;
+    margin-bottom: 1.5vw;
     padding: 1vw 2vw 1vw;
     font-size: 1vw;
+    border: solid 2px black;
     font-weight: 600;
     border-radius: 5px;
    

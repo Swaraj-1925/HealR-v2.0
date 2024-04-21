@@ -182,9 +182,9 @@ function BookAppointmentPopUp({ toggle }) {
                     className="radio-input"
                     type="radio"
                     name="method"
-                    value="Message"
-                    checked={selectedMethod === "Message"}
-                    onChange={() => handleMethodChange("Message")}
+                    value="message"
+                    checked={selectedMethod === "message"}
+                    onChange={() => handleMethodChange("message")}
                   />
                   <span className="radio-tile">
                     <span className="radio-icon">
