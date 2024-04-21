@@ -20,7 +20,7 @@ router.get("/dashboard", auth, UserDashboard);
 
 router.get("/bookappoinmet", Bookappoinmet);
 router.get("/docDescription/:doctorId", Doc_description);
-router.get("/docAppoinmentdata/:doctorId", Doc_appoinmentdata);
+router.get("/availableTimeSlots/:doctorId", Doc_appoinmentdata);
 
 router.post("/docAppoinmentdatapost/:doctorId", auth,Scheduleappointment);
 

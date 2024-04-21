@@ -60,11 +60,11 @@ const User_Schema = new mongoose.Schema({
             enum: ['call', 'videocall', 'message', 'irl'], // Allowed appointment types
         },
         date: {
-            type: Date,
+            type: String,
             required: true,
         },
         time: {
-            type: Date, 
+            type: String, 
             required: true,
         },
         default: [],
@@ -72,11 +72,6 @@ const User_Schema = new mongoose.Schema({
     reviews: [{ // Array of reviews
         doctorUsername: { // Username of the doctor
             type: String,
-            required: true,
-        },
-        doctorId: { // Reference to a doctor document
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Doctor', // Reference the Doctor model name
             required: true,
         },
         review: {
