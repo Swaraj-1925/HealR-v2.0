@@ -5,13 +5,17 @@ import Popup from 'reactjs-popup';
 
 import './../style/DashboardHeader.css';
 import Logo from './../style/images/logoBlack.png';
+import Cookies from 'js-cookie';
+
+
+
 
 function DashHeader() {
     const [open, setOpen] = useState(false);
 
- 
-    const [data ,setdata]=useState("")
-    const [toChange ,setToChange]=useState("")
+
+    const [data, setdata] = useState("")
+    const [toChange, setToChange] = useState("")
 
 
     useEffect(() => {
@@ -35,75 +39,58 @@ function DashHeader() {
 
 
 
-   
+
     const deleteAccount = () => {
-        axios.post('http://localhost:3000/user/Delete_account',  {
-            withCredentials: true
-        })
-        .then(function (response) {
-            console.log(response);
-            if (response.data.message === 'successfully') { 
-                alert("data updated successfully")
-                window.location.reload();
-            } else {
-                console.error('Login failed:', response.data.message);
-             
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        axios.post('http://localhost:3000/user/Delete_account', null, { withCredentials: true })
+            .then(function (response) {
+                console.log(response);
+                if (response.data.message === 'successfully') {
+                    alert("Account deleted successfully");
+                    window.location.href = '/';
+                } else {
+                    console.error('Delete account failed:', response.data.message);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+
+
+
+    function logOut() {
+        const jwtCookieName = 'token';
+        Cookies.remove(jwtCookieName);
+        window.location.href = '/sign-in';
     }
 
-
-    const logOut = () => {
-
-        axios.post('http://localhost:3000/user/logout',{
-            withCredentials: true
-        })
-        .then(function (response) {
-            console.log(response);
-            if (response.data.message === 'successfully') { 
-                alert("data updated successfully")
-                window.location.reload();
-            } else {
-                console.error('Login failed:', response.data.message);
-                // Handle login failure (e.g., display error message)
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-
-    }
 
     function postData() {
-        axios.post('http://localhost:3000/user/updateData', { 
+        axios.post('http://localhost:3000/user/updateData', {
             toChange: toChange,
             data: data
         }, {
             withCredentials: true
         })
-        .then(function (response) {
-            console.log(response);
-            if (response.data.message === 'successfully') { 
-                alert("data updated successfully")
-                window.location.reload();
-            } else {
-                console.error('Login failed:', response.data.message);
-                // Handle login failure (e.g., display error message)
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function (response) {
+                console.log(response);
+                if (response.data.message === 'successfully') {
+                    alert("data updated successfully")
+                    window.location.reload();
+                } else {
+                    console.error('Login failed:', response.data.message);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     return (
         <>
             <header className="dashboard-header-conatiner">
                 <div className="dashboard-header-item">
-                <Link to="/dashboard">   <img className='dashboard-header-img' src={Logo} alt="" /></Link> 
+                    <Link to="/dashboard">   <img className='dashboard-header-img' src={Logo} alt="" /></Link>
                 </div>
                 <div className="dashboard-header-item"><Link to="/dashboard">Home</Link></div>
                 <div className="dashboard-header-item"><Link to="book-appoinmet">Book Appoinment</Link></div>
@@ -125,17 +112,17 @@ function DashHeader() {
                                                 </button>
                                             </div>
                                             <div className='Client-Header-popup-content'>
-                                                <input className='Client-Header-popup-content-input' 
-                                                type="text" 
-                                                name="newName" 
-                                                value={data} 
-                                                onChange={(e) => {
-                                                    setdata(e.target.value);
-                                                    setToChange("name");
-                                                   
-                                                  }}
-                                                placeholder='Enter your new name' />
-                                                <button className='Client-Header-popup-content-button'onClick={() => postData()}>Change Name</button>
+                                                <input className='Client-Header-popup-content-input'
+                                                    type="text"
+                                                    name="newName"
+                                                    value={data}
+                                                    onChange={(e) => {
+                                                        setdata(e.target.value);
+                                                        setToChange("name");
+
+                                                    }}
+                                                    placeholder='Enter your new name' />
+                                                <button className='Client-Header-popup-content-button' onClick={() => postData()}>Change Name</button>
                                             </div>
                                         </div>
                                     )
@@ -156,18 +143,18 @@ function DashHeader() {
                                                 </button>
                                             </div>
                                             <div className='Client-Header-popup-content' >
-                                                <input 
-                                                className='Client-Header-popup-content-input' 
-                                                type="email" 
-                                                name="newName" 
-                                                value={data} 
-                                                onChange={(e) => {
-                                                    setdata(e.target.value);
-                                                    setToChange("patientUsername");
-                                                    
-                                                  }} 
-                                                placeholder='Enter your new email' />
-                                                <button className='Client-Header-popup-content-button'onClick={() => postData()}>Change Email</button>
+                                                <input
+                                                    className='Client-Header-popup-content-input'
+                                                    type="email"
+                                                    name="newName"
+                                                    value={data}
+                                                    onChange={(e) => {
+                                                        setdata(e.target.value);
+                                                        setToChange("patientUsername");
+
+                                                    }}
+                                                    placeholder='Enter your new email' />
+                                                <button className='Client-Header-popup-content-button' onClick={() => postData()}>Change Email</button>
                                             </div>
                                         </div>
                                     )
@@ -191,7 +178,7 @@ function DashHeader() {
                                             <div className='Client-Header-popup-content'>
                                                 <h3>Are you sure you want to <b>delete</b> your account??</h3>
                                                 <div className='client-header-popup-confimation'>
-                                                    <button  type="submit" onClick={()=>deleteAccount()}>Yes</button>
+                                                    <button type="submit" onClick={() => deleteAccount()}>Yes</button>
                                                     <button type="submit" onClick={() => close()}>no</button>
                                                 </div>
                                             </div>
@@ -215,8 +202,8 @@ function DashHeader() {
                                             <div className='Client-Header-popup-content'>
                                                 <h3>Are you sure you want to <b>Log Out</b></h3>
                                                 <div className='client-header-popup-confimation'>
-                                                    <button  onClick={()=>logOut()}>Yes</button>
-                                                    <button  onClick={() => close()}>no</button>
+                                                    <button onClick={logOut}>Yes</button>
+                                                    <button onClick={() => close()}>no</button>
                                                 </div>
                                             </div>
                                         </div>
