@@ -12,7 +12,6 @@ const Doc_appoinmentdata = require('./../controllers/user').Doc_description_Appo
 const Scheduleappointment = require('./../controllers/user').Doc_Schedule_appointment_Controller;
 
 const auth = require('./../config/middleware');
-const Logout = require('./../controllers/user').Logout_Controller;
 const Delete_account = require('./../controllers/user').Delete_account_Controller;
 
 
@@ -27,7 +26,6 @@ router.get("/docDescription/:doctorId",auth, Doc_description);
 router.get("/availableTimeSlots/:doctorId",auth, Doc_appoinmentdata);
 
 router.post("/docAppoinmentdatapost/:doctorId", auth,Scheduleappointment);
-router.post("/logout", auth,Logout);
-router.post("/Delete_account", auth,Delete_account);
+router.post("/Delete_account",auth,   Delete_account);
 
 module.exports = router;

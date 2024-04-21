@@ -1,7 +1,8 @@
 const Signup = require("./../services/user/auth").Signup;
 const Signin = require("./../services/user/auth").Signin;
 
-const  UpdateUser  = require("../services/user/update");
+const  UpdateUser  = require("../services/user/update").UpdateUser;
+const  Delete_User  = require("../services/user/update").Delete_User;
 const Dashboard = require("./../services/user/dashboard");
 
 const Bookappoinmetpage = require("./../services/user/bookappoinment").Bookappoinmetpage;
@@ -103,20 +104,12 @@ async function Update_User_Controller(req, res) {
         res.status(500).json({ message: error.message });
     }
 }
-
-async function Logout_Controller(req, res) {
-    
-    try {
-       res.cookie
-    } catch (error) {
-        console.log(error.message)
-        res.status(500).json({ message: error.message });
-    }
-}
 async function Delete_account_Controller(req, res) {
-    
+    console.log(req.user)
+    const userData =req.user;
+        
     try {
-        UpdateUser(userData, res)
+        Delete_User(userData, res)
     } catch (error) {
         console.log(error.message)
         res.status(500).json({ message: error.message });
@@ -134,6 +127,5 @@ module.exports = {
     Doc_description_Appoinmentdata_Controller,
     Doc_Schedule_appointment_Controller,
     Update_User_Controller,
-    Logout_Controller,
     Delete_account_Controller
 };
