@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 import './style/clientHomePage.css';
 
@@ -9,6 +10,7 @@ import './style/clientHomePage.css';
 function ClientHomePage() {
     const [username, setUsername] = useState("");
     const [closestAppointment, setClosestAppointment] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
  
@@ -19,17 +21,17 @@ function ClientHomePage() {
                     withCredentials: true
                 },
             );
-                const userData = response.data;
+                const userData = response.data; 
                 setUsername(userData.user);
                 setClosestAppointment(userData.docObj);
                 
-
+                
             } catch (error) {
-                console.error('Error fetching user data:', error);
-                // setError(error);
-            } finally {
-                // setIsLoading(false);
-            }
+                alert("User not Found, signin in again")
+                navigate('/sign-in'); 
+                
+              
+            } 
         };
         fetchUserName();
 

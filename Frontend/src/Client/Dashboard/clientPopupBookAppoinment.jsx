@@ -12,32 +12,24 @@ function BookAppointmentPopUp({ toggle }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const [selectedMethod, setSelectedMethod] = useState(null);
+  const [isTermsAccepted, setIsTermsAccepted] = useState(false);
 
 
+  const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
 
-  const [availableTimeSlots, setAvailableTimeSlots] = useState([
-    { time: '10:00 AM' },
-    { time: '11:00 AM' },
-    { time: '1:00 PM' },
-    { time: '2:00 PM' },
-    { time: '3:00 PM' },
-    { time: '4:00 PM' },
-    { time: '5:00 PM' },
-
-  ]);
   useEffect(() => {
     const fetchAvailableTimeSlots = async () => {
-      if (selectedDate) { // Check if selectedDate has a value
+      if (selectedDate) {
+        console.log(selectedDate);
         try {
           const response = await axios.get(
-            `http://localhost:3000/user/availableTimeSlots/${doctorId}`,  // Replace with your actual endpoint
+            `http://localhost:3000/user/availableTimeSlots/${doctorId}`,
             {
-              params: { selectedDate: selectedDate.toISOString() }, // Add selected date as query parameter
-              withCredentials: true, // Send credentials along with the request
+              params: { selectedDate: selectedDate.toISOString() },
+              withCredentials: true,
             }
           );
-  
-          setAvailableTimeSlots(response.data); // Update available time slots based on response
+          setAvailableTimeSlots(response.data.time);
         } catch (error) {
           console.error('Error fetching available time slots:', error);
         }
@@ -45,44 +37,62 @@ function BookAppointmentPopUp({ toggle }) {
     };
   
     fetchAvailableTimeSlots();
-  }, [selectedDate]); 
+  }, [selectedDate, doctorId]);
   
+
   const handleSubmit = async () => {
-    console.log(selectedDate)
+
     try {
+      if (!selectedDate) {
+        alert('Please select a date before submitting.');
+        return
+      } else if (!selectedTimeSlot) {
+        alert('Please select a time before submitting.');
+        return
+      } else if (!selectedMethod) {
+        alert('Please select a method before submitting.');
+        return
+      } else if (!isTermsAccepted) {
+        alert('Please select a accept terms  before submitting.');
+        return
+      }
+
+      const date =selectedDate.toISOString()
       const response = await axios.post(`http://localhost:3000/user/docAppoinmentdatapost/${doctorId}`, {
-        selectedDate,
+        date,
         selectedTimeSlot,
         selectedMethod
       }, {
-        withCredentials: true // Send credentials along with the request
+        withCredentials: true
       });
 
-      console.log(response.data);
-
-      // Redirect to '/doctor' after successful response
-      history.push('/doctor');
+      if (response.data.message == "successfull") {
+        alert("appoinment booked")
+        location.reload();
+      }
     } catch (error) {
-      console.error('Error:', error);
+      alert("error occured tryin again later", error.message)
+      location.reload();
     }
   };
 
 
   const handleDateClick = (date) => {
-    console.log(date)
     setSelectedDate(date);
 
   };
   const handleMethodChange = (method) => {
     setSelectedMethod(method); // Update selected method
   };
+
+
   const getCalendarDays = () => {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const today = new Date();
     const calendarDays = [];
 
-    // Add calendar days for today and the next 29 days
-    for (let i = 1; i < 30; i++) {
+    
+    for (let i = 0; i < 30; i++) {
       const date = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
       const dayName = days[date.getDay()];
       calendarDays.push({ dayName, date });
@@ -94,7 +104,7 @@ function BookAppointmentPopUp({ toggle }) {
     if (!dayObj) {
       return <div className="calendar-day-empty"></div>;
     }
-  
+
     const isSelected =
       selectedDate.getDate() === dayObj.date.getDate() &&
       selectedDate.getMonth() === dayObj.date.getMonth() &&
@@ -112,22 +122,15 @@ function BookAppointmentPopUp({ toggle }) {
       </div>
     );
   };
-  
+
   const handleTimeSlotChange = (timeSlot) => {
-    setSelectedTimeSlot(timeSlot); // Update selected time slot
+    setSelectedTimeSlot(timeSlot);
   };
 
-  const getAvailableTimeSlots = () => {
-  
-    return availableTimeSlots.filter(slot => {
-      return true;
-    });
-  };
-  console.log(selectedTimeSlot);
 
-  // 
+
   const handleClose = () => {
-    toggle(); // Call the toggle function passed as prop to close the pop-up
+    toggle();
   };
 
   return (
@@ -151,12 +154,20 @@ function BookAppointmentPopUp({ toggle }) {
 
           <h3>Available Time Slots for {selectedDate.getDate()} {selectedDate.toLocaleDateString('en-US', { month: 'long', },)}</h3>
           <div className="client-Bookappoinment-availabledate-gridcontainer">
-            {getAvailableTimeSlots().map((slot, index) => (
+            {availableTimeSlots.map((slot, index) => (
               <div key={index} className="availabledate-grid-button">
-                <input type="radio" id={`timeSlot${index}`} name="timeSlot" value={slot.time} checked={selectedTimeSlot === slot.time} onChange={() => handleTimeSlotChange(slot.time)} />
-                <label htmlFor={`timeSlot${index}`}>{slot.time}</label>
+                <input
+                  type="radio"
+                  id={`timeSlot${index}`}
+                  name="timeSlot"
+                  value={slot} // Use `slot` directly as it represents the time slot value
+                  checked={selectedTimeSlot === slot}
+                  onChange={() => handleTimeSlotChange(slot)} // Pass `slot` as the argument
+                />
+                <label htmlFor={`timeSlot${index}`}>{slot}</label> {/* Display the time slot */}
               </div>
             ))}
+
           </div>
 
         </section>
@@ -283,8 +294,8 @@ function BookAppointmentPopUp({ toggle }) {
 
         </section>
         <div className='client-bookAppoinment-popup-submit'>
-          <div className="client-bookappoinment-terms">
-            <input type="checkbox" id="terms" name="terms" />
+          <div className="client-bookappoinment-terms" >
+            <input type="checkbox" id="terms" name="terms" checked={isTermsAccepted} onChange={(e) => setIsTermsAccepted(e.target.checked)} />
             <label htmlFor="vehicle1"> accept terms and condition,click <Link style={{ color: 'blue' }} to={temrsandcondtion}>here</Link> to read them
             </label>
           </div>

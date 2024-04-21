@@ -10,7 +10,7 @@ import './style/css/LandingPage-signIn.css';
 function SignIn() {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
-    const navigate = useNavigate(); // Utilize useNavigate hook
+    const navigate = useNavigate();   
     function postData() {
         axios.post('http://localhost:3000/user/signin', { 
             username: name,
@@ -20,7 +20,7 @@ function SignIn() {
         })
         .then(function (response) {
             console.log(response);
-            if (response.data.message === 'Successfully') {
+            if (response.data.message === 'Successfully') { 
                 navigate('/dashboard'); 
             } else {
                 console.error('Login failed:', response.data.message);
