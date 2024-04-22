@@ -7,13 +7,8 @@ import './../style/DashboardHeader.css';
 import Logo from './../style/images/logoBlack.png';
 import Cookies from 'js-cookie';
 
-
-
-
 function DashHeader() {
     const [open, setOpen] = useState(false);
-
-
     const [data, setdata] = useState("")
     const [toChange, setToChange] = useState("")
 
@@ -24,9 +19,7 @@ function DashHeader() {
                 setOpen(false);
             }
         };
-
         document.addEventListener('click', handleClickOutside);
-
         return () => {
             document.removeEventListener('click', handleClickOutside);
         };
@@ -35,10 +28,6 @@ function DashHeader() {
     const handleOpen = () => {
         setOpen(!open);
     };
-
-
-
-
 
     const deleteAccount = () => {
         axios.post('http://localhost:3000/user/Delete_account', null, { withCredentials: true })
@@ -56,14 +45,11 @@ function DashHeader() {
             });
     };
 
-
-
     function logOut() {
         const jwtCookieName = 'token';
         Cookies.remove(jwtCookieName);
         window.location.href = '/sign-in';
     }
-
 
     function postData() {
         axios.post('http://localhost:3000/user/updateData', {

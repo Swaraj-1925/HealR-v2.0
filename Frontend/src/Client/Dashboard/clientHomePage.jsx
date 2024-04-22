@@ -86,7 +86,7 @@ function ClientHomePage() {
                                 </div>
                             </>
                         ) : (
-                            // Display "No appointment booked" message if no appointment found
+                            
                             <div className='Dashboard-home-upcomingAppoinment-item'>
                                 <p className='noAppoinmenttxt'>No upcoming appointment booked.</p>
                             </div>

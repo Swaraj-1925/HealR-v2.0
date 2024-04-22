@@ -26,10 +26,7 @@ function DocSignUp() {
     const [messageFee, setMessageFee] = useState('');
     const [inRealLifeFee, setInRealLifeFee] = useState('');
 
-    const [yearOfExperience, setyearOfExperience] = useState("");
-    const [proofExperience, setproofExperience] = useState(null);
-    const [profession, setprofession] = useState("");
-    const [professionimg, setprofessionimg] = useState(null);
+    
     const [clinic, setclinic] = useState("");
     const [about, setabout] = useState("");
     const [points, setPoints] = useState(["", "", ""]);
@@ -87,8 +84,7 @@ function DocSignUp() {
             formData.append('gender', gender);
             formData.append('password', password);
 
-            formData.append('yearOfExperience', yearOfExperience);
-            formData.append('profession', profession);
+             
             formData.append('clinic', clinic);
             formData.append('about', about);
             formData.append('points', JSON.stringify(points));
@@ -101,8 +97,7 @@ function DocSignUp() {
             formData.append('selectedTimes', JSON.stringify(selectedTimes));
             formData.append('imageSmall', imageSmall);
             formData.append('imageBig', imageBig);
-            formData.append('proofExperience', proofExperience);
-            formData.append('professionimg', professionimg);
+           
 
             console.log('Proof of Experience File:', formData.get('proofExperience'));
             // Send POST request using Axios
@@ -230,40 +225,7 @@ function DocSignUp() {
                                         {index === 2 && (
                                             <div className='doc-signupInput-conatiner doc-signupInput-widhtreduce'>
 
-                                                <input
-                                                    value={yearOfExperience}
-                                                    onChange={(e) => setyearOfExperience(e.target.value)}
-                                                    className='doc-signupInput'
-                                                    type="number"
-                                                    id="experience"
-                                                    name="yearOfExperience"
-                                                    placeholder='Years of Experience'
-                                                    required />
-                                                <br />
-                                                <label htmlFor="imgB">Proof of experience:</label>
-                                                <input
-                                                    onChange={(event) => setproofExperience(event.target.files[0])}
-                                                    type="file"
-                                                    id="imge"
-                                                    name="experience"
-                                                    required />
-                                                <br />
-                                                <input
-                                                    value={profession}
-                                                    onChange={(e) => setprofession(e.target.value)}
-                                                    className='doc-signupInput'
-                                                    type="text" id="profession"
-                                                    name="profession"
-                                                    placeholder='Profession'
-                                                    required />
-                                                <br />
-                                                <label htmlFor="imgB">Proof of profession:</label>
-                                                <input
-                                                    onChange={(event) => setprofessionimg(event.target.files[0])}
-                                                    type="file"
-                                                    id="imgp"
-                                                    name="profession"
-                                                    required />
+                                              
                                                 <br />
                                                 <input
                                                     className='doc-signupInput'
