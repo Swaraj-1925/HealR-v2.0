@@ -1,12 +1,14 @@
 const connection = require('./../../config/db');
 const User = connection.models.User;
 const Doctor = connection.models.Doctor;
+const Verification = connection.models.Verification;
 
 async function Bookappoinmetpage(req, res) {
 
   try {
     const verifiedDoctors = await Doctor.find();
-    res.json(verifiedDoctors); // Send the doctor data as JSON response
+    const Verification = await Verification.find();
+    res.json(verifiedDoctors); 
   } catch (error) {
     console.error('Error fetching doctors:', error);
   }

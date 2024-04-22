@@ -20,23 +20,17 @@ const uplode = require('./../../config/bloob').UploadImg;
 
 
 async function Signup(userData, userfiles) {
-
-
+    
+    
     const img_small = userfiles[0].fieldname;
     const img_big = userfiles[1].fieldname;
-    const img_experience = userfiles[2].fieldname;
-    const img_profession = userfiles[3].fieldname;
 
     const buffer_small = userfiles[0].buffer;
     const buffer_big = userfiles[1].buffer;
-    const buffer_experience = userfiles[2].buffer;
-    const buffer_profession = userfiles[3].buffer;
 
     const link_small = await uplode(img_small, buffer_small)
     const link_big = await uplode(img_big, buffer_big)
-    const link_experience = await uplode(img_experience, buffer_experience)
-    const link_profession = await uplode(img_profession, buffer_profession)
-
+    
     const notVerified = await Doctor_verification.findOne({ username: userData.email, verified: "rejected", description: '' });
     if (notVerified) {
         throw new Error('not verified');
@@ -44,11 +38,12 @@ async function Signup(userData, userfiles) {
     const rejected = await Doctor_verification.findOne({ username: userData.email, verified: "rejected", description: { $ne: "" } });
     if (rejected) {
         const message =rejected.description
-
+        
         throw new Error(`rejected for resone :-  ${message}` );
     }
-
+    
     const existingUser = await Credential.findOne({ username: userData.email, type: "doctor" });
+    const accepted = await Doctor_verification.findOne({ username: userData.email, verified: "accepted"});
     if (existingUser) {
         throw new Error('User exists');
     }
@@ -65,8 +60,8 @@ async function Signup(userData, userfiles) {
                 acceptedTime: userData.selectedTimes,
                 clinicLocation: userData.clinic,
                 experience: {
-                    years: userData.yearOfExperience,
-                    profession: userData.profession,
+                    years: accepted.experience,
+                    profession: accepted.profession,
                 },
                 fees: {
                     message: userData.feesMessage,
@@ -79,10 +74,6 @@ async function Signup(userData, userfiles) {
                 image: {
                     small: link_small,
                     big: link_big,
-                },
-                document: {
-                    experience: link_experience,
-                    profession: link_profession,
                 },
             });
             await newDoctor.save();

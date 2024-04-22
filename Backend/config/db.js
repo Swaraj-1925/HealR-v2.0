@@ -87,6 +87,7 @@ const User_Schema = new mongoose.Schema({
 });
 
 // doctor schema
+// doctor schema
 const Doctor_Schema = new mongoose.Schema({
     name: {
         type: String,
@@ -164,18 +165,7 @@ const Doctor_Schema = new mongoose.Schema({
             },
         },
         required: true,
-    },
-    document: {
-        type: {
-            experience: {
-                type: String, // URL or path to the large image
-            },
-            profession: {
-                type: String, // URL or path to the small image
-            },
-        },
-        required: true,
-    },
+    }
 });
 
 
@@ -221,7 +211,15 @@ const Doctor_verify = new mongoose.Schema({
         type: String,
         required: true,
     },
-    document: {
+    experience: {
+        type: String,
+        required: true,
+    },
+    experienceProof: {
+        type: String,
+        required: true,
+    },
+    professionProof: {
         type: String,
         required: true,
     },
@@ -230,13 +228,12 @@ const Doctor_verify = new mongoose.Schema({
         default: "rejected",
         enum: ['accepted', 'rejected'],
     },
-     
     description: {
         type: String,
         default: "",
     }
-
 });
+
 //   admin schema
 const Admin_Schema = new mongoose.Schema({
     username: {
