@@ -29,7 +29,7 @@ async function Signup(userData, userfiles) {
     const buffer_big = userfiles[1].buffer;
 
     const link_small = await uplode(img_small, buffer_small)
-    const link_big = await uplode(img_big, buffer_big)
+    const link_big = await uplode(img_big, buffer_big) 
     
     const notVerified = await Doctor_verification.findOne({ username: userData.email, verified: "rejected", description: '' });
     if (notVerified) {
@@ -44,6 +44,9 @@ async function Signup(userData, userfiles) {
     
     const existingUser = await Credential.findOne({ username: userData.email, type: "doctor" });
     const accepted = await Doctor_verification.findOne({ username: userData.email, verified: "accepted"});
+    if(!accepted){
+        throw new Error('Request has not been accepetd yet or request dont exists');
+    }
     if (existingUser) {
         throw new Error('User exists');
     }

@@ -10,8 +10,7 @@ async function Verifycontroller(req, res) {
 
         const userData = req.body;
         const userfiles = req.files;
-        await Verify(userData, userfiles);
-        res.status(201).json({ message: "Successfully" });
+        await Verify(userData, userfiles ,res);
     } catch (error) {
         console.log(error)
         res.status(400).json({ message: error.message });

@@ -10,7 +10,13 @@ async function Dashboard_status(userData, res) {
         const countStaff = await Staff.countDocuments();
         const countUser = await User.countDocuments();
         const countDoctor = await Doctor.countDocuments();
-        const countAppointments = 7;  
+        const appointments = await User.find({}, 'appointments');
+        let countAppointments = 0;
+
+        // Iterate through each user and sum up the number of appointments
+        appointments.forEach(user => {
+            countAppointments += user.appointments.length;
+        });
 
         const data = {
             staff: countStaff,

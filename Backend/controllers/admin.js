@@ -3,6 +3,8 @@ const DocVerifyReq = require('./../services/admin/doc_verification_req');
 const AcceptReq = require('./../services/admin/handleRequest').AcceptReq;
 const RejectReq = require('./../services/admin/handleRequest').RejectReq;
 const dashStatus = require('./../services/admin/dashboard-status') ;
+const Patient_list = require('../services/admin/admin-patient');
+const Doctor_list = require('../services/admin/admin-doctor');
 
 
 
@@ -54,6 +56,28 @@ async function dashboard_statusController(req, res) {
     }
 
 }
+async function Patient_listController(req, res) {
+    
+    try {
+        const userData = req.body;
+        await Patient_list(userData, res);
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({ message: error.message });
+    }
+
+}
+async function Doctor_listController(req, res) {
+    
+    try {
+        const userData = req.body;
+        await Doctor_list(userData, res);
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({ message: error.message });
+    }
+
+}
 
 
 
@@ -62,5 +86,6 @@ module.exports = {
     AcceptReqcontroller,
     RejectReqcontroller,
     dashboard_statusController,
-    // Doc_description_Controller
+    Patient_listController,
+    Doctor_listController
 };

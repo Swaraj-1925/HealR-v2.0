@@ -3,12 +3,12 @@ const User = connection.models.User;
 const Credential = connection.models.Credential;
 
 async function UpdateUser(userData, res) {
-    console.log(userData);
+    
     try {
         const {username ,tochange, userdata } = userData; 
         const update = { $set: { [tochange]: userdata } }; 
 
-        console.log(tochange);
+        
         const updatedUser = await User.findOneAndUpdate(
             { patientUsername: userData.username },
             update,
@@ -34,7 +34,7 @@ async function UpdateUser(userData, res) {
     }
 }
 async function Delete_User(userData, res) {
-    console.log(userData);
+    
     try {
         const Usercread = await Credential.deleteOne({ username: userData, type: "patient" });
         const Userdata = await User.deleteOne({ patientUsername: userData });

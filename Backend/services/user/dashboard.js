@@ -24,10 +24,15 @@ async function Dashboard(req, res) {
         });
         if (closestAppointment) {
             const doctor = await Doctor.findOne({ username: closestAppointment.doctorUsername });
+            console.log(doctor)
             const docObj = {
-                doc: closestAppointment,
-                docImg: doctor ? doctor.small : null // Include doctor image only if doctor is found
+                docname:doctor.name,
+                appointmentType:closestAppointment.appointmentType,
+                date:closestAppointment.date,
+                time:closestAppointment.time,
+                docImg: doctor ? doctor.image.small : null
             };
+
             res.json({ user: existingUser.name, docObj });
         } else {
             res.json({ user: existingUser.name, docObj: null }); // No appointment, send null docObj

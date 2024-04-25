@@ -9,6 +9,8 @@ const Bookappoinmetpage = require("./../services/user/bookappoinment").Bookappoi
 const Doc_description = require("./../services/user/bookappoinment").Docdescription;
 const Doc_appoinmentdata = require("./../services/user/bookappoinment").Docappoinmentdata;
 const Scheduleappointment = require("./../services/user/bookappoinment").Scheduleappointment;
+const RateDoctor = require("./../services/user/bookappoinment").RateDoctor;
+const ReportDoctor = require("./../services/user/bookappoinment").ReportDoctor;
 
 
 
@@ -18,7 +20,7 @@ async function Signupcontroller(req, res) {
     try {
         const userData = req.body;
         const user = await Signup(userData);
-        // console.log("\ncreated user:- \n", user);
+        
         res.status(201).json({ message: "Successfully" });
 
 
@@ -91,7 +93,6 @@ async function Doc_Schedule_appointment_Controller(req, res) {
 }
  
 async function Update_User_Controller(req, res) {
-    console.log(req.body)
     const userData ={
         username:req.user,
         tochange:req.body.toChange,
@@ -105,11 +106,33 @@ async function Update_User_Controller(req, res) {
     }
 }
 async function Delete_account_Controller(req, res) {
-    console.log(req.user)
+    
     const userData =req.user;
         
     try {
         Delete_User(userData, res)
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).json({ message: error.message });
+    }
+}
+async function RateDoctor_Controller(req, res) {
+    
+    const userData ={data:req.body, user:req.user};
+        
+    try {
+        RateDoctor(userData, res)
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).json({ message: error.message });
+    }
+}
+async function ReportDoctor_Controller(req, res) {
+    
+    const userData ={data:req.body, user:req.user};
+        
+    try {
+       ReportDoctor(userData, res)
     } catch (error) {
         console.log(error.message)
         res.status(500).json({ message: error.message });
@@ -127,5 +150,7 @@ module.exports = {
     Doc_description_Appoinmentdata_Controller,
     Doc_Schedule_appointment_Controller,
     Update_User_Controller,
-    Delete_account_Controller
+    Delete_account_Controller,
+    RateDoctor_Controller,
+    ReportDoctor_Controller
 };

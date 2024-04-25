@@ -49,7 +49,7 @@ const User_Schema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    appointments: [{ // Array of appointments
+    appointments: [{ 
         doctorUsername: { // Username of the doctor
             type: String,
             required: true,
@@ -69,8 +69,8 @@ const User_Schema = new mongoose.Schema({
         },
         default: [],
     }],
-    reviews: [{ // Array of reviews
-        doctorUsername: { // Username of the doctor
+    reviews: [{
+        doctorUsername: {
             type: String,
             required: true,
         },
@@ -78,11 +78,16 @@ const User_Schema = new mongoose.Schema({
             type: String,
             required: true,
         },
+        stars: {
+            type: Number,
+            required: true,
+        },
         default: [],
     }],
     discord: {
         type: Boolean,
         required: true,
+        default: false,
     },
 });
 
@@ -252,6 +257,21 @@ const Admin_Schema = new mongoose.Schema({
         ref: 'Admin',
     },
 });
+const Report_Schema = new mongoose.Schema({
+    pusername: {
+        type: String,
+        required: true,
+    },
+    dusername: {
+        type: String,
+        required: true,
+    },
+    report: {
+        type: String,
+        required: true,
+    },
+   
+});
 
 
 // Define database connection parameters (replace with your actual credentials)
@@ -261,7 +281,6 @@ const DB_name = process.env.Name_Database_Mongodb;
 
 const connection = mongoose.createConnection(`mongodb+srv://${username}:${password}@cluster0.awcvfoh.mongodb.net/${DB_name}?retryWrites=true&w=majority`);
 
-// Event listener for successful connection
 connection.on('connected', () => console.log('Connected to MongoDB'));
 
 
@@ -271,6 +290,7 @@ const Doctor = connection.model('Doctor', Doctor_Schema);
 const Staff = connection.model('Staff', Staff_Schema);
 const Admin = connection.model('Admin', Admin_Schema);
 const Verification = connection.model('Verification', Doctor_verify);
+const Report = connection.model('Report', Report_Schema);
 
 
 const createCollections = async () => {
@@ -281,6 +301,7 @@ const createCollections = async () => {
         await Staff.createCollection();
         await Admin.createCollection();
         await Verification.createCollection();
+        await Report.createCollection();
         console.log('Collections created successfully');
     } catch (err) {
         console.error('Error creating collections:- \n', err);

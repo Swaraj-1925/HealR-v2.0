@@ -10,6 +10,7 @@ async function AcceptReq(userData, res) {
         const findDoc = await Doctor_req.findOneAndUpdate(
             { username: userData.username },
             { $set: { verified: 'accepted' } },
+            { $set: { description: '' } },
             
         );
         await findDoc.save(); 
