@@ -60,7 +60,6 @@ export default function CustomizedTable() {
 
   const handleSendBack = (row) => {
     setSelectedUser(row.username);
-    console.log(row.username)
     setShowRejectPopup(true);
   };
 

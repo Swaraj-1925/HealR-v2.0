@@ -23,21 +23,21 @@ function ClientHomePage() {
             );
                 const userData = response.data; 
                 setUsername(userData.user);
+
                 setClosestAppointment(userData.docObj);
                 
                 
             } catch (error) {
                 alert("User not Found, signin in again")
                 navigate('/sign-in'); 
-                
-              
             } 
         };
         fetchUserName();
-
-
+        
+        
     }, []);
-
+    
+    
     return (
         <>
             <div className='Dashboard-home-wrapper'>
@@ -65,23 +65,23 @@ function ClientHomePage() {
                                 </div>
                                 <div className='Dashboard-home-upcomingAppoinment-item'>
                                     <h2 className='upcomingAppoinment-NameDoctor'>
-                                        dr. {closestAppointment.doctorUsername}
+                                        dr. {closestAppointment.docname}
                                     </h2>
                                     <h6 className='upcomingAppoinment-doctorprofession'>
-                                        {closestAppointment.appointmentType}
+                                        
                                     </h6>
                                 </div>
                                 <div className='Dashboard-home-upcomingAppoinment-item upcomingAppoinment-item-gridContainer'>
                                     <h2 className='upcomingAppoinment-date'>
-                                        {new Date(closestAppointment.date).toLocaleDateString()}
+                                        {closestAppointment.date}
                                     </h2>
                                     <h2 className='upcomingAppoinment-time'>
-                                        {new Date(closestAppointment.time).toLocaleTimeString()}
+                                        { closestAppointment.time} 
                                     </h2>
                                 </div>
                                 <div className='Dashboard-home-upcomingAppoinment-item'>
                                     <button disabled="disabled" className='upcomingAppoinment-modeOfTherapy'>
-                                        <h3>Call</h3>
+                                        <h3>{closestAppointment.appointmentType}</h3>
                                     </button>
                                 </div>
                             </>

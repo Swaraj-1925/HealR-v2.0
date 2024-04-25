@@ -14,9 +14,7 @@ function Doc_signIn() {
             username: name,
             password: password
         })
-            .then(function (response) {
-                console.log(response);
-            })
+            
             .catch(function (error) {
                 console.log(error);
             });

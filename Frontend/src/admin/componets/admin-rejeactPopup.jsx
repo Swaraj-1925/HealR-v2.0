@@ -24,7 +24,7 @@ export default function RejeactPopup({ onClose, selectedUser }) {
     const handleSubmit = async () => {
         try {
             const response = await axios.put('http://localhost:3000/admin/rejectReq', { username: selectedUser, description });
-            console.log(response);
+       
             if (response.status === 200) {
                 alert("Successful!!")
                 onClose();

@@ -19,7 +19,7 @@ function SignIn() {
             withCredentials: true
         })
         .then(function (response) {
-            console.log(response);
+           
             if (response.data.message === 'Successfully') { 
                 navigate('/dashboard'); 
             } else {

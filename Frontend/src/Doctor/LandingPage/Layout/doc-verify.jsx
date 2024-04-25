@@ -38,10 +38,13 @@ function Docverify() {
         }
       });
 
-      if (response.data.message === "Successfully") {
+      if (response.data.message === "successfully") {
         alert("Request has been sent! You may try signing up as a doctor after a few days to check your verification status.");
         navigate('/doctor');
-      } else {
+      }else if(response.data.message=="Request updated successfully") {
+        alert("Request has been updated! You may try signing up as a doctor after a few days to check your verification status.");
+        navigate('/doctor');
+      }else {
         alert("Error: " + response.data.message);
       }
     } catch (error) {

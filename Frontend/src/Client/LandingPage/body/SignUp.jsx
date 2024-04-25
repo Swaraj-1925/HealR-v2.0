@@ -42,7 +42,7 @@ function SignUP() {
 
             })
                 .then(function (response) {
-                    console.log(response);
+                  
                     if (response.data.message === 'Successfully') { 
                         navigate('/sign-in'); 
                   } else {
@@ -73,7 +73,7 @@ function SignUP() {
                         />
                         <input
                             className='signUp-flexContainerTwo-input'
-                            type="text"
+                            type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="Email"

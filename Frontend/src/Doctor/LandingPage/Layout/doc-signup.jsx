@@ -96,10 +96,10 @@ function DocSignUp() {
 
             formData.append('selectedTimes', JSON.stringify(selectedTimes));
             formData.append('imageSmall', imageSmall);
-            formData.append('imageBig', imageBig);
+            formData.append('imageBig', imageBig); 
            
 
-            console.log('Proof of Experience File:', formData.get('proofExperience'));
+  
             // Send POST request using Axios
             const response = await axios.post(
                 'http://localhost:3000/doctor/signup',
@@ -111,9 +111,9 @@ function DocSignUp() {
                 }
             );
 
-            // Handle response
-            console.log('Response:', response.data);
-            if (response.data.message === 'Signup successful!') {
+          
+            if (response.data.message === 'Successfully') {
+                alert("signup Successfully ")
                 navigate('/doc');
             }  
 
@@ -121,6 +121,7 @@ function DocSignUp() {
 
             console.error('Error:', error);
             alert(error.response.data.message);
+            // navigate('/doc');
         }
     };
 

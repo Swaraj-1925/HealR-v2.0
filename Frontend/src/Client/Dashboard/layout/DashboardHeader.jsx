@@ -32,7 +32,7 @@ function DashHeader() {
     const deleteAccount = () => {
         axios.post('http://localhost:3000/user/Delete_account', null, { withCredentials: true })
             .then(function (response) {
-                console.log(response);
+              
                 if (response.data.message === 'successfully') {
                     alert("Account deleted successfully");
                     window.location.href = '/';
@@ -59,7 +59,7 @@ function DashHeader() {
             withCredentials: true
         })
             .then(function (response) {
-                console.log(response);
+                
                 if (response.data.message === 'successfully') {
                     alert("data updated successfully")
                     window.location.reload();

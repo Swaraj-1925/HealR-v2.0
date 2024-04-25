@@ -18,7 +18,7 @@ function Admin_dashboard() {
   const fetchData = async () => {
     try {
       const response = await axios.get('http://localhost:3000/admin/dashboard');
-      console.log("qad",response)
+ 
       setDashboardData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);

@@ -4,17 +4,72 @@ import Popup from 'reactjs-popup';
 import { useParams } from 'react-router-dom';
 
 import BookAppointmentPopUp from './clientPopupBookAppoinment';
-
+import { useNavigate } from "react-router-dom";
 import './style/clientDoctorDescription.css';
 import experience from './style/images/experience.png';
 import patient from './style/images/patient.png';
 import review from './style/images/review.png';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
 
 
 function DoctorDescription() {
     const { doctorId } = useParams();
     const [seen, setSeen] = useState(false)
     const [userData, setuserData] = useState("")
+    const [appointments, setAppointments] = useState(false);
+
+    const [reportReason, setReportReason] = useState('');
+    const [value, setValue] = useState(1);
+    const [Review, setReview] = useState('');
+    const navigate = useNavigate();
+    const handleRateDoctor = async () => {
+        try {
+            // Prepare the data to send to the backend
+            const data = {
+                doctorId: doctorId,
+                rating: value,
+                review: Review
+            };
+            const response = await axios.post('http://localhost:3000/user/rate-doctor', data, {
+                withCredentials: true
+            });
+            if (response.data.message == 'successfull') {
+                alert('Review added successfull')
+                window.location.reload();
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    const handleReportDoctor = async () => {
+        try {
+            // Prepare the data to send to the backend
+            const data = {
+                doctorId: doctorId,
+                reason: reportReason
+            };
+
+            // Make a POST request to the backend
+            const response = await axios.post('http://localhost:3000/user/report-doctor', data, {
+                withCredentials: true
+            });
+            if (response.data.message == 'successfull') {
+                alert('Report sent successfull')
+                window.location.reload();
+            }
+
+
+        } catch (error) {
+            console.error('Error:', error);
+
+        }
+    };
+
+
 
     function togglePop() {
         setSeen(!seen);
@@ -26,11 +81,16 @@ function DoctorDescription() {
                     withCredentials: true
                 });
                 setuserData(response.data.docData)
-                console.log(userData)
+               
+                if (response.data.docData.appointment) {
+                    setAppointments(true);
+                }
             } catch (error) {
-                console.error('Error fetching user data:', error);
-
-            }
+                alert("User not Found, signin in again")
+                navigate('/sign-in'); 
+                
+              
+            } 
         };
         fetchDocDetails();
     }, [doctorId]);
@@ -136,33 +196,42 @@ function DoctorDescription() {
                                     <div>{userData.feesCli}</div>
                                 </div>
                                 <div className="allPricese-doctor-flexitem doctorClient report">
-                                    <div>
-                                        <Popup trigger=
-                                            {<div><svg className='flag-report' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path opacity="0.5" fillRule="evenodd" clipRule="evenodd" d="M6.5 1.75C6.5 1.33579 6.16421 1 5.75 1C5.33579 1 5 1.33579 5 1.75V21.75C5 22.1642 5.33579 22.5 5.75 22.5C6.16421 22.5 6.5 22.1642 6.5 21.75V13.6V3.6V1.75Z" fill="#d71414" />
-                                                <path d="M13.5582 3.87333L13.1449 3.70801C11.5821 3.08288 9.8712 2.9258 8.22067 3.25591L6.5 3.60004V13.6L8.22067 13.2559C9.8712 12.9258 11.5821 13.0829 13.1449 13.708C14.8385 14.3854 16.7024 14.5119 18.472 14.0695L18.5721 14.0445C19.1582 13.898 19.4361 13.2269 19.1253 12.7089L17.5647 10.1078C17.2232 9.53867 17.0524 9.25409 17.0119 8.94455C16.9951 8.81543 16.9951 8.68466 17.0119 8.55553C17.0524 8.24599 17.2232 7.96141 17.5647 7.39225L18.8432 5.26136C19.1778 4.70364 18.6711 4.01976 18.0401 4.17751C16.5513 4.54971 14.9831 4.44328 13.5582 3.87333Z" fill="#d71414" />
-                                            </svg></div>}
-                                            modal nested>
-                                            {
-                                                close => (
-                                                    <div className='Client-Header-popup'>
-                                                        <div>
-                                                            <button className='Client-Header-popup-closebutton' onClick=
-                                                                {() => close()}>&#10006;
-                                                            </button>
-                                                        </div>
-                                                        <div className='Client-Header-popup-content'>
+                                    {appointments && (
+                                        <div>
+                                            <Popup trigger=
+                                                {<div><svg className='flag-report' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path opacity="0.5" fillRule="evenodd" clipRule="evenodd" d="M6.5 1.75C6.5 1.33579 6.16421 1 5.75 1C5.33579 1 5 1.33579 5 1.75V21.75C5 22.1642 5.33579 22.5 5.75 22.5C6.16421 22.5 6.5 22.1642 6.5 21.75V13.6V3.6V1.75Z" fill="#d71414" />
+                                                    <path d="M13.5582 3.87333L13.1449 3.70801C11.5821 3.08288 9.8712 2.9258 8.22067 3.25591L6.5 3.60004V13.6L8.22067 13.2559C9.8712 12.9258 11.5821 13.0829 13.1449 13.708C14.8385 14.3854 16.7024 14.5119 18.472 14.0695L18.5721 14.0445C19.1582 13.898 19.4361 13.2269 19.1253 12.7089L17.5647 10.1078C17.2232 9.53867 17.0524 9.25409 17.0119 8.94455C16.9951 8.81543 16.9951 8.68466 17.0119 8.55553C17.0524 8.24599 17.2232 7.96141 17.5647 7.39225L18.8432 5.26136C19.1778 4.70364 18.6711 4.01976 18.0401 4.17751C16.5513 4.54971 14.9831 4.44328 13.5582 3.87333Z" fill="#d71414" />
+                                                </svg></div>}
+                                                modal nested>
+                                                {
+                                                    close => (
+                                                        <div className='Client-Header-popup'>
+                                                            <div>
+                                                                <button className='Client-Header-popup-closebutton' onClick=
+                                                                    {() => close()}>&#10006;
+                                                                </button>
+                                                            </div>
                                                             <div className='Client-Header-popup-content'>
-                                                                <input className='Client-Header-popup-content-input' type="text" name="newName" placeholder='Enter Report' />
-                                                                <button className='Client-Header-popup-content-button' type="submit">Report doctor</button>
+                                                                <div className='Client-Header-popup-content'>
+                                                                    <input
+                                                                        className='Client-Header-popup-content-input'
+                                                                        type="text"
+                                                                        name="newName"
+                                                                        placeholder='Enter Report'
+                                                                        value={reportReason}
+                                                                        onChange={(e) => setReportReason(e.target.value)}
+                                                                    />
+                                                                    <button className='Client-Header-popup-content-button' type="submit" onClick={handleReportDoctor}>Report doctor</button>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                )
-                                            }
-                                        </Popup>
+                                                    )
+                                                }
+                                            </Popup>
 
-                                    </div>
+                                        </div>
+                                    )}
 
                                 </div>
                             </div>
@@ -175,12 +244,12 @@ function DoctorDescription() {
 
                             <div className="doctorDescription-numberOfPatients doctorDescription-flexcontainer">
                                 <img src={patient} alt="number of patient attended" />
-                                Patients
+                                Patients: {userData.appointment}
                             </div>
 
                             <div className="doctorDescription-yearOfExperience doctorDescription-flexcontainer">
                                 <img src={experience} alt="" />
-                                Years expert
+                                Years expert {userData.YearOfexperience}
                             </div>
                             <div className="doctorDescription-rating doctorDescription-flexcontainer">
                                 <svg
@@ -195,11 +264,11 @@ function DoctorDescription() {
                                         fill="#FFD33C"
                                     />
                                 </svg>
-                                Rating
+                                Rating: {userData.averageRating}
                             </div>
                             <div className="doctorDescription-Reviews doctorDescription-flexcontainer">
                                 <img src={review} alt="number of reviews got" />
-                                Reviews
+                                Reviews: {userData.reviewCount}
                             </div>
 
                         </div>
@@ -212,11 +281,12 @@ function DoctorDescription() {
                         <div className="doctorDescription-gridItem doctorDescription-RatingsAndReviews">
                             <div className="button_review_add_flex">
                                 <h2>Ratings & Reviews</h2>
-                                <div >
-                                <Popup trigger=
-                                            { <div>
+                                {appointments && (
+                                    <div >
+                                        <Popup trigger=
+                                            {<div>
                                                 <button type="button">
-                                                &#10010;
+                                                    &#10010;
                                                 </button>
                                             </div>}
                                             modal nested>
@@ -229,83 +299,71 @@ function DoctorDescription() {
                                                             </button>
                                                         </div>
                                                         <div className='Client-Header-popup-content'>
-                                                             
+
                                                             <div className='Client-Header-popup-content'>
-                                                                <input className='Client-Header-popup-content-input' type="text" name="newName" placeholder='Enter review' />
-                                                                <button className='Client-Header-popup-content-button' type="submit">Report doctor</button>
+                                                                <input
+                                                                    className='Client-Header-popup-content-input'
+                                                                    type="text"
+                                                                    name="review"
+                                                                    placeholder='Enter review'
+                                                                    value={Review}
+                                                                    onChange={(e) => setReview(e.target.value)}
+                                                                /> <Box
+                                                                    sx={{
+                                                                        '& > legend': { mt: 2 },
+                                                                    }}
+                                                                >
+                                                                    <Typography component="legend">Number of stars</Typography>
+                                                                    <Rating
+                                                                        name="simple-controlled"
+                                                                        value={value}
+                                                                        onChange={(event, newValue) => {
+                                                                            setValue(newValue);
+                                                                        }}
+                                                                    />
+                                                                </Box>
+                                                                <button className='Client-Header-popup-content-button' type="submit" onClick={handleRateDoctor}>Rate doctor</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 )
                                             }
                                         </Popup>
+                                    </div>
+                                )}
+
+                            </div>
+
+
+                            <div className='doctorDescription-RatingsAndReviews-gridWrapper'>
+                                {userData.reviews && userData.reviews.map((item, index) => (
+                                    <div key={index} className="doctorDescription-RatingsAndReviews-gridContainer">
+                                 
+                                        <div className="RatingsAndReviews-griditem doctorDescription-RatingsAndReviews-star">
+                                            <svg
+                                                width="100"
+                                                height="100"
+                                                viewBox="0 0 18 18"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M15.9628 6.20682L11.4997 5.55819L9.5046 1.51346C9.45011 1.40272 9.36046 1.31307 9.24972 1.25858C8.97198 1.12147 8.63448 1.23572 8.49562 1.51346L6.5005 5.55819L2.03741 6.20682C1.91437 6.2244 1.80187 6.2824 1.71573 6.37029C1.6116 6.47732 1.55422 6.62131 1.5562 6.77062C1.55818 6.91993 1.61935 7.06235 1.72628 7.16658L4.95538 10.3148L4.19249 14.7603C4.1746 14.8637 4.18605 14.9701 4.22552 15.0673C4.265 15.1646 4.33094 15.2488 4.41585 15.3105C4.50077 15.3722 4.60127 15.4088 4.70595 15.4163C4.81063 15.4237 4.91531 15.4017 5.00812 15.3527L9.00011 13.2539L12.9921 15.3527C13.1011 15.4107 13.2276 15.4301 13.3489 15.409C13.6548 15.3562 13.8605 15.0662 13.8077 14.7603L13.0448 10.3148L16.2739 7.16658C16.3618 7.08045 16.4198 6.96795 16.4374 6.8449C16.4849 6.53729 16.2704 6.25252 15.9628 6.20682Z"
+                                                    fill="#FFD33C"
+                                                />
+                                            </svg>
+                                            {item.stars}
                                         </div>
-                                
+                                        <div className="RatingsAndReviews-griditem doctorDescription-RatingsAndReviews-title">
+                                            {item.username}
+                                        </div>
+
+                                        <div className="RatingsAndReviews-griditem doctorDescription-RatingsAndReviews-description">
+                                            {item.review}
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
-
-
-                            <div className='doctorDescription-RatingsAndReviews-gridWrapper'>
-                                <div className="doctorDescription-RatingsAndReviews-gridContainer">
-                                    <div className="RatingsAndReviews-griditem doctorDescription-RatingsAndReviews-star">
-                                        <svg
-                                            width="100"
-                                            height="100"
-                                            viewBox="0 0 18 18"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M15.9628 6.20682L11.4997 5.55819L9.5046 1.51346C9.45011 1.40272 9.36046 1.31307 9.24972 1.25858C8.97198 1.12147 8.63448 1.23572 8.49562 1.51346L6.5005 5.55819L2.03741 6.20682C1.91437 6.2244 1.80187 6.2824 1.71573 6.37029C1.6116 6.47732 1.55422 6.62131 1.5562 6.77062C1.55818 6.91993 1.61935 7.06235 1.72628 7.16658L4.95538 10.3148L4.19249 14.7603C4.1746 14.8637 4.18605 14.9701 4.22552 15.0673C4.265 15.1646 4.33094 15.2488 4.41585 15.3105C4.50077 15.3722 4.60127 15.4088 4.70595 15.4163C4.81063 15.4237 4.91531 15.4017 5.00812 15.3527L9.00011 13.2539L12.9921 15.3527C13.1011 15.4107 13.2276 15.4301 13.3489 15.409C13.6548 15.3562 13.8605 15.0662 13.8077 14.7603L13.0448 10.3148L16.2739 7.16658C16.3618 7.08045 16.4198 6.96795 16.4374 6.8449C16.4849 6.53729 16.2704 6.25252 15.9628 6.20682Z"
-                                                fill="#FFD33C"
-                                            />
-                                        </svg>
-                                        4
-                                    </div>
-                                    <div className="RatingsAndReviews-griditem doctorDescription-RatingsAndReviews-title">
-                                        very good doctor
-                                    </div>
-                                    <div className="RatingsAndReviews-griditem doctorDescription-RatingsAndReviews-title">
-
-                                    </div>
-                                    <div className="RatingsAndReviews-griditem doctorDescription-RatingsAndReviews-description">
-                                        Online therapy, also known as e-therapy, cyber-counseling, or teletherapy, represents a transformative evolution in mental health care delivery. In recent years, the rise of digital platforms and advancements in telecommunications technology have facilitated unprecedented access to therapeutic services, transcending geographical barriers and offering a spectrum of modalities tailored to individual needs. The essence of online therapy lies in its ability to provide confidential and convenient mental health support through various mediums, ranging from text-based messaging and video conferencing to phone calls and virtual reality environments. This paradigm shift has democratized mental health care, making it accessible to populations previously underserved due to factors such as remote location, physical disability, stigma, or time constraints. Moreover, online therapy offers flexibility in scheduling sessions, enabling clients to seek help without disrupting their daily routines or facing logistical challenges associated with traditional in-person appointments.
-                                    </div>
-                                </div>
-
-                            </div>
-                            {/* review end */}
-
-                            {/* review start */}
-                            <div className='doctorDescription-RatingsAndReviews-gridWrapper'>
-                                <div className="doctorDescription-RatingsAndReviews-gridContainer">
-                                    <div className="RatingsAndReviews-griditem doctorDescription-RatingsAndReviews-star">
-                                        <svg
-                                            width="100"
-                                            height="100"
-                                            viewBox="0 0 18 18"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M15.9628 6.20682L11.4997 5.55819L9.5046 1.51346C9.45011 1.40272 9.36046 1.31307 9.24972 1.25858C8.97198 1.12147 8.63448 1.23572 8.49562 1.51346L6.5005 5.55819L2.03741 6.20682C1.91437 6.2244 1.80187 6.2824 1.71573 6.37029C1.6116 6.47732 1.55422 6.62131 1.5562 6.77062C1.55818 6.91993 1.61935 7.06235 1.72628 7.16658L4.95538 10.3148L4.19249 14.7603C4.1746 14.8637 4.18605 14.9701 4.22552 15.0673C4.265 15.1646 4.33094 15.2488 4.41585 15.3105C4.50077 15.3722 4.60127 15.4088 4.70595 15.4163C4.81063 15.4237 4.91531 15.4017 5.00812 15.3527L9.00011 13.2539L12.9921 15.3527C13.1011 15.4107 13.2276 15.4301 13.3489 15.409C13.6548 15.3562 13.8605 15.0662 13.8077 14.7603L13.0448 10.3148L16.2739 7.16658C16.3618 7.08045 16.4198 6.96795 16.4374 6.8449C16.4849 6.53729 16.2704 6.25252 15.9628 6.20682Z"
-                                                fill="#FFD33C"
-                                            />
-                                        </svg>
-                                        4
-                                    </div>
-                                    <div className="RatingsAndReviews-griditem doctorDescription-RatingsAndReviews-title">
-                                        very good doctor
-                                    </div>
-                                    <div className="RatingsAndReviews-griditem doctorDescription-RatingsAndReviews-title">
-
-                                    </div>
-                                    <div className="RatingsAndReviews-griditem doctorDescription-RatingsAndReviews-description">
-                                        Online therapy, also known as e-therapy, cyber-counseling, or teletherapy, represents a transformative evolution in mental health care delivery. In recent years, the rise of digital platforms and advancements in telecommunications technology have facilitated unprecedented access to therapeutic services, transcending geographical barriers and offering a spectrum of modalities tailored to individual needs. The essence of online therapy lies in its ability to provide confidential and convenient mental health support through various mediums, ranging from text-based messaging and video conferencing to phone calls and virtual reality environments. This paradigm shift has democratized mental health care, making it accessible to populations previously underserved due to factors such as remote location, physical disability, stigma, or time constraints. Moreover, online therapy offers flexibility in scheduling sessions, enabling clients to seek help without disrupting their daily routines or facing logistical challenges associated with traditional in-person appointments.
-                                    </div>
-                                </div>
-
-                            </div>
-                            {/* review end */}
 
                         </div>
                     </div>

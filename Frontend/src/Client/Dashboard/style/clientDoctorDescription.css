@@ -205,6 +205,7 @@
     display: grid;
     grid-template-columns: 6vh 50vh;
     grid-template-rows: 7vh auto;
+    justify-content: center;
     border: solid 3px rgb(187, 183, 183);
     max-width: 60vh;
     gap: 2px;
@@ -215,6 +216,7 @@
 
 .doctorDescription-RatingsAndReviews-star {
     display: flex;
+    justify-content: baseline   ;
     align-items: center;
     margin: 0px;
 }
@@ -231,6 +233,9 @@
 
 .doctorDescription-RatingsAndReviews-title {
     font-size: 4vh;
+    display: flex;
+    justify-content: start;
+    align-items:center;
     font-weight: 700;
     margin: 0px;
     margin-top: 1vh;
@@ -242,6 +247,8 @@
     word-wrap: break-word;
     overflow-y: auto;
     margin-top: 0px;
+    width: 28vw;
+    margin: 10px;
 }
 
 .overlay {
