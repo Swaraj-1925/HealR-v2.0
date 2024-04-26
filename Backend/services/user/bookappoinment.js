@@ -80,7 +80,7 @@ async function Docdescription(req, res) {
     });
   });
 
-  const averageRating = reviewCount > 0 ? (totalStars / reviewCount).toFixed(1) : null;
+  const averageRating = reviewCount > 0 ? (totalStars / reviewCount).toFixed(1) : 0;
 
   const appointmentCount = appointments.length > 0 ? appointments.length : null;
 
@@ -114,7 +114,8 @@ async function Docappoinmentdata(req, res) {
   const isoDate = selectedDate.toISOString().split('T')[0];;
   
 
-  const docDescription = await Doctor.findOne({ _id: req.params.doctorId }).select('acceptedTime username');
+  const docDescription = await Doctor.findOne({ _id: req.params.doctorId }).select('acceptedTime username fees');
+  console.log(docDescription)
   const acceptedTimes = JSON.parse(docDescription.acceptedTime)
   const checkAppointments = await User.find(
     { 'appointments.doctorUsername': docDescription.username },
@@ -148,7 +149,7 @@ async function Docappoinmentdata(req, res) {
   const availableTimes = acceptedTimes.filter(time => !bookedTimes.includes(time));
 
   const acceptedTime = docDescription.acceptedTime[0]
-  res.status(200).json({ time: availableTimes })
+  res.status(200).json({ time: availableTimes , fees:docDescription.fees })
 }
 
 

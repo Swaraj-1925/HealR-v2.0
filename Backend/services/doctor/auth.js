@@ -20,8 +20,6 @@ const uplode = require('./../../config/bloob').UploadImg;
 
 
 async function Signup(userData, userfiles) {
-    
-    
     const img_small = userfiles[0].fieldname;
     const img_big = userfiles[1].fieldname;
 
