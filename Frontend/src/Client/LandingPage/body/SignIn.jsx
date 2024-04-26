@@ -23,8 +23,8 @@ function SignIn() {
             if (response.data.message === 'Successfully') { 
                 navigate('/dashboard'); 
             } else {
+                alert("Login failed:-" ,response.data.message)
                 console.error('Login failed:', response.data.message);
-                // Handle login failure (e.g., display error message)
             }
         })
         .catch(function (error) {

@@ -5,14 +5,25 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
 
 function BookAppointmentPopUp({ toggle }) {
+
   const { doctorId } = useParams();
   const temrsandcondtion = "/";
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const [selectedMethod, setSelectedMethod] = useState(null);
   const [isTermsAccepted, setIsTermsAccepted] = useState(false);
+  const [acceptedFess, setAcceptedFess] = useState('');
+  const [fess, setfess] = useState(0);
 
 
   const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
@@ -20,7 +31,6 @@ function BookAppointmentPopUp({ toggle }) {
   useEffect(() => {
     const fetchAvailableTimeSlots = async () => {
       if (selectedDate) {
-        console.log(selectedDate);
         try {
           const response = await axios.get(
             `http://localhost:3000/user/availableTimeSlots/${doctorId}`,
@@ -30,15 +40,16 @@ function BookAppointmentPopUp({ toggle }) {
             }
           );
           setAvailableTimeSlots(response.data.time);
+          setfess(response.data.fees);
         } catch (error) {
           console.error('Error fetching available time slots:', error);
         }
       }
     };
-  
+
     fetchAvailableTimeSlots();
   }, [selectedDate, doctorId]);
-  
+
 
   const handleSubmit = async () => {
 
@@ -57,7 +68,7 @@ function BookAppointmentPopUp({ toggle }) {
         return
       }
 
-      const date =selectedDate.toISOString()
+      const date = selectedDate.toISOString()
       const response = await axios.post(`http://localhost:3000/user/docAppoinmentdatapost/${doctorId}`, {
         date,
         selectedTimeSlot,
@@ -76,6 +87,17 @@ function BookAppointmentPopUp({ toggle }) {
     }
   };
 
+  const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+
+
 
   const handleDateClick = (date) => {
     setSelectedDate(date);
@@ -91,7 +113,7 @@ function BookAppointmentPopUp({ toggle }) {
     const today = new Date();
     const calendarDays = [];
 
-    
+
     for (let i = 0; i < 30; i++) {
       const date = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
       const dayName = days[date.getDay()];
@@ -185,6 +207,7 @@ function BookAppointmentPopUp({ toggle }) {
                     value="message"
                     checked={selectedMethod === "message"}
                     onChange={() => handleMethodChange("message")}
+                    onClick={()=> setAcceptedFess(fess.message)}
                   />
                   <span className="radio-tile">
                     <span className="radio-icon">
@@ -217,8 +240,8 @@ function BookAppointmentPopUp({ toggle }) {
                       </svg>
 
                     </span>
-                    <span className="radio-label">Message</span>
-                    <span className="radio-label">200</span>
+                    <span className="radio-label"  >Message</span>
+                    <span className="radio-label" >{fess.message}</span>
                   </span>
                 </label>
                 <label>
@@ -229,6 +252,7 @@ function BookAppointmentPopUp({ toggle }) {
                     value="Call"
                     checked={selectedMethod === "Call"}
                     onChange={() => handleMethodChange("Call")}
+                    onClick={()=> setAcceptedFess(fess.call)}
                   />
 
                   <span className="radio-tile">
@@ -237,8 +261,8 @@ function BookAppointmentPopUp({ toggle }) {
                         <path d="M21.384,17.752a2.108,2.108,0,0,1-.522,3.359,7.543,7.543,0,0,1-5.476.642C10.5,20.523,3.477,13.5,2.247,8.614a7.543,7.543,0,0,1,.642-5.476,2.108,2.108,0,0,1,3.359-.522L8.333,4.7a2.094,2.094,0,0,1,.445,2.328A3.877,3.877,0,0,1,8,8.2c-2.384,2.384,5.417,10.185,7.8,7.8a3.877,3.877,0,0,1,1.173-.781,2.092,2.092,0,0,1,2.328.445Z" />
                       </svg>
                     </span>
-                    <span className="radio-label">Call</span>
-                    <span className="radio-label">200</span>
+                    <span className="radio-label" >Call</span>
+                    <span className="radio-label">{fess.call}</span>
                   </span>
                 </label>
                 <label>
@@ -249,6 +273,7 @@ function BookAppointmentPopUp({ toggle }) {
                     value="Video call"
                     checked={selectedMethod === "Video_call"}
                     onChange={() => handleMethodChange("Video_call")}
+                    onClick={()=> setAcceptedFess(fess.videoCall)}
                   />
                   <span className="radio-tile">
                     <span className="radio-icon">
@@ -264,8 +289,8 @@ function BookAppointmentPopUp({ toggle }) {
                         </g>
                       </svg>
                     </span>
-                    <span className="radio-label">Video call</span>
-                    <span className="radio-label">200</span>
+                    <span className="radio-label" onClick={()=> setAcceptedFess(fess.videoCall)}>Video call</span>
+                    <span className="radio-label">{fess.videoCall}</span>
                   </span>
                 </label>
                 <label>
@@ -276,6 +301,7 @@ function BookAppointmentPopUp({ toggle }) {
                     value="In Clinic"
                     checked={selectedMethod === "In_Clinic"}
                     onChange={() => handleMethodChange("In_Clinic")}
+                    onClick={()=> setAcceptedFess(fess.inClinic)}
                   />
                   <span className="radio-tile">
                     <span className="radio-icon">
@@ -283,8 +309,8 @@ function BookAppointmentPopUp({ toggle }) {
                         <path d="m66.57 54.617c-4.8047 3.0117-10.488 4.7578-16.57 4.7578-6.0859 0-11.762-1.7422-16.555-4.7734-1.4922-0.96094-3.2539-1.4766-5.0508-1.4766h-0.27344c-8.6289 0-15.625 6.9961-15.625 15.625v12.5c0 4.1445 1.6484 8.1172 4.5742 11.051 2.9297 2.9297 6.9062 4.5742 11.051 4.5742h43.75c4.1445 0 8.1172-1.6484 11.051-4.5742 2.9297-2.9297 4.5742-6.9062 4.5742-11.051v-12.5c0-8.6289-6.9961-15.625-15.625-15.625-0.17578 0-0.34766 0.007812-0.51953 0.023438-1.6836 0.039062-3.3438 0.55078-4.7852 1.4688zm-16.57-51.492c-13.797 0-25 11.203-25 25s11.203 25 25 25 25-11.203 25-25-11.203-25-25-25z" fillRule="evenodd" />
                       </svg>
                     </span>
-                    <span className="radio-label">In Clinic</span>
-                    <span className="radio-label">200</span>
+                    <span className="radio-label"  >In Clinic</span>
+                    <span className="radio-label">{fess.inClinic}</span>
                   </span>
                 </label>
 
@@ -299,7 +325,63 @@ function BookAppointmentPopUp({ toggle }) {
             <label htmlFor="vehicle1"> accept terms and condition,click <Link style={{ color: 'blue' }} to={temrsandcondtion}>here</Link> to read them
             </label>
           </div>
-          <button onClick={handleSubmit} className='client-bookAppoinment-Payment '>Payment</button>
+          <React.Fragment>
+            <button onClick={handleClickOpen} className='client-bookAppoinment-Payment '>Payment</button>
+            <Dialog
+              open={open}
+              TransitionComponent={Transition}
+              keepMounted
+              onClose={handleClose}
+              maxWidth='40vw'
+              aria-describedby="alert-dialog-slide-description"
+            >
+              <DialogTitle>{"Checkout"}</DialogTitle>
+              <DialogContent>
+                <div className="font-[sans-serif] bg-white p-4 min-h-screen">
+                  <div className="lg:max-w-6xl max-w-xl mx-auto">
+                    <div className="grid lg:grid-cols-3 gap-8">
+                      <div className="lg:col-span-2 max-lg:order-1">
+                        <h2 className="text-3xl font-extrabold text-[#333]">Make a payment</h2>
+                        <p className="text-[#333] text-base mt-6">Complete your transaction swiftly and securely with our easy-to-use payment process.</p>
+                        <form className="mt-12 max-w-lg">
+                          <div className="grid gap-6">
+                            <input type="text" placeholder="Cardholder's Name"
+                              className="px-4 py-3.5 bg-gray-100 text-[#333] w-full text-sm border rounded-md focus:border-purple-500 outline-none" />
+                            <div className="flex bg-gray-100 border rounded-md focus-within:border-purple-500 overflow-hidden">
+                              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 ml-3" viewBox="0 0 32 20">
+                                <circle cx="10" cy="10" r="10" fill="#f93232" data-original="#f93232" />
+                                <path fill="#fed049"
+                                  d="M22 0c-2.246 0-4.312.75-5.98 2H16v.014c-.396.298-.76.634-1.107.986h2.214c.308.313.592.648.855 1H14.03a9.932 9.932 0 0 0-.667 1h5.264c.188.324.365.654.518 1h-6.291a9.833 9.833 0 0 0-.377 1h7.044c.104.326.186.661.258 1h-7.563c-.067.328-.123.66-.157 1h7.881c.039.328.06.661.06 1h-8c0 .339.027.67.06 1h7.882c-.038.339-.093.672-.162 1h-7.563c.069.341.158.673.261 1h7.044a9.833 9.833 0 0 1-.377 1h-6.291c.151.344.321.678.509 1h5.264a9.783 9.783 0 0 1-.669 1H14.03c.266.352.553.687.862 1h2.215a10.05 10.05 0 0 1-1.107.986A9.937 9.937 0 0 0 22 20c5.523 0 10-4.478 10-10S27.523 0 22 0z"
+                                  className="hovered-path" data-original="#fed049" />
+                              </svg>
+                              <input type="number" placeholder="Card Number"
+                                className="px-4 py-3.5 bg-gray-100 text-[#333] w-full text-sm outline-none" />
+                            </div>
+                            <div className="grid grid-cols-2 gap-6">
+                              <input type="number" placeholder="EXP."
+                                className="px-4 py-3.5 bg-gray-100 text-[#333] w-full text-sm border rounded-md focus:border-purple-500 outline-none" />
+                              <input type="number" placeholder="CVV"
+                                className="px-4 py-3.5 bg-gray-100 text-[#333] w-full text-sm border rounded-md focus:border-purple-500 outline-none" />
+                            </div>
+                          </div>
+                          <button type="button" className="mt-6 w-40 py-3.5 text-sm bg-purple-500 text-white rounded-md hover:bg-purple-600" onClick={handleSubmit}>Submit</button>
+                        </form>
+                      </div>
+                      <div className="bg-gray-100 p-6 rounded-md">
+                        <h2 className="text-4xl font-extrabold text-[#333]">{acceptedFess}</h2>
+                        <ul className="text-[#333] mt-10 space-y-6">
+                          <li className="flex flex-wrap gap-4 text-base">Date <span className="ml-auto font-bold">{selectedDate.getDate()} {selectedDate.toLocaleDateString('en-US', { month: 'long', },)}</span></li>
+                          <li className="flex flex-wrap gap-4 text-base">Time <span className="ml-auto font-bold">{selectedTimeSlot}</span></li>
+                          <li className="flex flex-wrap gap-4 text-base">Method <span className="ml-auto font-bold">{selectedMethod}</span></li>
+                          <li className="flex flex-wrap gap-4 text-base">Amount <span className="ml-auto font-bold">{acceptedFess}</span></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
+          </React.Fragment>
         </div>
 
       </section>

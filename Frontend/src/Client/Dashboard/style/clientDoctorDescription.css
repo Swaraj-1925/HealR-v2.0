@@ -108,7 +108,9 @@
 }
 
 .doctorDescription-gridContainer2-item img {
-    /* width: 35vw; */
+    width: 100%;
+    height: 100%; /* Change height to 100% */
+    object-fit: cover;
 
     object-fit: contain;
 }

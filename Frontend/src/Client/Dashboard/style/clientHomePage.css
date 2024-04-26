@@ -31,15 +31,12 @@
     margin-left: 10px;
 }
 
-/*  */
-/*  */
-/*  */
-/*  */
+ 
 .Dashboard-home-upcomingAppoinment{
     display: grid;
     grid-template-rows: 1fr 2fr 1fr 1fr 1fr;
     justify-content: center;
-    max-height: 85vh;
+    max-height: 87vh;
     align-items: center;
     border-radius: 10px;
     margin: 10px 10px 2px;
@@ -69,10 +66,9 @@
 
 .upcomingAppoinment-doctorImg{
     width: 100%;
-    height: 100%;
+    height: 10%;
     margin: 0px;
     padding: 0px;
-    object-fit: cover;
     border-radius: 6px;
 }
 .upcomingAppoinment-NameDoctor{
@@ -106,4 +102,20 @@
     font-size: 2vw;
     margin-top: 10vw;
     font-weight: 500;
+}
+.upcomingAppoinment-date ,.upcomingAppoinment-time{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 2vw;
+    font-weight: 500;
+}
+.upcomingAppoinment-NameDoctor{
+    font-weight:700 ;
+    margin: 5px;
+}
+.upcomingAppoinment-modeOfTherapy{
+    margin-top: 8px;
+    margin-bottom: 5px;
+    font-size: 2vw;
+    padding: 5px;
 }
