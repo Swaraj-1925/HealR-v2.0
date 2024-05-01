@@ -19,12 +19,12 @@ function SignIn() {
             withCredentials: true
         })
         .then(function (response) {
-           
+           console.log(response)
             if (response.data.message === 'Successfully') { 
                 navigate('/dashboard'); 
-            } else {
-                alert("Login failed:-" ,response.data.message)
-                console.error('Login failed:', response.data.message);
+            } else if (response.data.message === 'Not valid'){
+                alert("User does not exist, Signup before sign in" );
+                navigate('/sign-up'); 
             }
         })
         .catch(function (error) {

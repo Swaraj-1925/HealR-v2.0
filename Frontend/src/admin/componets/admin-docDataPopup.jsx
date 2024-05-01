@@ -40,6 +40,6 @@ export default function AdminDocPopUp({ imageUrls, onClose }) {
 }
 
 AdminDocPopUp.propTypes = {
-    imageUrls: PropTypes.arrayOf(PropTypes.string), // Assuming imageUrls is an array of string URLs
+    imageUrls: PropTypes.arrayOf(PropTypes.string),
     onClose: PropTypes.func.isRequired,
 };

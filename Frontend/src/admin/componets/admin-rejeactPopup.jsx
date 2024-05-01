@@ -28,6 +28,7 @@ export default function RejeactPopup({ onClose, selectedUser }) {
             if (response.status === 200) {
                 alert("Successful!!")
                 onClose();
+                window.location.reload();
             }
         } catch (error) {
             console.error('Error rejecting request:', error);

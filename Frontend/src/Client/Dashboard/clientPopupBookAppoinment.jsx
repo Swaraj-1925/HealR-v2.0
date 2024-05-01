@@ -1,19 +1,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import './style/clientPopupBookAppoinment.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState,forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import * as React from 'react';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
-
+import React from 'react';
 function BookAppointmentPopUp({ toggle }) {
 
   const { doctorId } = useParams();
@@ -87,10 +83,10 @@ function BookAppointmentPopUp({ toggle }) {
     }
   };
 
-  const Transition = React.forwardRef(function Transition(props, ref) {
+  const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
   });
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);

@@ -1,0 +1,31 @@
+.admin-doctor-container{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 1vw;
+}
+.admin-doctor-scearch-continer{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items:center;
+    font-size: 1vw;
+    font-weight: 500;
+}
+.scearch-admin-doctor-input{
+    border: 1px solid black;
+    padding: 1vw 20vw 1vw 1vw;
+    border-radius: 8px;
+}
+.scearch-admin-doctor-button{
+    position: relative;
+    padding: 1vw;
+    border-radius: 8px;
+    background-color: chocolate;
+    margin: 0vw 1vw 0vw;
+    
+}
+.scearch-admin-doctor-button svg{
+    width: 1.5vw;
+    height: auto;
+}

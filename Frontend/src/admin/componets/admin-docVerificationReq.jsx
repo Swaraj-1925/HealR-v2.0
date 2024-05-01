@@ -33,10 +33,11 @@ export default function CustomizedTable() {
       console.error('Error fetching data:', error);
     }
   };
-
-  const handleUsernameClick = (imageURL) => {
-    setSelectedImage(imageURL);
-  };
+const handleUsernameClick = (row) => {
+  console.log(row.experienceProof);
+  const imageUrls = [row.document, row.experienceProof, row.professionProof].filter(url => url); // Filter out null or undefined URLs
+    setSelectedImage(imageUrls);
+};
 
   const handleClosePopUp = () => {
     setSelectedImage(null);
@@ -80,7 +81,7 @@ export default function CustomizedTable() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                <button onClick={() => handleUsernameClick(row.document)}>{row.username}</button>
+                <button onClick={() => handleUsernameClick(row)}>{row.username}</button>
               </TableCell>
               <TableCell align="right">{row.profession}</TableCell>
               <TableCell align="center" style={{ padding: '8px 4px' }}>
@@ -95,7 +96,7 @@ export default function CustomizedTable() {
           ))}
         </TableBody>
       </Table>
-      {selectedImage && <AdminDocPopUp imageURL={selectedImage} onClose={handleClosePopUp} />}
+      {selectedImage && <AdminDocPopUp imageUrls={selectedImage} onClose={handleClosePopUp} />}
       {showRejectPopup && <RejectPopup onClose={() => setShowRejectPopup(false)} selectedUser={selectedUser} />} {/* Pass selectedUser to RejectPopup */}
     </TableContainer>
   );
