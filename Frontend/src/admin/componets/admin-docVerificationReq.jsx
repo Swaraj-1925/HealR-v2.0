@@ -70,7 +70,8 @@ const handleUsernameClick = (row) => {
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
-            <TableCell align="right">Profession</TableCell>
+            <TableCell align="center">Profession</TableCell>
+            <TableCell align="center">Profession</TableCell>
             <TableCell align="center" colSpan={2}>Actions</TableCell>
           </TableRow>
         </TableHead>
@@ -83,7 +84,8 @@ const handleUsernameClick = (row) => {
               <TableCell component="th" scope="row">
                 <button onClick={() => handleUsernameClick(row)}>{row.username}</button>
               </TableCell>
-              <TableCell align="right">{row.profession}</TableCell>
+              <TableCell align="center">{row.experience}</TableCell>
+              <TableCell align="center">{row.profession}</TableCell>
               <TableCell align="center" style={{ padding: '8px 4px' }}>
                 <Button variant="contained" color="info" onClick={() => handleAccept(row)}>
                   Accept
