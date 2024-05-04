@@ -40,6 +40,7 @@ const User_Schema = new mongoose.Schema({
     patientUsername: { // Username of the patient
         type: String,
         required: true,
+        unique: true,
     },
     age: {
         type: Number,
@@ -91,7 +92,7 @@ const User_Schema = new mongoose.Schema({
     },
 });
 
-// doctor schema
+ 
 // doctor schema
 const Doctor_Schema = new mongoose.Schema({
     name: {

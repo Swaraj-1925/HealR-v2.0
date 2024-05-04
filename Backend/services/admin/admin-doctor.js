@@ -4,10 +4,12 @@ const connection = require('../../config/db');
 const Doctor = connection.models.Doctor;
 const User = connection.models.User;
 const Report = connection.models.Report;
+const Verification = connection.models.Verification;
 
 async function Doctor_list(userData, res) {
     try {
         const doctors = await Doctor.find({}, '-_id name username age gender experience fees');
+
 
         const doctorData = await Promise.all(doctors.map(async (doctor) => {
             const appointmentsCount = await User.aggregate([
@@ -36,7 +38,7 @@ async function Doctor_list(userData, res) {
             };
         }));
 
-       
+
         res.status(200).json(doctorData);
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -44,4 +46,44 @@ async function Doctor_list(userData, res) {
     }
 }
 
-module.exports = Doctor_list;
+async function handleReport(userData, res) {
+    const reports = await Report.find({ dusername: userData }).select('pusername report');
+
+    res.status(200).json({ reports: reports });
+
+}
+async function handleExperience(userData, res) {
+    const Experience = await Verification.findOne({ username: userData }).select('experienceProof');
+    res.status(200).json({ Experienceimg: Experience.experienceProof });
+
+}
+async function handleProfession(userData, res) {
+    const Profession = await Verification.findOne({ username: userData }).select('professionProof');
+    res.status(200).json({ Professionimg: Profession.professionProof });
+
+}
+async function handleAppointments(userData, res) {
+    const Appointments = await User.find({ 'appointments.doctorUsername': userData })
+        .select('patientUsername appointments.appointmentType appointments.date appointments.time ');
+    res.status(200).json({ Appointments: Appointments });
+
+
+}
+async function handleReviews(userData, res) {
+    const Reviews = await User.find({ 'reviews.doctorUsername': userData })
+        .select('patientUsername reviews.review reviews.stars ');
+        
+    res.status(200).json({ handleReviews: handleReviews });
+
+}
+
+module.exports =
+{
+    Doctor_list,
+    handleReport,
+    handleExperience,
+    handleProfession,
+    handleAppointments,
+    handleReviews,
+
+};

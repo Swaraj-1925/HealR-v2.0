@@ -57,7 +57,8 @@ async function Signin(userData, res) {
     const existingUser = await Credential.findOne({ username: username, type: "patient" });
     
     if (!existingUser) {
-        throw new Error('User does not exist');
+
+        res.status(200).json({ message: 'Not valid'});
     } else {
         const isValid = validPassword(password, existingUser.password.hash, existingUser.password.salt);
         if (!isValid) {
