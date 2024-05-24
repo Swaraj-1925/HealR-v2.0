@@ -1,5 +1,7 @@
 const Signup = require('./../services/doctor/auth')
+const Signin = require('./../services/doctor/signin')
 const Verify = require('./../services/doctor/verify')
+const Appointments= require('./../services/doctor/appointments.js')
 
 
 
@@ -43,9 +45,32 @@ async function Signupcontroller(req, res) {
     }
 }
 
+async function Signincontroller(req, res) {
+
+    try {
+        await Signin(req,res);
+        //res.status(201).json({ message: "successfully" });
+
+    } catch (error) {
+        //console.log(error)
+        //console.error(error);
+        res.status(200).json({ message: error })
+    }
+}
+
+async function Appointmentscontroller(req ,res) {
+    try {
+        await Appointments(req ,res);
+    } catch (e) {
+        res.status(200).json({ message: e })
+    }
+    
+}
 module.exports = {
     Signupcontroller,
+    Signincontroller,
     Verifycontroller,
+     Appointmentscontroller
     // Dashboardcontroller,
     // Bookappoinmet_Controller,
     // Doc_description_Controller
