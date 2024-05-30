@@ -21,11 +21,11 @@ https://github.com/Swaraj-1925/HealR/assets/121567727/7e47ec3b-b00f-47e6-831f-83
 - mongodb
 
 ## Cammand to run react app
-```
+```sh
 npm run dev
 ```
 ## Cammand to run express app
-```
+```sh
 npm start
 ```
 
