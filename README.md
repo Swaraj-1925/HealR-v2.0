@@ -1,32 +1,37 @@
 # HealR
-## project is discountuned
-its and website to online therapy, right now it has 3 types pages admin , doctor, patient it designed to work on signle domain so you do need to by seprate domain for each screen ,
-in  this project i have used
-- mongodb : for storing user data
-- azure bloob storage :  for storing data realted to images and doctor documents which were taken for doctor verifcation
-- react and meterail ui : for frontend
-- express : for backend
+
+## Project Status: Discontinued
+
+HealR is a website for online therapy. Currently, it features three types of pages: admin, doctor, and patient. It is designed to work on a single domain, so you do not need to buy separate domains for each screen.
+
+### Technologies Used:
+- **MongoDB**: For storing user data.
+- **Azure Blob Storage**: For storing data related to images and doctor documents used for doctor verification.
+- **React and Material UI**: For the frontend.
+- **Express**: For the backend.
 
 ## Key Features:
-- Authentication & Authorization: Secure user authentication using JWT protect user data.
-- Data Encryption: Ensuring all sensitive data is encrypted both at rest and in transit to maintain user privacy.
+- **Authentication & Authorization**: Secure user authentication using JWT to protect user data.
+- **Data Encryption**: Ensures all sensitive data is encrypted both at rest and in transit to maintain user privacy.
 
-### Here is sample for website
+### Sample Website
 
-https://github.com/Swaraj-1925/HealR/assets/121567727/7e47ec3b-b00f-47e6-831f-83bb86001941
+[GitHub Link to Sample Website](https://github.com/Swaraj-1925/HealR/assets/121567727/7e47ec3b-b00f-47e6-831f-83bb86001941)
 
-## Befor using this project
-- make sure you have an acount azure and a storage account and in it 2 containers you can name the whatever you feel like it
-  - make both public that is accesable to all
-- mongodb
+## Before Using This Project:
+- Ensure you have an Azure account and a storage account with 2 containers. You can name them whatever you like.
+  - Make both containers public, so they are accessible to all.
+- MongoDB setup.
 
-## Cammand to run react app
+## Commands to Run the React App
 ```sh
 npm run dev
 ```
-## Cammand to run express app
+
+## Commands to Run the Express App
 ```sh
 npm start
 ```
 
-## The website isnt responvie and inst made for mobile device there is version of in in v2.0 if want check it out but its also discountiuned
+## Notes:
+- The website is not responsive and is not made for mobile devices. There is a version 2.0, but it is also discontinued.
